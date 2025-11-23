@@ -22,7 +22,9 @@ public partial class MainPageModel : ObservableObject
     }
 
     public ICommand AppearingCommand => new Command(OnAppearing);
-    public ICommand OnDetectedCommand => new Command<OnDetectedEventArg>(OnDetected);
+   public ICommand DetectedCommand => new Command<OnDetectedEventArg>(OnDetected);
+
+    public ICommand TorchButtonCommand => new Command<EventArgs>(OnTorchButton);
 
     void OnAppearing()
     {
@@ -53,4 +55,16 @@ public partial class MainPageModel : ObservableObject
     private void BarcodeDetected(BarcodeResult result)
     {       
     }
+
+    [RelayCommand]
+    private void Clear()
+    {
+        ScannedText = string.Empty;
+    }
+
+    void OnTorchButton(EventArgs e)
+    {
+        Camera.TorchOn = Camera.TorchOn == false;
+    }
+
 }

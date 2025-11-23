@@ -14,5 +14,5 @@
 	<uses-permission android:name="android.permission.FLASHLIGHT" />
 	<uses-permission android:name="android.permission.CAMERA" />
 
-	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="35" />
+	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="36" />
 </manifest>

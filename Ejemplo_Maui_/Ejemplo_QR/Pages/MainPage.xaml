@@ -14,11 +14,9 @@
     <ScrollView>
         
         <VerticalStackLayout Padding="30,0" Spacing="25">
+
+            <gv:CameraView TorchOn="False"  VibrationOnDetected="True"  ScanInterval="50" x:Name="Camera" OnDetectedCommand="DetectedCommand">
             
-            <gv:CameraView TorchOn="False"  VibrationOnDetected="True"  ScanInterval="50"   x:Name="Camera">
-                <gv:CameraView.Behaviors>
-                    <toolkit:EventToCommandBehavior EventName="OnDetected" Command="{Binding OnDetectedCommand}" />
-                </gv:CameraView.Behaviors>
             </gv:CameraView>
 
             <Label Text="{Binding ScannedText, StringFormat='Escaneado: {0}'}"
@@ -29,6 +27,10 @@
             <Button Text="Limpiar"
                     Command="{Binding ClearCommand}"
                     HorizontalOptions="Center" />
+
+            <Button Text="Luz"
+                     Command="{Binding TorchButtonCommand}"
+                     HorizontalOptions="Center" />      
 
         </VerticalStackLayout>
     </ScrollView>
