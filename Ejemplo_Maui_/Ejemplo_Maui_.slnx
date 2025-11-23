@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="Ejemplo/Ejemplo.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="Ejemplo_HolaMundo/Ejemplo_HolaMundo.csproj" Id="df9f5be8-c081-4968-a8a4-e94f8b064846">
+    <Deploy />
+  </Project>
+  <Project Path="Ejemplo_QR/Ejemplo_QR.csproj" Id="47c2a312-dde4-4b7d-9210-1e6451a00464" />
+</Solution>
