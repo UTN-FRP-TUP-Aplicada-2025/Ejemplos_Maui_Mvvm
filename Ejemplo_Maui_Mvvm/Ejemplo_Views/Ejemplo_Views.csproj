@@ -1,0 +1,73 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net10.0-android;net10.0-ios</TargetFrameworks>
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>Ejemplo_Views</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>Ejemplo_Views</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.ejemplo_views</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
+		<WindowsPackageType>None</WindowsPackageType>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+		<!-- Aumentado a 23.0 para compatibilidad con BarcodeScanner.Mobile.Maui 9.0.1 -->
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">23.0</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+		<AndroidUseAapt2>true</AndroidUseAapt2>
+		<AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+		<AndroidUseProguard>false</AndroidUseProguard>
+		<!-- Workaround para conflicto de savedstate -->
+		<AndroidDexToolPath>.</AndroidDexToolPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+		
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Force compatible versions for AndroidX to resolve savedstate conflict -->
+		<PackageReference Include="Xamarin.AndroidX.SavedState" Version="1.2.1.16" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" />
+		<PackageReference Include="Xamarin.AndroidX.SavedState.SavedState.Ktx" Version="1.2.1.16" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" />
+		
+		<PackageReference Include="CommunityToolkit.Maui" Version="12.1.0" />
+
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.8" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.100" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.100" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.7" />
+		
+		<!-- BarcodeScanner.Mobile.Maui 9.0.1 -->
+		<PackageReference Include="BarcodeScanner.Mobile.Maui" Version="9.0.1" />
+	</ItemGroup>
+
+</Project>

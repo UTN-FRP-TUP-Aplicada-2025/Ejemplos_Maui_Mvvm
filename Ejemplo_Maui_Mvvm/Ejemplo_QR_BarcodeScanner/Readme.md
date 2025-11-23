@@ -1,0 +1,1 @@
+﻿BarcodeScanner.Mobile.Maui

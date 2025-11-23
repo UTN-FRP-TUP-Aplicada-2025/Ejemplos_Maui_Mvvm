@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/QR/">
+    <Project Path="Ejemplo_QR/Ejemplo_QR.csproj" Id="47c2a312-dde4-4b7d-9210-1e6451a00464">
+      <Deploy Solution="Debug|*" />
+    </Project>
+    <Project Path="Ejemplo_QR_BarcodeScanner/Ejemplo_QR_BarcodeScanner.csproj" Id="7da293a4-f799-47dd-b2c3-031fd13204ec" />
+    <Project Path="Ejemplo_QR_ZXing/Ejemplo_QR_ZXing.csproj" Id="768c3472-2240-44c4-81c7-20a33b97185d" />
+    <Project Path="Ejemplo_QR_ZXing_redth/Ejemplo_QR_ZXing_redth.csproj" Id="e2325985-46ef-4321-afda-8a13bded7e3d" />
+  </Folder>
+  <Project Path="Ejemplo/Ejemplo.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="Ejemplo_HolaMundo/Ejemplo_HolaMundo.csproj" Id="df9f5be8-c081-4968-a8a4-e94f8b064846">
+    <Deploy />
+  </Project>
+</Solution>

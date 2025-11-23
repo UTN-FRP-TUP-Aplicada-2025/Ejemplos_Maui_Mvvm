@@ -1,0 +1,3 @@
+﻿
+
+ZXing.Net.Maui redth
