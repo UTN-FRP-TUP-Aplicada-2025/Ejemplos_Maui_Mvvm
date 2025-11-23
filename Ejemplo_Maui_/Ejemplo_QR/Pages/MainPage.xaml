@@ -15,8 +15,11 @@
         
         <VerticalStackLayout Padding="30,0" Spacing="25">
 
-            <gv:CameraView TorchOn="False"  VibrationOnDetected="True"  ScanInterval="50" x:Name="Camera" OnDetectedCommand="DetectedCommand">
-            
+            <gv:CameraView VibrationOnDetected="True"  
+                           ScanInterval="1" x:Name="Camera"                            
+                           OnDetectedCommand="{Binding DetectedCommand}"
+                           TorchOn="{Binding TorchEnabled}">
+
             </gv:CameraView>
 
             <Label Text="{Binding ScannedText, StringFormat='Escaneado: {0}'}"
