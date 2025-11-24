@@ -15,8 +15,9 @@
         
         <VerticalStackLayout Padding="30,0" Spacing="25">
 
-            <gv:CameraView x:Name="Camera" IsEnabled="{Binding IsScanning}"
-                           VibrationOnDetected="True"  ScanInterval="100"                     
+            <gv:CameraView x:Name="Camera" IsEnabled="True"
+                           VibrationOnDetected="True"  ScanInterval="50"                    
+                           IsScanning="True"
                            OnDetectedCommand="{Binding OnDetectedCommand}" TorchOn="{Binding TorchEnabled}">
             </gv:CameraView>
 

@@ -1,8 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using BarcodeScanner.Mobile;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
 using System.Windows.Input;
-using BarcodeScanner.Mobile;
 
 namespace Ejemplo_QR_BarcodeScanner.PageModels;
 
@@ -73,25 +73,24 @@ public partial class MainPageModel : ObservableObject
 
     public ICommand OnDetectedCommand => new Command<BarcodeScanner.Mobile.OnDetectedEventArg>(OnDetectedHandler);
 
-
-    private TaskCompletionSource<List<BarcodeResult>> _taskCompletionSource;
- 
     private async void OnDetectedHandler(BarcodeScanner.Mobile.OnDetectedEventArg e)
     {
         try
         {
-            _taskCompletionSource = new TaskCompletionSource<List<BarcodeResult>>();
-      
-            List<BarcodeResult> result = e.BarcodeResults;
+            List<BarcodeResult> barCodes = e.BarcodeResults;
 
-            if (_taskCompletionSource != null && !_taskCompletionSource.Task.IsCompleted)
+            if (barCodes == null || barCodes.Count == 0) return;
+            
+            var firstBarcode = barCodes[0].DisplayValue;
+
+            if (string.IsNullOrEmpty(firstBarcode))
+                return;
+
+            MainThread.BeginInvokeOnMainThread(async () =>
             {
-                List<BarcodeResult> barCodes = result;
-                if (barCodes == null || barCodes.Count == 0)
-                    return;
-
-                ScannedText = barCodes[0].DisplayValue??"";
-            }           
+                ScannedText = firstBarcode;
+                _logger.LogInformation("Barcode detected: {ScannedText}", ScannedText);
+            });                       
         }
         catch (Exception ex)
         {
@@ -101,15 +100,9 @@ public partial class MainPageModel : ObservableObject
     }
 
     [RelayCommand]
-    private void BarcodeDetected(BarcodeResult result)
-    {
-    }
-
-    [RelayCommand]
     private void Clear()
     {
         ScannedText = string.Empty;
-        IsScanning = true;
         _logger.LogInformation("Cleared scan data");
     }
 

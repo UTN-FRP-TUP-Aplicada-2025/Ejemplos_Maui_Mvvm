@@ -1,4 +1,4 @@
-ï»¿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net10.0-android;net10.0-ios</TargetFrameworks>
@@ -38,23 +38,30 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
-	<!-- ConfiguraciÃ³n base para Android con soporte 16KB -->
+	<!-- Configuración base para Android -->
 	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
 		<AndroidLdFlags>-Wl,-z,max-page-size=16384</AndroidLdFlags>
 		<AndroidUseAapt2>true</AndroidUseAapt2>
 		<RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
-		<!--<AndroidUseWebKit>true</AndroidUseWebKit>	-->
 		<AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
-		<!-- Desactiva minificaciÃ³n en Debug -->
 		<AndroidUseProguard>false</AndroidUseProguard>
 		<AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+		<!-- Usar D8 para bypass R8 y evitar conflictos de compilación -->
+		<AndroidDexTool>d8</AndroidDexTool>
+		<!-- Aumentar limites de memoria para D8 -->
+		<AndroidDexDesugarTool>d8</AndroidDexDesugarTool>
 	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
 	  <AndroidPackageFormat>apk</AndroidPackageFormat>
 	</PropertyGroup>
+
+	<!-- Referencia a archivo de configuración de Proguard -->
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+		<ProguardConfiguration Include="proguard-rules.pro" />
+	</ItemGroup>
 	
 	<ItemGroup>
-
 		<PackageReference Include="CommunityToolkit.Maui" Version="$(MauiVersion)" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 

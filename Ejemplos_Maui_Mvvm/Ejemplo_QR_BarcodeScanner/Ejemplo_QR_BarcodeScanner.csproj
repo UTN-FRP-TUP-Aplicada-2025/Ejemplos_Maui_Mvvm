@@ -6,6 +6,8 @@
 		<OutputType>Exe</OutputType>
 		<RootNamespace>Ejemplo_QR_BarcodeScanner</RootNamespace>
 		<UseMaui>true</UseMaui>
+		<EnableFastDevDeployment>false</EnableFastDevDeployment>
+
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
