@@ -1,3 +1,2 @@
-﻿
-
-ZXing.Net.Maui redth
+﻿ZXing.Net.Maui.Controls
+ redth

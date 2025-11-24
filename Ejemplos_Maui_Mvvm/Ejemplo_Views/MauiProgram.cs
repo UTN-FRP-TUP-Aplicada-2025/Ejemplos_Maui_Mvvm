@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using CommunityToolkit.Maui;
 
 namespace Ejemplo_Views
 {
@@ -10,7 +9,6 @@ namespace Ejemplo_Views
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -18,7 +16,7 @@ namespace Ejemplo_Views
                 });
 
 #if DEBUG
-            builder.Logging.AddDebug();
+    		builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

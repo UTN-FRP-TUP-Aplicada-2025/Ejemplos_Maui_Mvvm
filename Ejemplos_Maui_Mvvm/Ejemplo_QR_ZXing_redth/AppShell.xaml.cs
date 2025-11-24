@@ -1,10 +1,9 @@
-﻿namespace Ejemplo_QR_ZXing_redth
+﻿namespace Ejemplo_QR_ZXing_redth;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

@@ -1,2 +1,2 @@
-﻿Xamarin.Google.ZXing.Core
-https://github.com/dotnet/android-libraries
+﻿ZXing.Net.Maui.Controls
+redth
