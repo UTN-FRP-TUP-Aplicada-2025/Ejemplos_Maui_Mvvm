@@ -1,4 +1,11 @@
 <Solution>
+  <Folder Name="/Docs/">
+    <File Path="Docs/qr_perro.jpg" />
+    <File Path="Docs/qr_rana.jpg" />
+    <File Path="Docs/Readme_build.md" />
+    <File Path="Docs/Readme_config_building.md" />
+    <File Path="Docs/Readme_workloads.md" />
+  </Folder>
   <Folder Name="/QR/">
     <Project Path="Ejemplo_QR_BarcodeScanner/Ejemplo_QR_BarcodeScanner.csproj" Id="7da293a4-f799-47dd-b2c3-031fd13204ec">
       <Deploy Solution="Debug|*" />
@@ -7,13 +14,15 @@
       <Deploy Solution="Debug|*" />
     </Project>
   </Folder>
+  <Folder Name="/Views/">
+    <Project Path="Ejemplo_Views/Ejemplo_Views.csproj" Id="9afeac96-4c3b-4632-bec9-cc871d080d54">
+      <Deploy Solution="Debug|*" />
+    </Project>
+  </Folder>
   <Project Path="Ejemplo/Ejemplo.csproj">
     <Deploy />
   </Project>
   <Project Path="Ejemplo_HolaMundo/Ejemplo_HolaMundo.csproj" Id="df9f5be8-c081-4968-a8a4-e94f8b064846">
     <Deploy />
-  </Project>
-  <Project Path="Ejemplo_Views/Ejemplo_Views.csproj" Id="9afeac96-4c3b-4632-bec9-cc871d080d54">
-    <Deploy Solution="Debug|*" />
   </Project>
 </Solution>

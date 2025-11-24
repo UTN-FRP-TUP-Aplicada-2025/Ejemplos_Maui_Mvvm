@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-using Ejemplo_HolaMundo.Services;
 
 namespace Ejemplo_HolaMundo;
 

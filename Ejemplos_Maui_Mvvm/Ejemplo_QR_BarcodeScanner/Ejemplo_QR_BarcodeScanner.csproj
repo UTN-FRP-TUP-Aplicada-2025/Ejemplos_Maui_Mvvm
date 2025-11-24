@@ -12,7 +12,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
-		<ApplicationTitle>Ejemplo QR BarcodeScanner</ApplicationTitle>
+		<ApplicationTitle>BarcodeScanner</ApplicationTitle>
 
 		<ApplicationId>com.ejemplos.QRBarcodeScanner</ApplicationId>
 
@@ -31,14 +31,41 @@
 	  <AndroidPackageFormat>apk</AndroidPackageFormat>
 	</PropertyGroup>
 
+	<!-- Configuración base para Android con soporte 16KB -->
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+		<AndroidLdFlags>-Wl,-z,max-page-size=16384</AndroidLdFlags>
+		<AndroidUseAapt2>true</AndroidUseAapt2>
+		<RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
+		<AndroidUseWebKit>true</AndroidUseWebKit>
+		<AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>		
+	</PropertyGroup>
+
 	<PropertyGroup>
 		<TargetFrameworks>net10.0-android;net10.0-ios</TargetFrameworks>
-
-		<BaseOutputPath>h:\bin\$(MSBuildProjectName)\</BaseOutputPath>
-		<IntermediateOutputPath>h:\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
+		<BaseOutputPath>E:\bin\$(MSBuildProjectName)\</BaseOutputPath>
+		<IntermediateOutputPath>E:\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
 		<ApplicationTitle>Ejemplo</ApplicationTitle>
-
 	</PropertyGroup>
+
+	<ItemGroup>
+		 <!--esto
+		<PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core" Version="2.9.3" Condition="'$(TargetFramework)'=='net10.0-android'" />
+		<PackageReference Include="Xamarin.AndroidX.Activity" Version="1.11.0" Condition="'$(TargetFramework)'=='net10.0-android'" />
+		<PackageReference Include="Xamarin.AndroidX.Activity.Ktx" Version="1.11.0" Condition="'$(TargetFramework)'=='net10.0-android'" />
+		o activar 
+		<AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>	
+		-->
+		<PackageReference Include="BarcodeScanner.Mobile.Maui" Version="9.0.1" />
+
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="12.3.0" />
+
+		<PackageReference Include="Microsoft.Maui.Core" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Essentials" Version="$(MauiVersion)" />
+
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(MauiVersion)" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -47,34 +74,10 @@
 
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
-		
+
 		<MauiFont Include="Resources\Fonts\*" />
 
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
-
-	<!-- Configuración base para Android con soporte 16KB -->
-	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
-		<AndroidLdFlags>-Wl,-z,max-page-size=16384</AndroidLdFlags>
-		<AndroidUseAapt2>true</AndroidUseAapt2>
-		<RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
-		<!--<AndroidUseWebKit>true</AndroidUseWebKit>	-->
-		<AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
-		<!-- Desactiva minificación en Debug -->
-		<AndroidUseProguard>false</AndroidUseProguard>
-		<AndroidEnableMultiDex>true</AndroidEnableMultiDex>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="BarcodeScanner.Mobile.Maui" Version="9.0.1" />
-
-		<PackageReference Include="CommunityToolkit.Maui" Version="$(MauiVersion)" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-		
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Essentials" Version="$(MauiVersion)" />
-		
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(MauiVersion)" />
 	</ItemGroup>
 
 </Project>

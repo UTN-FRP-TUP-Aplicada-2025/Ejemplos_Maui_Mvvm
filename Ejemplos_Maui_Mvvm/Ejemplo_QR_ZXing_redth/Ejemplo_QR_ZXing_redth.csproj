@@ -25,20 +25,11 @@
 		<TargetPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">36.0</TargetPlatformVersion>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
+	</PropertyGroup>
 
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
-
-		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
-		
-		<MauiFont Include="Resources\Fonts\*" />
-
-		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
-
-	<!-- Configuración base para Android -->
+	<!-- ConfiguraciÃ³n base para Android -->
 	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
 		<AndroidLdFlags>-Wl,-z,max-page-size=16384</AndroidLdFlags>
 		<AndroidUseAapt2>true</AndroidUseAapt2>
@@ -46,25 +37,24 @@
 		<AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
 		<AndroidUseProguard>false</AndroidUseProguard>
 		<AndroidEnableMultiDex>true</AndroidEnableMultiDex>
-		<!-- Usar D8 para bypass R8 y evitar conflictos de compilación -->
+		<!-- Usar D8 para bypass R8 y evitar conflictos de compilaciÃ³n -->
 		<AndroidDexTool>d8</AndroidDexTool>
 		<!-- Aumentar limites de memoria para D8 -->
 		<AndroidDexDesugarTool>d8</AndroidDexDesugarTool>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
-	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	<PropertyGroup>
+		<TargetFrameworks>net10.0-android;net10.0-ios</TargetFrameworks>
+		<BaseOutputPath>E:\bin\$(MSBuildProjectName)\</BaseOutputPath>
+		<IntermediateOutputPath>E:\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
+		<ApplicationTitle>Ejemplo</ApplicationTitle>
 	</PropertyGroup>
-
-	<!-- Referencia a archivo de configuración de Proguard -->
-	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
-		<ProguardConfiguration Include="proguard-rules.pro" />
-	</ItemGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="$(MauiVersion)" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="12.3.0" />
 
+		<PackageReference Include="Microsoft.Maui.Core" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="$(MauiVersion)" />
 
@@ -73,4 +63,16 @@
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.6.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
 </Project>

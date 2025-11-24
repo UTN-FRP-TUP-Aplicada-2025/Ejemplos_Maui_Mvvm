@@ -11,9 +11,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
-		<ApplicationTitle>Ejemplo_HolaMundo</ApplicationTitle>
+		<ApplicationTitle>HolaMundo</ApplicationTitle>
 
-		<ApplicationId>com.companyname.ejemplo_holamundo</ApplicationId>
+		<ApplicationId>com.ejemplo.Holamundo</ApplicationId>
 
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
@@ -28,18 +28,15 @@
 		<TargetPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">36.0</TargetPlatformVersion>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+	<!--
+	<PropertyGroup>
+		<MauiVersion>10.0.0</MauiVersion>
+	</PropertyGroup>
+	-->
 
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
-
-		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
-		
-		<MauiFont Include="Resources\Fonts\*" />
-
-		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
+	</PropertyGroup>
 
 	<!-- Configuración base para Android con soporte 16KB -->
 	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
@@ -48,19 +45,38 @@
 		<RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
 		<!--<AndroidUseWebKit>true</AndroidUseWebKit>	-->
 		<AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
-		<!-- Desactiva minificación en Debug -->
-		<AndroidUseProguard>false</AndroidUseProguard>
-		<AndroidEnableMultiDex>true</AndroidEnableMultiDex>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<TargetFrameworks>net10.0-android;net10.0-ios</TargetFrameworks>
+		<BaseOutputPath>E:\bin\$(MSBuildProjectName)\</BaseOutputPath>
+		<IntermediateOutputPath>E:\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
+		<ApplicationTitle>Ejemplo</ApplicationTitle>
+	</PropertyGroup>
+
+	<!--dotnet restore y revisar que arroja-->
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="11.1.1" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />		
+		<PackageReference Include="CommunityToolkit.Maui" Version="12.3.0" />
 		
+		<PackageReference Include="Microsoft.Maui.Core" Version="$(MauiVersion)" />		
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="$(MauiVersion)" />
 		
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(MauiVersion)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
 </Project>
