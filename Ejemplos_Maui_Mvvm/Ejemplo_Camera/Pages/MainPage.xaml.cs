@@ -1,4 +1,4 @@
-﻿namespace Ejemplo_Tabs.Pages;
+﻿namespace Ejemplo_Camera.Pages;
 
 public partial class MainPage : ContentPage
 {

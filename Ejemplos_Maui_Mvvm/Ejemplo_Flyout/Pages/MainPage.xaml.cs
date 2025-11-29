@@ -1,6 +1,4 @@
-﻿using Ejemplo_Flyout.PageModels;
-
-namespace Ejemplo_Flyout.Pages;
+﻿namespace Ejemplo_Flyout.Pages;
 
 public partial class MainPage : ContentPage
 {

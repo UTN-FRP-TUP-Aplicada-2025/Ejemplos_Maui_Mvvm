@@ -1,4 +1,4 @@
-﻿namespace Ejemplo_Flyout;
+﻿namespace Ejemplo_Camera;
 
 public partial class App : Application
 {
