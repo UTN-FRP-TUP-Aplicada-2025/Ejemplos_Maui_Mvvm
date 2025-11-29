@@ -6,9 +6,6 @@ Archivo de proyecto (.csproj):
 <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
 ```
 
-
-
-
 ```
 dotnet publish -c Release -f net10.0-android
 ```

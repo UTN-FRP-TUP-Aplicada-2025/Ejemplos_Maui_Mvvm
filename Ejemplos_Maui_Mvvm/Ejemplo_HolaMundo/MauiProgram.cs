@@ -21,8 +21,15 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-        // Registrar solo los servicios necesarios
+        builder.Services.AddLogging();
+
+        #region page models
+        builder.Services.AddSingleton<MainPageModel>();
+        #endregion
+
+        #region servicios 
         builder.Services.AddSingleton<PersonasService>();
+        #endregion
 
         return builder.Build();
     }

@@ -1,2 +1,1 @@
-﻿CommunityToolkit.Maui
-CommunityToolkit.Mvvm
+﻿

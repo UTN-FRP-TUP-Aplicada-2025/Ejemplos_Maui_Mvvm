@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="Ejemplo_Tabs.AppShell"
+        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:local="clr-namespace:Ejemplo_Tabs"
+        xmlns:pages="clr-namespace:Ejemplo_Tabs.Pages"
+        Title="Ejemplo_Tabs">
+
+    <TabBar>
+        <Tab Title="Main Page" Icon="Exam.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:MainPage}" />
+        </Tab>
+        <Tab Title="Other Page" Icon="dog.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:MainPage}" />
+        </Tab>
+    </TabBar>
+
+</Shell>

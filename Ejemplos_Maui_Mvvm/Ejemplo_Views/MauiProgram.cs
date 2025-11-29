@@ -23,6 +23,11 @@ public static class MauiProgram
 #endif
 
         builder.Services.AddSingleton<MainPageModel>();
+        builder.Services.AddSingleton<HolaMundoButtonPageModel>();
+
+
+        //registrar el page en el DI
+        builder.Services.AddTransient<HolaMundoButtonPage>();
 
         return builder.Build();
     }

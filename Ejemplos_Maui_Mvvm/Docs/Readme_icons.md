@@ -1,0 +1,1 @@
+https://www.freepik.com/icon/exam_10099190
