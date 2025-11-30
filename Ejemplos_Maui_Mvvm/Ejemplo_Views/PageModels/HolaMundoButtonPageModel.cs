@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
 using System.Windows.Input;
 
@@ -7,21 +8,19 @@ namespace Ejemplo_Views.PageModels;
 
 public partial class HolaMundoButtonPageModel:ObservableObject
 {
-    ILogger<MainPageModel> _logger;
+    readonly ILogger<HolaMundoButtonPageModel> _logger=default!;
 
     [ObservableProperty]
-    string mensaje = default!;
+    string textLabel = default!;
 
-    public HolaMundoButtonPageModel(ILogger<MainPageModel> logger)
+    public HolaMundoButtonPageModel(ILogger<HolaMundoButtonPageModel> logger)
     {
         this._logger = logger;
-        ClickCommand = new Command(OnClick);
     }
 
-    public ICommand ClickCommand { get; }
-
-    public void OnClick()
+    [RelayCommand]
+    public void Clicked()
     {
-        Mensaje="Hola mundo";
+        TextLabel = "Hola mundo";
     }
 }

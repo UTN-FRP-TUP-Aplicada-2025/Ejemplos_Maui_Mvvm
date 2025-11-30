@@ -25,3 +25,6 @@ CommunityToolkit.Mvvm  8.4.0
 ```
 dotnet add package CommunityToolkit.Mvvm --version 8.4.0
 ```
+
+
+dotnet add package  CommunityToolkit.Maui.Markup --version 6.1.0

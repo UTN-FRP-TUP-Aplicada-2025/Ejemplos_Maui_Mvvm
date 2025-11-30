@@ -22,12 +22,18 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-        builder.Services.AddSingleton<MainPageModel>();
+        builder.Services.AddLogging();
+
+        #region models
+        builder.Services.AddSingleton<MainPageModel>();        
         builder.Services.AddSingleton<HolaMundoButtonPageModel>();
+        builder.Services.AddSingleton<EjemplosViewPageModel>();
+        #endregion
 
-
-        //registrar el page en el DI
+        #region registrar el page en el DI
         builder.Services.AddTransient<HolaMundoButtonPage>();
+        builder.Services.AddTransient<EjemplosViewPage>();
+        #endregion
 
         return builder.Build();
     }

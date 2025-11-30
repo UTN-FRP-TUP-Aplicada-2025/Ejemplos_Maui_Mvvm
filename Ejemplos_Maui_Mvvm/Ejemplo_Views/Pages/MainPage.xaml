@@ -2,13 +2,25 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pageModels="clr-namespace:Ejemplo_Views.PageModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Ejemplo_Views.Pages.MainPage"
-             x:DataType="pageModels:MainPageModel" >
+             x:DataType="pageModels:MainPageModel" 
+             x:Name="Page">
 
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
             
-            <Button x:Name="btnPageHolaMundo" Command="{Binding ClickCommand}" VerticalOptions="Center" IsEnabled="True" Text="Hola Mundo"/>
+            <Button Command="{Binding HolaMundoClickedCommand}" VerticalOptions="Center" IsEnabled="True" Text="Hola Mundo"/>
+
+            <Button Command="{Binding EjemplosViewClickedCommand}" VerticalOptions="Center" IsEnabled="True" Text="Hola Mundo"/>
+
+            <Button x:Name="btnEjemplosViews" VerticalOptions="Center" IsEnabled="True" Text="Ejemplos View">
+               <Button.Behaviors>
+                    <toolkit:EventToCommandBehavior EventName="Clicked"
+                                                    BindingContext="{Binding Path=BindingContext, Source={x:Reference btnEjemplosViews}, x:DataType=Button}"
+                                                    Command="{Binding Source={x:Reference Page}, Path=BindingContext.EjemplosViewClickedCommand, x:DataType=ContentPage}" />
+               </Button.Behaviors>
+            </Button>
 
         </VerticalStackLayout>
     </ScrollView>

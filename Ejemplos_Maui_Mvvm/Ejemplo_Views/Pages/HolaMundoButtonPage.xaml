@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pageModels="clr-name:Ejemplo_Views.PageModels"
+             xmlns:pageModels="clr-namespace:Ejemplo_Views.PageModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Ejemplo_Views.Pages.HolaMundoButtonPage"
              x:DataType="pageModels:HolaMundoButtonPageModel"
              Title="HolaMundoButtonPage">
@@ -9,8 +10,16 @@
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
 
-            <Label Text="{Binding Mensaje}" VerticalOptions="Center" HorizontalOptions="Center" />
-            <Button x:Name="btnPageHolaMundo" Command="{Binding ClickCommand}" VerticalOptions="Center" IsEnabled="True" Text="Hola Mundo"/>
+            <Label Text="{Binding TextLabel}" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+            <Button VerticalOptions="Center"  Command="{Binding ClickedCommand}" 
+                    IsEnabled="True" Text="Mostrar Hola mundo" />
+
+                <!--<Button VerticalOptions="Center" IsEnabled="True" Text="Mostrar Hola mundo">
+                <Button.Behaviors>
+                    <toolkit:EventToCommandBehavior EventName="Clicked" Command="{Binding ClickedCommand}" />
+                </Button.Behaviors>
+            </Button>-->
 
         </VerticalStackLayout>
     </ScrollView>

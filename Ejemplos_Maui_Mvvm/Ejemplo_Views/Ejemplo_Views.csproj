@@ -37,7 +37,10 @@
 		<ApplicationTitle>Ejemplo</ApplicationTitle>
 	</PropertyGroup>
 -->
+
+
 	<ItemGroup>
+		
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="12.3.0" />
 
@@ -61,6 +64,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\EjemplosViewPage.xaml.cs">
+	    <DependentUpon>EjemplosViewPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\EjemplosViewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\HolaMundoButtonPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
