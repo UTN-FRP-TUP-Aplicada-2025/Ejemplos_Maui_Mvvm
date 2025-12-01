@@ -6,13 +6,69 @@
              x:Class="Ejemplo_Views.Pages.EjemplosViewPage"
              x:DataType="pageModels:EjemplosViewPageModel"
              Title="Ejemplo View">
-    
+
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="RadioButtonTemplate">
+            <Border Stroke="#F3F2F1"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 10"
+                    BackgroundColor="#F3F2F1"
+                    HeightRequest="90"
+                    WidthRequest="90"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#FF3300" />
+                                    <Setter TargetName="check" Property="Opacity" Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#F3F2F1" />
+                                    <Setter Property="Stroke" Value="#F3F2F1" />
+                                    <Setter TargetName="check" Property="Opacity" Value="0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+                <Grid Margin="4"
+                      WidthRequest="90">
+                    <Grid Margin="0,0,4,0" WidthRequest="18" HeightRequest="18" HorizontalOptions="End" VerticalOptions="Start">
+                        <Ellipse Stroke="Blue"
+                                 Fill="White"
+                                 WidthRequest="16"
+                                 HeightRequest="16"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                        <Ellipse x:Name="check"
+                                 Fill="Blue"
+                                 WidthRequest="8"
+                                 HeightRequest="8"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                    </Grid>
+                    <ContentPresenter />
+                </Grid>
+            </Border>
+        </ControlTemplate>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="ControlTemplate"
+                    Value="{StaticResource RadioButtonTemplate}" />
+        </Style>
+    </ContentPage.Resources>
+
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
 
-            
+
             <!--caja de texto-->
-            
+
             <Label Text="{Binding EntryTextValue}" VerticalOptions="Center" HorizontalOptions="Center" />
             <Label Text="{Binding EntryTextChangedValue}" VerticalOptions="Center" HorizontalOptions="Center" />
             <Entry Placeholder="Ingrese texto" Text="{Binding EntryTextValue}">
@@ -21,32 +77,83 @@
                 </Entry.Behaviors>-->
             </Entry>
 
-
-            <!--caja de texto-->
-            <Picker x:Name="picker" Title="Select a monkey">
+            <!--Combobox -->
+            <Picker x:Name="picker" Title="Selecciona una localidad">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
-                        <x:String>Baboon</x:String>
-                        <x:String>Capuchin Monkey</x:String>
-                        <x:String>Blue Monkey</x:String>
-                        <x:String>Squirrel Monkey</x:String>
-                        <x:String>Golden Lion Tamarin</x:String>
-                        <x:String>Howler Monkey</x:String>
-                        <x:String>Japanese Macaque</x:String>
+                        <x:String>Paraná</x:String>
+                        <x:String>Santa Fé</x:String>
+                        <x:String>Hernandarias</x:String>
+                        <x:String>María Grande</x:String>
+                        <x:String>Valle María</x:String>
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
 
+            <!--Combobox y binding-->
+            <Picker Title="Selecciona una Localidad" ItemsSource="{Binding Localidades}"
+                    ItemDisplayBinding="{Binding Descripcion}" SelectedItem="{Binding SelectedLocalidad}" />
+            <Label Text="{Binding SelectedLocalidad.Id}" />
+            <Label Text="{Binding SelectedLocalidad.Descripcion}" />
 
-            <Picker Title="Select a monkey" ItemsSource="{Binding Monkeys}"
-                    ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedMonkey}" />
-            <Label Text="{Binding SelectedMonkey.Name}" />
-            <Label Text="{Binding SelectedMonkey.Location}" />
-            <Image Source="{Binding SelectedMonkey.ImageUrl}" />
-            <Label Text="{Binding SelectedMonkey.Details}" />
-            
-            
+
+            <Switch IsToggled="true"/>
+
+            <Switch OffColor="Red"  OnColor="Orange"  ThumbColor="Green" />
+
+            <!--Switch con EventToCommandBehavior-->
+            <Label Text="{Binding IsToggled}"/>
+            <Switch IsToggled="{Binding IsToggled}"  >
+                <!--<Switch.Behaviors>
+                    <toolkit:EventToCommandBehavior EventName="OnToggled" EventArgsConverter="{toolkit:ToggledEventArgsConverter}" Command="OnToggledCommand"/>
+                </Switch.Behaviors>-->
+            </Switch>
+
+
+            <!--radioButton-->
+            <StackLayout>
+                <Label Text="Elije un medio?" />
+                <RadioButton Content="Email" />
+                <RadioButton Content="Twitter" />
+                <RadioButton Content="Whatsapp" IsChecked="true"/>
+            </StackLayout>
+
+
+            <StackLayout>
+                <Label Text="Elije un medio?" />
+
+                <StackLayout RadioButtonGroup.GroupName="animals" Orientation="Horizontal">
+                    <RadioButton Value="Email">
+                        <RadioButton.Content>
+                            <StackLayout>
+                                <Image Source="email.png" HorizontalOptions="Center" VerticalOptions="Center" />
+                                <Label Text="Email" HorizontalOptions="Center" VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton Value="Twitter">
+                        <RadioButton.Content>
+                            <StackLayout>
+                                <Image Source="twitter.png"  HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label Text="Twitter" HorizontalOptions="Center" VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton Value="Whatsapp" IsChecked="true">
+                        <RadioButton.Content>
+                            <StackLayout>
+                                <Image Source="whatsapp.png" HorizontalOptions="Center" VerticalOptions="Center" />
+                                <Label Text="Whatsapp" HorizontalOptions="Center" VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+                </StackLayout>
+            </StackLayout>
+
+            <Image Source="whatsapp.png" WidthRequest="40" HeightRequest="40"/>
+
+
         </VerticalStackLayout>
     </ScrollView>
-    
+
 </ContentPage>

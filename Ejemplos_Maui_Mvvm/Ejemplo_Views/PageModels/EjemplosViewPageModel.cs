@@ -1,8 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Ejemplo.Models;
 using Microsoft.Extensions.Logging;
-
-using Microsoft.Maui.Controls;
 
 namespace Ejemplo_Views.PageModels;
 
@@ -17,10 +16,10 @@ public partial class EjemplosViewPageModel : ObservableObject
     string entryTextValue = default!;
 
     [ObservableProperty]
-    List<Monkey> monkeys = new List<Monkey>();
+    List<LocalidadModel> localidades = new List<LocalidadModel>();
 
     [ObservableProperty]
-    Monkey selectedMonkey;
+    LocalidadModel selectedLocalidad;
 
     [ObservableProperty]
     string name;
@@ -29,10 +28,10 @@ public partial class EjemplosViewPageModel : ObservableObject
     {
         this._logger = logger;
 
-        monkeys = new List<Monkey>
+        localidades = new List<LocalidadModel>
         {
-            new Monkey{ Name="Baboon", Location="Paraná", Details=".", ImageUrl="" },
-            new Monkey{ Name="Capuchin Monkey", Location="Buenos Aires", Details=".", ImageUrl="" },
+            new LocalidadModel{ Id=1, Descripcion="Paraná"},
+            new LocalidadModel{ Id=2, Descripcion="Buenos Aires"},
         };
     }
 
@@ -42,12 +41,15 @@ public partial class EjemplosViewPageModel : ObservableObject
 
         _logger.LogInformation($"Texto cambiado a: {newValue}");
     }
+
+    [ObservableProperty]
+    private bool isToggled;
+
+    //[RelayCommand]
+    //public void OnToggled(ToggledEventArgs args)
+    //{
+    //    IsToggled = args.Value;
+    //    _logger.LogInformation($"Switch toggled: {isToggled}");
+    //}
 }
 
-public class Monkey
-{
-    public string Name { get; set; }
-    public string Location { get; set; }
-    public string Details { get; set; }
-    public string ImageUrl { get; set; }
-}
