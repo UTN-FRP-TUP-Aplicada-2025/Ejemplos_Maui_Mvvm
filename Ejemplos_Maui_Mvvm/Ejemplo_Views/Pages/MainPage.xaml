@@ -22,6 +22,8 @@
                </Button.Behaviors>
             </Button>
 
+            <Button Command="{Binding CardViewXamlClickedCommand}" VerticalOptions="Center" IsEnabled="True" Text="Cards - Custom View"/>
+
         </VerticalStackLayout>
     </ScrollView>
 

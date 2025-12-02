@@ -30,4 +30,11 @@ public partial class MainPageModel : ObservableObject
         _logger.LogInformation("Navegando a EjemplosViewPage");
         await Shell.Current.GoToAsync(nameof(EjemplosViewPage));
     }
+
+    [RelayCommand]
+    public async Task CardViewXamlClicked()
+    {
+        _logger.LogInformation("Navegando a CardViewXamlPage");
+        await Shell.Current.GoToAsync(nameof(CardViewXamlPage));
+    }
 }

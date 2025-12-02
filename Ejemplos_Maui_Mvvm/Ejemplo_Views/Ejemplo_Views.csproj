@@ -64,6 +64,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\CustomViews\CardView.xaml.cs">
+	    <DependentUpon>CardView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\CardViewXamlPage.xaml.cs">
+	    <DependentUpon>CardViewXamlPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\EjemplosViewPage.xaml.cs">
 	    <DependentUpon>EjemplosViewPage.xaml</DependentUpon>
 	  </Compile>
@@ -79,6 +85,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\CustomViews\CardView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\CardViewXamlPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\EjemplosViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
