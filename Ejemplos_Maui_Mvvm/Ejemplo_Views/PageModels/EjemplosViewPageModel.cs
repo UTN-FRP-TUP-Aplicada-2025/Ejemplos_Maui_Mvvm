@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using Ejemplo.Models;
+using Ejemplo_Views.Models;
 using Microsoft.Extensions.Logging;
 
 namespace Ejemplo_Views.PageModels;
@@ -24,14 +23,32 @@ public partial class EjemplosViewPageModel : ObservableObject
     [ObservableProperty]
     string name;
 
+    [ObservableProperty]
+    List<Chapter> chapters = new();
+
+    [ObservableProperty]
+    List<SettingItem> settings = new();
+
     public EjemplosViewPageModel(ILogger<EjemplosViewPageModel> logger)
     {
         this._logger = logger;
 
-        localidades = new List<LocalidadModel>
+        Localidades = new List<LocalidadModel>
         {
             new LocalidadModel{ Id=1, Descripcion="Paraná"},
             new LocalidadModel{ Id=2, Descripcion="Buenos Aires"},
+        };
+
+        Chapters = new List<Chapter>()
+        {
+            new Chapter { Title="El gato con botas", Detail="El gato con botas es un cuento popular europeo, recopilado en 1697",Image="email.png"},
+            new Chapter { Title="El gato con botas", Detail="El gato con botas es un cuento popular europeo, recopilado en 1697",Image="email.png"},
+        };
+
+        Settings = new List<SettingItem>()
+        {
+            new SettingItem { Name="Color",IsOn="True"},
+            new SettingItem { Name="Otra Propiedad",IsOn="True"},
         };
     }
 

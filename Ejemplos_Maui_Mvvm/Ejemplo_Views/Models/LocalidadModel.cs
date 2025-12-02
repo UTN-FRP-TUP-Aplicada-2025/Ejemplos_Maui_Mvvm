@@ -1,6 +1,6 @@
 ﻿
 
-namespace Ejemplo.Models;
+namespace Ejemplo_Views.Models;
 
 public class LocalidadModel
 {

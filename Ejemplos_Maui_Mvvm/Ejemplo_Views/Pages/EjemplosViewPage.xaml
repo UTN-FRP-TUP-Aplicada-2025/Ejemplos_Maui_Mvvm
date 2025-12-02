@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:pageModels="clr-namespace:Ejemplo_Views.PageModels"
+             xmlns:models="clr-namespace:Ejemplo_Views.Models"
              x:Class="Ejemplo_Views.Pages.EjemplosViewPage"
              x:DataType="pageModels:EjemplosViewPageModel"
              Title="Ejemplo View">
@@ -68,90 +69,127 @@
 
 
             <!--caja de texto-->
-
-            <Label Text="{Binding EntryTextValue}" VerticalOptions="Center" HorizontalOptions="Center" />
-            <Label Text="{Binding EntryTextChangedValue}" VerticalOptions="Center" HorizontalOptions="Center" />
-            <Entry Placeholder="Ingrese texto" Text="{Binding EntryTextValue}">
-                <!--<Entry.Behaviors>
+            <VerticalStackLayout>
+                <Label Text="{Binding EntryTextValue}" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Label Text="{Binding EntryTextChangedValue}" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Entry Placeholder="Ingrese texto" Text="{Binding EntryTextValue}">
+                    <!--<Entry.Behaviors>
                     <toolkit:EventToCommandBehavior EventName="TextChanged" Command="{Binding OnTextChangedCommand}" />
                 </Entry.Behaviors>-->
-            </Entry>
+                </Entry>
+            </VerticalStackLayout>
 
             <!--Combobox -->
-            <Picker x:Name="picker" Title="Selecciona una localidad">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Paraná</x:String>
-                        <x:String>Santa Fé</x:String>
-                        <x:String>Hernandarias</x:String>
-                        <x:String>María Grande</x:String>
-                        <x:String>Valle María</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
+            <VerticalStackLayout>
+                <Picker x:Name="picker" Title="Selecciona una localidad">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Paraná</x:String>
+                            <x:String>Santa Fé</x:String>
+                            <x:String>Hernandarias</x:String>
+                            <x:String>María Grande</x:String>
+                            <x:String>Valle María</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </VerticalStackLayout>
 
             <!--Combobox y binding-->
-            <Picker Title="Selecciona una Localidad" ItemsSource="{Binding Localidades}"
+            <VerticalStackLayout>
+                <Picker Title="Selecciona una Localidad" ItemsSource="{Binding Localidades}"
                     ItemDisplayBinding="{Binding Descripcion}" SelectedItem="{Binding SelectedLocalidad}" />
-            <Label Text="{Binding SelectedLocalidad.Id}" />
-            <Label Text="{Binding SelectedLocalidad.Descripcion}" />
-
+                <Label Text="{Binding SelectedLocalidad.Id}" />
+                <Label Text="{Binding SelectedLocalidad.Descripcion}" />
+            </VerticalStackLayout>
 
             <Switch IsToggled="true"/>
 
             <Switch OffColor="Red"  OnColor="Orange"  ThumbColor="Green" />
 
             <!--Switch con EventToCommandBehavior-->
-            <Label Text="{Binding IsToggled}"/>
-            <Switch IsToggled="{Binding IsToggled}"  >
-                <!--<Switch.Behaviors>
+            <VerticalStackLayout>
+                <Label Text="{Binding IsToggled}"/>
+                <Switch IsToggled="{Binding IsToggled}"  >
+                    <!--<Switch.Behaviors>
                     <toolkit:EventToCommandBehavior EventName="OnToggled" EventArgsConverter="{toolkit:ToggledEventArgsConverter}" Command="OnToggledCommand"/>
                 </Switch.Behaviors>-->
-            </Switch>
-
+                </Switch>
+            </VerticalStackLayout>
 
             <!--radioButton-->
-            <StackLayout>
-                <Label Text="Elije un medio?" />
-                <RadioButton Content="Email" />
-                <RadioButton Content="Twitter" />
-                <RadioButton Content="Whatsapp" IsChecked="true"/>
-            </StackLayout>
-
-
-            <StackLayout>
-                <Label Text="Elije un medio?" />
-
-                <StackLayout RadioButtonGroup.GroupName="animals" Orientation="Horizontal">
-                    <RadioButton Value="Email">
-                        <RadioButton.Content>
-                            <StackLayout>
-                                <Image Source="email.png" HorizontalOptions="Center" VerticalOptions="Center" />
-                                <Label Text="Email" HorizontalOptions="Center" VerticalOptions="End" />
-                            </StackLayout>
-                        </RadioButton.Content>
-                    </RadioButton>
-                    <RadioButton Value="Twitter">
-                        <RadioButton.Content>
-                            <StackLayout>
-                                <Image Source="twitter.png"  HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Label Text="Twitter" HorizontalOptions="Center" VerticalOptions="End" />
-                            </StackLayout>
-                        </RadioButton.Content>
-                    </RadioButton>
-                    <RadioButton Value="Whatsapp" IsChecked="true">
-                        <RadioButton.Content>
-                            <StackLayout>
-                                <Image Source="whatsapp.png" HorizontalOptions="Center" VerticalOptions="Center" />
-                                <Label Text="Whatsapp" HorizontalOptions="Center" VerticalOptions="End" />
-                            </StackLayout>
-                        </RadioButton.Content>
-                    </RadioButton>
+            <VerticalStackLayout>
+                <StackLayout>
+                    <Label Text="Elije un medio?" />
+                    <RadioButton Content="Email" />
+                    <RadioButton Content="Twitter" />
+                    <RadioButton Content="Whatsapp" IsChecked="true"/>
                 </StackLayout>
-            </StackLayout>
+            </VerticalStackLayout>
+
+
+            <VerticalStackLayout>
+                <StackLayout>
+                    <Label Text="Elije un medio?" />
+
+                    <StackLayout RadioButtonGroup.GroupName="animals" Orientation="Horizontal">
+                        <RadioButton Value="Email">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Source="email.png" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFit" WidthRequest="44" HeightRequest="44"/>
+                                    <Label Text="Email" HorizontalOptions="Center" VerticalOptions="End" />
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton Value="Twitter">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Source="twitter.png"  HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFit" WidthRequest="44" HeightRequest="44"/>
+                                    <Label Text="Twitter" HorizontalOptions="Center" VerticalOptions="End" />
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton Value="Whatsapp" IsChecked="true">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Source="whatsapp.png" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFit" WidthRequest="44" HeightRequest="44"/>
+                                    <Label Text="Whatsapp" HorizontalOptions="Center" VerticalOptions="End" />
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </StackLayout>
+                </StackLayout>
+            </VerticalStackLayout>
 
             <Image Source="whatsapp.png" WidthRequest="40" HeightRequest="40"/>
 
+            <VerticalStackLayout>
+                <CollectionView ItemsSource="{Binding Chapters}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Chapter">
+                            <Grid ColumnDefinitions="*,Auto" Padding="12,8">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Title}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Detail}" FontSize="12" TextColor="Gray" />
+                                </VerticalStackLayout>
+                                <Image Grid.Column="1" Source="{Binding Image}" VerticalOptions="Center" Aspect="AspectFit" WidthRequest="44" HeightRequest="44"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <CollectionView ItemsSource="{Binding Settings}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:SettingItem">
+                            <Grid ColumnDefinitions="*,Auto" Padding="12,8">
+                                <Label Text="{Binding Name}" VerticalOptions="Center" />
+                                <Switch Grid.Column="1" IsToggled="{Binding IsOn, Mode=TwoWay}" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
 
         </VerticalStackLayout>
     </ScrollView>
