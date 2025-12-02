@@ -14,7 +14,7 @@ public partial class CardView : ContentView
     public static readonly BindableProperty IconBackgroundColorProperty = BindableProperty.Create(nameof(IconBackgroundColor), typeof(Color), typeof(CardView), Colors.LightGray);
 
     //public static readonly BindableProperty IconImageSourceProperty = BindableProperty.Create( nameof(IconImageSource), typeof(string), typeof(CardView), string.Empty, propertyChanged: OnIconImageSourceChanged);
-    public static readonly BindableProperty IconImageSourceProperty =  BindableProperty.Create(nameof(IconImageSource), typeof(ImageSource), typeof(CardView), null);
+    public static readonly BindableProperty IconImageSourceProperty =  BindableProperty.Create(nameof(IconImageSource), typeof(string), typeof(CardView), null);
 
     public static readonly BindableProperty CardBackgroundColorProperty = BindableProperty.Create(nameof(CardBackgroundColor), typeof(Color), typeof(CardView), Colors.White);
 
