@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Ejemplo.Pages;
 using Microsoft.Extensions.Logging;
 using System.Windows.Input;
 
@@ -37,4 +38,12 @@ public partial class MainPageModel : ObservableObject
         _logger.LogInformation("Navegando a CardViewXamlPage");
         await Shell.Current.GoToAsync(nameof(CardViewXamlPage));
     }
+
+    [RelayCommand]
+    public async Task GridClicked()
+    {
+        _logger.LogInformation("Navegando a GridPage");
+        await Shell.Current.GoToAsync(nameof(GridPage));
+    }
+    
 }

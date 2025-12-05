@@ -1,4 +1,6 @@
-﻿namespace Ejemplo_Views;
+﻿using Ejemplo.Pages;
+
+namespace Ejemplo_Views;
 
 public partial class AppShell : Shell
 {
@@ -10,6 +12,6 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(HolaMundoButtonPage), typeof(HolaMundoButtonPage));
         Routing.RegisterRoute(nameof(EjemplosViewPage), typeof(EjemplosViewPage));
         Routing.RegisterRoute(nameof(CardViewXamlPage), typeof(CardViewXamlPage));
-
+        Routing.RegisterRoute(nameof(GridPage), typeof(GridPage));        
     }
 }

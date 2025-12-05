@@ -24,6 +24,8 @@
 
             <Button Command="{Binding CardViewXamlClickedCommand}" VerticalOptions="Center" IsEnabled="True" Text="Cards - Custom View"/>
 
+            <Button Command="{Binding GridClickedCommand}" VerticalOptions="Center" IsEnabled="True" Text="Grid View"/>
+
         </VerticalStackLayout>
     </ScrollView>
 
