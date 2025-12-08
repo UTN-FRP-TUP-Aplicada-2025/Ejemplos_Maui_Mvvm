@@ -9,7 +9,9 @@
     <File Path="Docs/Readme_workloads.md" />
   </Folder>
   <Folder Name="/Imagenes/">
-    <Project Path="Ejemplo_Camera/Ejemplo_Camera.csproj" Id="8e5965dd-acd0-4336-991f-0cb91ce538a9" />
+    <Project Path="Ejemplo_Camera/Ejemplo_Camera.csproj" Id="8e5965dd-acd0-4336-991f-0cb91ce538a9">
+      <Deploy Solution="Debug|*" />
+    </Project>
   </Folder>
   <Folder Name="/Navigations/">
     <Project Path="Ejemplo_Flyout/Ejemplo_Flyout.csproj" Id="9b243862-dbfe-450f-ad0c-7b8e018ec403">

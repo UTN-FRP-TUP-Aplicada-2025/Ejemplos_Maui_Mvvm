@@ -7,15 +7,15 @@
     xmlns:pages="clr-namespace:Ejemplo_Flyout.Pages"
     Title="Ejemplo Flyout Page">
 
-    <FlyoutItem Title="Main Page" Icon="exam.png">
+    <FlyoutItem Title="Main Page" Icon="home.png">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate pages:MainPage}" />
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Other Page" Icon="exam.png">
+    <FlyoutItem Title="Info Page" Icon="info.png">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate pages:MainPage}" />
+            <ShellContent ContentTemplate="{DataTemplate pages:InfoPage}" />
         </Tab>
     </FlyoutItem>
 </Shell>

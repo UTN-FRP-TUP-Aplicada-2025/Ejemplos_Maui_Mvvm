@@ -1,14 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.Logging;
 
-
 namespace Ejemplo_Flyout.PageModels;
 
-public partial class MainPageModel:ObservableObject
+public partial class InfoPageModel:ObservableObject
 {
     readonly ILogger<MainPageModel> _logger = default!;
 
-    public MainPageModel(ILogger<MainPageModel> logger)
+    public InfoPageModel(ILogger<MainPageModel> logger)
     {
         _logger = logger;
     }
