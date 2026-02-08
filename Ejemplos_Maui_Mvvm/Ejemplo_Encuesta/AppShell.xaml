@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Ejemplo_Encuesta.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Ejemplo_Encuesta"
+    xmlns:pages="clr-namespace:Ejemplo_Encuesta.Pages"
+    Title="Encuesta">
+
+    <!--<ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />-->
+
+    <ShellContent Title="Encuesta"
+        ContentTemplate="{DataTemplate pages:EncuestaPage}"
+        Route="EncuestaPage" >
+        <ShellContent.Icon>
+            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
+        </ShellContent.Icon>
+    </ShellContent>
+
+    <ShellContent Title="Estadisticas"
+        ContentTemplate="{DataTemplate pages:EstadisticasPage}"
+        Route="EstadisticasPage" >
+        <ShellContent.Icon>
+            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
+        </ShellContent.Icon>
+    </ShellContent>
+
+    <MenuItem Text="Politica de privacidad"            
+          Command="{Binding PoliticaCommand}"
+          CommandParameter="https://www.frp.utn.edu.ar/info2/?page_id=18452" >
+        <MenuItem.IconImageSource>
+            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
+        </MenuItem.IconImageSource>
+    </MenuItem>
+
+</Shell>

@@ -94,9 +94,7 @@
             </pullToRefresh:SfPullToRefresh.PullableContent>
         </pullToRefresh:SfPullToRefresh>
 
-        <controls:AddButton 
-            IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"
-            Command="{Binding AddTaskCommand}"
-            SemanticProperties.Description="Add task" />
+        <controls:AddButton  IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"
+            Command="{Binding AddTaskCommand}" SemanticProperties.Description="Add task" />
     </Grid>
 </ContentPage>

@@ -1,1 +1,0 @@
-﻿CommunityToolkit.Maui.Markup

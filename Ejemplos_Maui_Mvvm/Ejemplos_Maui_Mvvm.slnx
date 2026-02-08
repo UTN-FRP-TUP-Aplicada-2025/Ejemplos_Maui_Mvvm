@@ -1,46 +1,16 @@
 <Solution>
   <Folder Name="/Docs/">
-    <File Path="Docs/qr_perro.jpg" />
-    <File Path="Docs/qr_rana.jpg" />
-    <File Path="Docs/Readme_build.md" />
-    <File Path="Docs/Readme_common_nuget.md" />
-    <File Path="Docs/Readme_config_building.md" />
+    <File Path="Docs/Readme.md" />
     <File Path="Docs/Readme_icons.md" />
     <File Path="Docs/Readme_workloads.md" />
   </Folder>
-  <Folder Name="/Imagenes/">
-    <Project Path="Ejemplo_Camera/Ejemplo_Camera.csproj" Id="8e5965dd-acd0-4336-991f-0cb91ce538a9">
+  <Folder Name="/Encuestas/">
+    <Project Path="Ejemplo_Encuesta/Ejemplo_Encuesta.csproj" Id="b915dcea-1368-4c20-8dfb-56d758cb103c">
       <Deploy Solution="Debug|*" />
     </Project>
-  </Folder>
-  <Folder Name="/Navigations/">
-    <Project Path="Ejemplo_Flyout/Ejemplo_Flyout.csproj" Id="9b243862-dbfe-450f-ad0c-7b8e018ec403">
-      <Deploy Solution="Debug|*" />
-    </Project>
-    <Project Path="Ejemplo_Single/Ejemplo_Single.csproj" Id="9f8e622a-9449-446e-ad91-62635b22a894">
-      <Deploy Solution="Debug|*" />
-    </Project>
-    <Project Path="Ejemplo_Tabs/Ejemplo_Tabs.csproj" Id="7b157a53-fe83-4f8d-9aa2-23cd32f1ae2f">
-      <Deploy Solution="Debug|*" />
-    </Project>
-  </Folder>
-  <Folder Name="/QR/">
-    <Project Path="Ejemplo_QR_BarcodeScanner/Ejemplo_QR_BarcodeScanner.csproj" Id="7da293a4-f799-47dd-b2c3-031fd13204ec">
-      <Deploy Solution="Debug|*" />
-    </Project>
-    <Project Path="Ejemplo_QR_ZXing_redth/Ejemplo_QR_ZXing_redth.csproj" Id="e2325985-46ef-4321-afda-8a13bded7e3d">
-      <Deploy Solution="Debug|*" />
-    </Project>
-  </Folder>
-  <Folder Name="/Views/">
-    <Project Path="Ejemplo_Views/Ejemplo_Views.csproj" Id="9afeac96-4c3b-4632-bec9-cc871d080d54">
-      <Deploy Solution="Debug|*" />
-    </Project>
+    <Project Path="Ejemplo_WebAPI_Encuestas/Ejemplo_WebAPI_Encuestas.csproj" Id="82344ac5-6145-4b71-a50e-dab1b156d767" />
   </Folder>
   <Project Path="Ejemplo/Ejemplo.csproj">
-    <Deploy />
-  </Project>
-  <Project Path="Ejemplo_HolaMundo/Ejemplo_HolaMundo.csproj" Id="df9f5be8-c081-4968-a8a4-e94f8b064846">
     <Deploy />
   </Project>
 </Solution>
