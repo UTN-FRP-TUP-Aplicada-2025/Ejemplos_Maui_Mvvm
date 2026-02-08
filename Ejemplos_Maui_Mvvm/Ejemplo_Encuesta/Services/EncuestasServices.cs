@@ -5,11 +5,13 @@ namespace Ejemplo_Encuesta.Services;
 
 public class EncuestasServices
 {
+    string url = "https://geometriafernando.somee.com/graphql/";
+
     async public Task RegistrarEncuesta(EncuestaPageModel model)
     {
         using HttpClient client = new HttpClient();
 
-        client.BaseAddress = new Uri("https://geometriafernando.somee.com/graphql/");
+        client.BaseAddress = new Uri(url);
 
         //formato de fecha "2000-02-02T00:00:00Z"
 
