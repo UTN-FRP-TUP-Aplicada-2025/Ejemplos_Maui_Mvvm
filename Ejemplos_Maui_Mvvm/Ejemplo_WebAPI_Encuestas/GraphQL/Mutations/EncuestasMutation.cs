@@ -31,7 +31,7 @@ public class EncuestasMutation
 
     public async Task<EncuestaModel> ActualizarEncuesta(ActualizarEncuestaInput input)
     {
-        var persona = _encuestasService.Update(
+        var encuesta = _encuestasService.Update(
             new EncuestaModel
             {
                 Nombre = input.Nombre, 
@@ -40,15 +40,15 @@ public class EncuestasMutation
         );
 
         await _eventSender.SendAsync(
-            nameof(EncuestasSubscription.OnPersonaActualizado),
+            nameof(EncuestasSubscription.OnEncuestaActualizada),
             new EncuestaActualizadoEvent
             {
-                Nombre = persona.Nombre,
+                Nombre = encuesta.Nombre,
                 FechaNacimiento = input.FechaNacimiento
             });
 
 
-        return persona;
+        return encuesta;
     }
 
     public bool EliminarEncuesta(int dni)

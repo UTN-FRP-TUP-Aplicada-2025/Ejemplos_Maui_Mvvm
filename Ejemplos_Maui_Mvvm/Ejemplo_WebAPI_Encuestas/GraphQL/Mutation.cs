@@ -4,5 +4,5 @@ namespace Ejemplo_WebAPI_Encuestas.GraphQL;
 
 public class Mutation
 {
-    public EncuestasMutation Personas([Service] EncuestasMutation mutation) => mutation;
+    public EncuestasMutation Encuestas([Service] EncuestasMutation mutation) => mutation;
 }

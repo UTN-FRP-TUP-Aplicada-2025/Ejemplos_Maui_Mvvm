@@ -20,7 +20,7 @@ public class EncuestasServices
             query = $@"
     mutation {{
       encuestas {{
-        crearEncuesta(input: {{ nombre: {model.Nombre}, fechaNacimiento: ""{model.FechaNacimiento:yyyy-MM-ddTHH:mm:ssZ}"" }}) {{
+        crearEncuesta(input: {{ nombre: ""{model.Nombre}"", fechaNacimiento: ""{model.FechaNacimiento:yyyy-MM-ddTHH:mm:ssZ}"" }}) {{
           nombre
           fechaNacimiento
         }}

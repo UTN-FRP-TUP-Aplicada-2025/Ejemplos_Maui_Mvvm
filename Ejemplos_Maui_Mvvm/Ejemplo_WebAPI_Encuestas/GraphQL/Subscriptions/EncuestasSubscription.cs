@@ -6,5 +6,5 @@ public class EncuestasSubscription
 {
     [Subscribe]
     [Topic]
-    public EncuestaActualizadoEvent OnPersonaActualizado([EventMessage] EncuestaActualizadoEvent input) => input;
+    public EncuestaActualizadoEvent OnEncuestaActualizada([EventMessage] EncuestaActualizadoEvent input) => input;
 }

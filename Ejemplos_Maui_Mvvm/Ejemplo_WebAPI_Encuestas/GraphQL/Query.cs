@@ -4,5 +4,5 @@ namespace Ejemplo_WebAPI_Encuestas.GraphQL;
 
 public class Query
 {
-    public EncuestasQuery Personas([Service] EncuestasQuery query) => query;
+    public EncuestasQuery Encuestas([Service] EncuestasQuery query) => query;
 }

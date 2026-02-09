@@ -22,7 +22,7 @@ public partial class EncuestaPageModel : ObservableObject
     {
         GuardarCommand = new RelayCommand(Guardar);
 
-        encuestasServices = _encuestasServices;
+        _encuestasServices=encuestasServices ;
     }
 
     
