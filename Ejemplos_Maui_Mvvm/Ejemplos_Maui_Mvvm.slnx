@@ -10,7 +10,9 @@
     </Project>
     <Project Path="Ejemplo_WebAPI_Encuestas/Ejemplo_WebAPI_Encuestas.csproj" Id="82344ac5-6145-4b71-a50e-dab1b156d767" />
   </Folder>
-  <Project Path="Ejemplo/Ejemplo.csproj">
-    <Deploy />
-  </Project>
+  <Folder Name="/Maui_Con_Ejemplos/">
+    <Project Path="Ejemplo/Ejemplo.csproj">
+      <Deploy />
+    </Project>
+  </Folder>
 </Solution>
