@@ -35,7 +35,10 @@ public static class MauiProgram
         builder.Services.AddTransient<EncuestasServices>();
 
         builder.Services.AddTransient<EncuestaPageModel>();
+        builder.Services.AddTransient<EstadisticaPageModel>();
+
         builder.Services.AddTransient<EncuestaPage>();
+        builder.Services.AddTransient<EstadisticasPage>();
 
         return builder;
     }

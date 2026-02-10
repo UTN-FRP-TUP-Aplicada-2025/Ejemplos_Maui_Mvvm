@@ -6,7 +6,8 @@ namespace Ejemplo_Encuesta.PageModels;
 
 public partial class EncuestaPageModel : ObservableObject
 {
-   
+    EncuestasServices _encuestasServices = default!;
+
     [ObservableProperty]
     private string nombre = string.Empty;
 
@@ -14,18 +15,13 @@ public partial class EncuestaPageModel : ObservableObject
     private DateTime fechaNacimiento = DateTime.Today;
 
    
-    public IRelayCommand GuardarCommand { get; }
-
-    EncuestasServices _encuestasServices = default!;
-
     public EncuestaPageModel(EncuestasServices encuestasServices)
     {
-        GuardarCommand = new RelayCommand(Guardar);
-
         _encuestasServices=encuestasServices ;
     }
 
-    
+
+    [RelayCommand]
     async private void Guardar()
     {
         await _encuestasServices.RegistrarEncuesta(this);

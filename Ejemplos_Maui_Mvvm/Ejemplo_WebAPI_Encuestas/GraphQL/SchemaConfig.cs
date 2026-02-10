@@ -13,14 +13,15 @@ static public class SchemaConfig
             //
             .AddScoped<EncuestasQuery>() //Registra el servicio en el contenedor DI
             .AddScoped<EncuestasMutation>() //Registra el servicio en el contenedor DI
-                                           //.AddScoped<PersonasSubscription>() //Registra el servicio en el contenedor DI
+                                           //.AddScoped<EncuestasSubscription>() //Registra el servicio en el contenedor DI
 
             //                                       
             .AddGraphQLServer()
 
             //queries
             .AddQueryType<Query>() //
-                .AddType<EncuestasQuery>() // Expone los métodos de PersonasQuery como campos GraphQL
+                .AddType<EncuestasQuery>() // Expone los métodos de EncuestasQuery como campos GraphQL
+                .AddType<EstadisticaQuery>() // Expone los métodos de EncuestasQuery como campos GraphQL
 
             //mutations
             .AddMutationType<Mutation>()//(d => d.Name("Mutation"))
@@ -38,6 +39,7 @@ static public class SchemaConfig
             .AddInMemorySubscriptions() //y canal de eventos
 
             //types
-            .AddType<PersonaType>();
+            .AddType<EncuestaType>()
+            .AddType<EstadisticaType>();
     }
 }

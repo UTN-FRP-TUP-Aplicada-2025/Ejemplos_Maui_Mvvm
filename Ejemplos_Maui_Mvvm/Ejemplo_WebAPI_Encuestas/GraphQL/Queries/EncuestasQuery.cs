@@ -1,19 +1,14 @@
 ﻿using Ejemplo_WebAPI_Encuestas.Models;
 using Ejemplo_WebAPI_Encuestas.Services;
+using Ejemplo_WebAPI_Encuestas.GraphQL.Types;
 
 namespace Ejemplo_WebAPI_Encuestas.GraphQL.Queries;
 
+[ExtendObjectType(typeof(Query))]
 public class EncuestasQuery
 {
-    EncuestasService _encuestasService = default!;
-
-    public EncuestasQuery(EncuestasService encuestasService)
+    public IEnumerable<EncuestaModel> GetEncuestas([Service] EncuestasService service)
     {
-        _encuestasService = encuestasService;
-    }
-
-    public IEnumerable<EncuestaModel> GetEncuestas()
-    {
-        return _encuestasService.GetByAll();
-    }
+        return service.GetByAll();
+    }                
 }

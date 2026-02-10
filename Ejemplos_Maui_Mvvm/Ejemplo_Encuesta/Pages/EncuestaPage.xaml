@@ -6,7 +6,12 @@
              x:DataType="pageModels:EncuestaPageModel"
              Title="EncuestaPage">
 
-    <Grid RowDefinitions="Auto,*">
+
+    <!--<ContentPage.BindingContext xmlns:pageModels="clr-namespace:Ejemplo_Encuesta.PageModels">
+        <pageModels:EncuestaPageModel />
+    </ContentPage.BindingContext>-->
+
+    <Grid RowDefinitions="Auto,*" HorizontalOptions="Fill" VerticalOptions="Fill">
 
         <VerticalStackLayout Grid.Row="1" Padding="30,50" Spacing="30" VerticalOptions="Start">
 
@@ -35,10 +40,10 @@
 
                         <DatePicker x:Name="DatePickerFechaNacimiento" Format="dd/MM/yyyy" TextColor="#2C3E50" FontSize="16"
                                    VerticalOptions="Center" HorizontalOptions="Fill" BackgroundColor="Transparent"/>
-                        
+
                     </HorizontalStackLayout>
                 </Border>
-                
+
             </VerticalStackLayout>
 
             <!-- Botón Guardar -->

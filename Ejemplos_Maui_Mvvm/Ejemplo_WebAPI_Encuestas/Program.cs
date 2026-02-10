@@ -16,6 +16,9 @@ app.UseWebSockets();
 
 app.UseRouting();
 app.UseWebSockets();   // para los subscriptions
+
+app.MapGet("/", () => Results.Redirect("/graphql"));
+
 app.MapGraphQL("/graphql");
 
 await app.RunAsync();

@@ -6,7 +6,12 @@ namespace Ejemplo_Encuesta.PageModels;
 public partial class EstadisticaPageModel : ObservableObject
 {
     [ObservableProperty]
-    int  cantidadEncuestados;
+    int  encuestados;
 
+    [ObservableProperty]
+    int edadPromedio;
+
+    [ObservableProperty]
+    DateTime fecha;
 
 }

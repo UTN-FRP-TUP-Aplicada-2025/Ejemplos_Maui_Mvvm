@@ -3,16 +3,14 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Ejemplo_WebAPI_Encuestas.GraphQL.Types;
 
-public class PersonaType : ObjectType<EncuestaModel>
+public class EncuestaType : ObjectType<EncuestaModel>
 {
     protected override void Configure(IObjectTypeDescriptor<EncuestaModel> descriptor)
     {
         descriptor.Name("Encuesta");
 
-        descriptor.Field(p => p.Nombre)
-                  .Type<NonNullType<StringType>>();
+        descriptor.Field(p => p.Nombre).Type<NonNullType<StringType>>();
 
-        descriptor.Field(p => p.FechaNacimiento)
-                  .Type<NonNullType<DateTimeType>>();
+        descriptor.Field(p => p.FechaNacimiento).Type<NonNullType<DateTimeType>>();
     }
 }
