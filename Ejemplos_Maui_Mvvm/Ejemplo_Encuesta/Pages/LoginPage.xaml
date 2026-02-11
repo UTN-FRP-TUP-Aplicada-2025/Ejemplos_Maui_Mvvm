@@ -1,11 +1,89 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pageModels="clr-namespace:Ejemplo_Encuesta.PageModels" 
              x:Class="Ejemplo_Encuesta.Pages.LoginPage"
+             x:DataType="pageModels:LoginPageModel"
              Title="LoginPage">
-    
-    <VerticalStackLayout>
+
+    <Grid RowDefinitions="Auto,*" Padding="0">
+
+        <!--<Grid Grid.Row="0" ColumnDefinitions="Auto,*"  Padding="16,10" HeightRequest="60" BackgroundColor="White">
+
+            <ImageButton Grid.Column="0" Source="menu.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center"/>
+
+            <Label Grid.Column="1" Text="Login" FontSize="20" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </Grid>-->
+
+        <!-- containt-->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="30,80"  Spacing="30" VerticalOptions="Start">
+
+                <!-- titulo y logo -->
+                <Label Text="Bienvenido" FontSize="32" FontAttributes="Bold" TextColor="#2C3E50" HorizontalOptions="Center" Margin="0,0,0,20"/>
+
+                <!--usuario-->
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Usuario" FontSize="16" FontAttributes="Bold" 
+                           TextColor="#2C3E50" Margin="5,0,0,0"/>
+
+                    <Border BackgroundColor="White" Padding="0" Stroke="#E0E0E0" StrokeThickness="1">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+
+                        <Entry x:Name="EntryUsuario" Placeholder="Ingrese su usuario"
+                               Text="{Binding Usuario}" PlaceholderColor="#AAAAAA" 
+                               TextColor="#2C3E50" FontSize="16" HeightRequest="55" Margin="15,0"/>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!--contraseña-->
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Contraseña" 
+                           FontSize="16" FontAttributes="Bold" TextColor="#2C3E50" Margin="5,0,0,0"/>
+
+                    <Border BackgroundColor="White" 
+                            Padding="0"
+                            Stroke="#E0E0E0"
+                            StrokeThickness="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+
+                        <Entry x:Name="EntryPassword" 
+                               Placeholder="Ingrese su contraseña"
+                               Text="{Binding Password}"
+                               IsPassword="True"
+                               PlaceholderColor="#AAAAAA" 
+                               TextColor="#2C3E50" 
+                               FontSize="16"
+                               HeightRequest="55" 
+                               Margin="15,0"/>
+                    </Border>
+                </VerticalStackLayout>
+
+                <HorizontalStackLayout Spacing="10" Margin="5,0,0,0">
+                    <CheckBox IsChecked="{Binding RecordarUsuario}" Color="#5B8FDE"/>
+                    <Label Text="Recordar usuario" FontSize="14" TextColor="#2C3E50" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+
+                <Button Text="Ingresar"  BackgroundColor="#5B8FDE" TextColor="White" FontSize="18" FontAttributes="Bold" HeightRequest="60"  CornerRadius="30" Margin="0,20,0,0" Command="{Binding LoginCommand}">
+                    <Button.Shadow>
+                        <Shadow Brush="#5B8FDE"  Offset="0,4" Radius="8" Opacity="0.3"/>
+                    </Button.Shadow>
+                </Button>
+
+                <Label Text="¿Olvidó su contraseña?"  FontSize="14" TextColor="#5B8FDE" TextDecorations="Underline" HorizontalOptions="Center" Margin="0,10,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RecuperarPasswordCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </VerticalStackLayout>
+        </ScrollView>
         
-    </VerticalStackLayout>
-    
+    </Grid>
+
 </ContentPage>

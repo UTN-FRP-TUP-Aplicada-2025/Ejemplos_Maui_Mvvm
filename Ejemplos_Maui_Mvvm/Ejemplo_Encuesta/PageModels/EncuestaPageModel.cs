@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ejemplo_Encuesta.Services;
 
@@ -24,10 +26,19 @@ public partial class EncuestaPageModel : ObservableObject
     [RelayCommand]
     async private void Guardar()
     {
-        await _encuestasServices.RegistrarEncuesta(new Models.EncuestaModel 
+        try
         {
-            Nombre = nombre,
-            FechaNacimiento = fechaNacimiento
-        });
+            await _encuestasServices.RegistrarEncuesta(new Models.EncuestaModel
+            {
+                Nombre = nombre,
+                FechaNacimiento = fechaNacimiento
+            });
+
+            await Toast.Make($"Registrado", ToastDuration.Long).Show();
+        }
+        catch (Exception ex)
+        {
+            await Toast.Make($"Error: {ex.Message}", ToastDuration.Long).Show();
+        }
     }
 }
