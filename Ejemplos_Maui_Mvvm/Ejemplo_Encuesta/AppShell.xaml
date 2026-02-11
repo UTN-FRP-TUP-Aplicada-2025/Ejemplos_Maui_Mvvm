@@ -12,25 +12,26 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />-->
 
-    <ShellContent Title="Encuesta"
-        ContentTemplate="{DataTemplate pages:EncuestaPage}"
-        Route="EncuestaPage" >
+
+    <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:LoginPage}" Route="LoginPage" >
         <ShellContent.Icon>
             <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
         </ShellContent.Icon>
     </ShellContent>
 
-    <ShellContent Title="Estadisticas"
-        ContentTemplate="{DataTemplate pages:EstadisticasPage}"
-        Route="EstadisticasPage" >
+    <ShellContent Title="Encuesta" ContentTemplate="{DataTemplate pages:EncuestaPage}" Route="EncuestaPage" >
         <ShellContent.Icon>
             <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
         </ShellContent.Icon>
     </ShellContent>
 
-    <MenuItem Text="Politica de privacidad"            
-          Command="{Binding PoliticaCommand}"
-          CommandParameter="https://www.frp.utn.edu.ar/info2/?page_id=18452" >
+    <ShellContent Title="Estadisticas" ContentTemplate="{DataTemplate pages:EstadisticasPage}" Route="EstadisticasPage" >
+        <ShellContent.Icon>
+            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
+        </ShellContent.Icon>
+    </ShellContent>
+
+    <MenuItem Text="Politica de privacidad" Command="{Binding PoliticaCommand}" CommandParameter="https://geometriafernando.somee.com/privacy-policy.html" >
         <MenuItem.IconImageSource>
             <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
         </MenuItem.IconImageSource>

@@ -24,11 +24,10 @@ public partial class EncuestaPageModel : ObservableObject
     [RelayCommand]
     async private void Guardar()
     {
-        await _encuestasServices.RegistrarEncuesta(this);
-
-        Console.WriteLine("----- ENCUESTA GUARDADA -----");
-        Console.WriteLine($"Nombre: {Nombre}");
-        Console.WriteLine($"Fecha Nac: {FechaNacimiento:dd/MM/yyyy}");
-        Console.WriteLine("-----------------------------");
+        await _encuestasServices.RegistrarEncuesta(new Models.EncuestaModel 
+        {
+            Nombre = nombre,
+            FechaNacimiento = fechaNacimiento
+        });
     }
 }

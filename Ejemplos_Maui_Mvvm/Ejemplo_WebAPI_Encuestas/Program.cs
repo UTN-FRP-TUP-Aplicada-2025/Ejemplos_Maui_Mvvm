@@ -14,10 +14,17 @@ app.UseWebSockets();
 
 //app.MapGraphQL(); //caso sencillo
 
-app.UseRouting();
+
+#region paginas estaticas
+app.UseDefaultFiles();
+app.UseStaticFiles();
+#endregion
+
 app.UseWebSockets();   // para los subscriptions
+app.UseRouting();
 
 app.MapGet("/", () => Results.Redirect("/graphql"));
+
 
 app.MapGraphQL("/graphql");
 

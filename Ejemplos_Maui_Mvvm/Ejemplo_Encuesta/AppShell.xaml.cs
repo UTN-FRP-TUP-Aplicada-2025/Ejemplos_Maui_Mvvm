@@ -8,14 +8,14 @@ public partial class AppShell : Shell
     public AppShell()
     {
         InitializeComponent();
+        BindingContext = this;
     }
 
-    public ICommand PoliticaCommand => new RelayCommand<string>(
-      async url =>
-      {
-          if (!string.IsNullOrEmpty(url))
-          {
-              await Browser.Default.OpenAsync(new Uri(url), BrowserLaunchMode.SystemPreferred);
-          }
-      });
+    public ICommand PoliticaCommand => new RelayCommand<string>( async url =>
+    {
+        if (!string.IsNullOrEmpty(url))
+        {
+            await Browser.Default.OpenAsync(new Uri(url), BrowserLaunchMode.SystemPreferred);
+        }
+    });
 }
