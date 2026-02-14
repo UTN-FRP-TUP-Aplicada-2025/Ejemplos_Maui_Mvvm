@@ -6,7 +6,6 @@
              x:DataType="pageModels:EncuestaPageModel"
              Title="EncuestaPage">
 
-
     <!--<ContentPage.BindingContext xmlns:pageModels="clr-namespace:Ejemplo_Encuesta.PageModels">
         <pageModels:EncuestaPageModel />
     </ContentPage.BindingContext>-->
@@ -47,8 +46,7 @@
             </VerticalStackLayout>
 
             <!-- Botón Guardar -->
-            <Button Text="Guardar" BackgroundColor="#5B8FDE" HeightRequest="60" WidthRequest="220"  HorizontalOptions="Center" Margin="0,40,0,0"
-                    Command="{Binding GuardarCommand}" >
+            <Button Text="Guardar" BackgroundColor="#5B8FDE" HeightRequest="60" WidthRequest="220"  HorizontalOptions="Center" Margin="0,40,0,0" Command="{Binding GuardarCommand}" >
                 <Button.ImageSource>
                     <FontImageSource Glyph="save" FontFamily="MaterialIconsOutlined" />
                 </Button.ImageSource>
@@ -57,4 +55,5 @@
         </VerticalStackLayout>
 
     </Grid>
+
 </ContentPage>

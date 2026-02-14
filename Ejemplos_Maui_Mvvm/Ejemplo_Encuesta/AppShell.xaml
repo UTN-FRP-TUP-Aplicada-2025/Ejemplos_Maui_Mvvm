@@ -13,12 +13,6 @@
         Route="MainPage" />-->
 
 
-    <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:LoginPage}" Route="LoginPage" >
-        <ShellContent.Icon>
-            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
-        </ShellContent.Icon>
-    </ShellContent>
-
     <ShellContent Title="Encuesta" ContentTemplate="{DataTemplate pages:EncuestaPage}" Route="EncuestaPage" >
         <ShellContent.Icon>
             <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />

@@ -4,6 +4,7 @@
              xmlns:pageModels="clr-namespace:Ejemplo_Encuesta.PageModels" 
              x:Class="Ejemplo_Encuesta.Pages.LoginPage"
              x:DataType="pageModels:LoginPageModel"
+             Shell.NavBarIsVisible="True"
              Title="LoginPage">
 
     <Grid RowDefinitions="Auto,*" Padding="0">

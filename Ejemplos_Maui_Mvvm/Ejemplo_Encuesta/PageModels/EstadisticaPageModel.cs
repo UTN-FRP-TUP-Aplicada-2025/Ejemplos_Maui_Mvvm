@@ -18,19 +18,21 @@ public partial class EstadisticaPageModel : ObservableObject
     [ObservableProperty]
     DateTime fecha;
 
-    EncuestasServices _encuestasServices=default!;
+    EncuestasService _encuestasServices=default!;
 
-    public EstadisticaPageModel(EncuestasServices encuestasServices)
+    public EstadisticaPageModel(EncuestasService encuestasServices)
     {
         _encuestasServices = encuestasServices;
     }
 
+   
     [RelayCommand]
     private async Task Appearing(object? obj)
     {
         try
         {
             var estadistica = await _encuestasServices.ObtenerEstadisticasAsync();
+
             Encuestados = estadistica.Encuestados;
             EdadPromedio = estadistica.EdadPromedio;
             Fecha = estadistica.Fecha;
@@ -40,5 +42,4 @@ public partial class EstadisticaPageModel : ObservableObject
             await Toast.Make($"Error: {ex.Message}", ToastDuration.Long).Show();
         }
     }
-
 }

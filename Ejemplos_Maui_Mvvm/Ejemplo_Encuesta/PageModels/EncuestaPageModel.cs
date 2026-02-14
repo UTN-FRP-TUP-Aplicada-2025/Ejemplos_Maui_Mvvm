@@ -8,16 +8,15 @@ namespace Ejemplo_Encuesta.PageModels;
 
 public partial class EncuestaPageModel : ObservableObject
 {
-    EncuestasServices _encuestasServices = default!;
+    EncuestasService _encuestasServices = default!;
 
     [ObservableProperty]
     private string nombre = string.Empty;
 
     [ObservableProperty]
     private DateTime fechaNacimiento = DateTime.Today;
-
-   
-    public EncuestaPageModel(EncuestasServices encuestasServices)
+       
+    public EncuestaPageModel(EncuestasService encuestasServices)
     {
         _encuestasServices=encuestasServices ;
     }

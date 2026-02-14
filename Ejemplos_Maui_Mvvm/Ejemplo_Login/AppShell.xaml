@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="Ejemplo_Login.AppShell"
+        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:local="clr-namespace:Ejemplo_Login"
+        xmlns:pages="clr-namespace:Ejemplo_Login.Pages"
+        Title="Ejemplo_Login">
+
+    <!--Diseño -->
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <HorizontalStackLayout Padding="10" Spacing="10" VerticalOptions="Center">
+                <Image Source="{Binding FlyoutIcon}" WidthRequest="30" HeightRequest="30"  />
+                <Label Text="{Binding Title}" Style="{StaticResource FlyoutHeaderLabelStyle}" />
+            </HorizontalStackLayout>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <HorizontalStackLayout Padding="10" Spacing="10" VerticalOptions="Center">
+                <Image Source="{Binding FlyoutIcon}" WidthRequest="30" HeightRequest="30"  />
+                <Label Text="{Binding Title}" Style="{StaticResource FlyoutHeaderLabelStyle}" />
+            </HorizontalStackLayout>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    <!-- -->
+
+    <ShellContent Title="Home" ContentTemplate="{DataTemplate pages:MainPage}" Route="MainPage" >
+        <ShellContent.Icon>
+            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+        </ShellContent.Icon>
+    </ShellContent>
+
+    <ShellContent Title="Detalle" ContentTemplate="{DataTemplate pages:DetailPage}" Route="DetailPage" >
+        <ShellContent.Icon>
+            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+        </ShellContent.Icon>
+    </ShellContent>
+
+    <MenuItem Text="Logout" Command="{Binding LogoutCommand}" >
+        <MenuItem.IconImageSource>
+            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
+        </MenuItem.IconImageSource>
+    </MenuItem>
+</Shell>

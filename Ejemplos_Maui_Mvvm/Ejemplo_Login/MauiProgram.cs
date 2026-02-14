@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Maui;
-using Ejemplo_Encuesta.PageModels;
-using Ejemplo_Encuesta.Pages;
-using Ejemplo_Encuesta.Services;
+using Ejemplo_Login.PageModels;
+using Ejemplo_Login.Pages;
+using Ejemplo_Login.Services;
 using Microsoft.Extensions.Logging;
 
-namespace Ejemplo_Encuesta;
+namespace Ejemplo_Login;
 
 public static class MauiProgram
 {
@@ -20,10 +20,11 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("MaterialIconsOutlined-Regular.otf", "MaterialIconsOutlined");
+
             });
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
         return builder.Build();
@@ -31,14 +32,6 @@ public static class MauiProgram
 
     static public MauiAppBuilder AddServices(this MauiAppBuilder builder)
     {
-        builder.Services.AddSingleton<EncuestasService>();
-
-        builder.Services.AddTransient<EncuestaPageModel>();
-        builder.Services.AddTransient<EstadisticaPageModel>();
-        builder.Services.AddTransient<LoginPage>();
-
-        builder.Services.AddTransient<EncuestaPage>();
-        builder.Services.AddTransient<EstadisticasPage>();
         builder.Services.AddTransient<LoginPageModel>();
         
         return builder;

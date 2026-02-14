@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="HotChocolate.AspNetCore" Version="15.1.12" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.2" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.12.38" />
   </ItemGroup>
 
   <ItemGroup>

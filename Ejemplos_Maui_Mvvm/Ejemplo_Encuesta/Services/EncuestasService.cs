@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace Ejemplo_Encuesta.Services;
 
-public class EncuestasServices
+public class EncuestasService
 {
     string url = "https://geometriafernando.somee.com/graphql/";
 

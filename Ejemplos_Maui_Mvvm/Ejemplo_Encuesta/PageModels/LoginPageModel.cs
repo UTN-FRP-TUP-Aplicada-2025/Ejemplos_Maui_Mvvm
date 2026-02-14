@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 
@@ -6,66 +8,54 @@ namespace Ejemplo_Encuesta.PageModels;
 
 public partial class LoginPageModel : ObservableObject
 {
-   // private readonly IAlertService _alertService;
+    //private readonly LoginService _loginService=default!;
 
     [ObservableProperty]
     private string usuario = string.Empty;
 
     [ObservableProperty]
-    private string password = string.Empty;
+    private string clave = string.Empty;
 
     [ObservableProperty]
     private bool recordarUsuario;
-
-    // public LoginPageModel(IAlertService alertService)
-    public LoginPageModel( )
-    {
-      //  _alertService = alertService;
-    }
-
-    [RelayCommand]
-    async Task Login()
-    {
-        //try
-        //{
-        //    // Validaciones
-        //    if (string.IsNullOrWhiteSpace(Usuario))
-        //    {
-        //        await _alertService.ShowAlertAsync("Validación", "Por favor ingrese su usuario");
-        //        return;
-        //    }
-
-        //    if (string.IsNullOrWhiteSpace(Password))
-        //    {
-        //        await _alertService.ShowAlertAsync("Validación", "Por favor ingrese su contraseña");
-        //        return;
-        //    }
-
-        //    // Aquí iría tu lógica de autenticación
-        //    // Por ejemplo:
-        //    // var loginExitoso = await _authService.LoginAsync(Usuario, Password);
-
-        //    // Simulación
-        //    if (Usuario == "admin" && Password == "1234")
-        //    {
-        //        await _alertService.ShowAlertAsync("Éxito", "Inicio de sesión exitoso");
-        //        // Navegar a la página principal
-        //        // await Shell.Current.GoToAsync("//MainPage");
-        //    }
-        //    else
-        //    {
-        //        await _alertService.ShowAlertAsync("Error", "Usuario o contraseña incorrectos");
-        //    }
-        //}
-        //catch (Exception ex)
-        //{
-        //    await _alertService.ShowAlertAsync("Error", $"Ocurrió un error: {ex.Message}");
-        //}
-    }
-
+     
     [RelayCommand]
     async Task RecuperarPassword()
     {
         //await _alertService.ShowAlertAsync("Recuperar Contraseña", "Funcionalidad en desarrollo");
+    }
+      
+    [RelayCommand]
+    async Task LoginCommand()
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(Usuario))
+            {
+                await Toast.Make("Por favor ingrese su usuario", ToastDuration.Long).Show();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(Clave))
+            {
+                await Toast.Make("Por favor ingrese su contraseña", ToastDuration.Long).Show();               
+                return;
+            }
+
+            if (Usuario == "admin" && Clave == "1234")
+                {
+                    await Toast.Make("Inicio de sesión exitoso", ToastDuration.Long).Show();
+                    
+                    await Shell.Current.GoToAsync("//EncuestaPage");
+                }
+                else
+                {
+                    await Toast.Make("Usuario o contraseña incorrectos", ToastDuration.Long).Show();
+            }
+        }
+        catch (Exception ex)
+        {
+            await Toast.Make("Ocurrió un error", ToastDuration.Long).Show();
+        }
     }
 }
