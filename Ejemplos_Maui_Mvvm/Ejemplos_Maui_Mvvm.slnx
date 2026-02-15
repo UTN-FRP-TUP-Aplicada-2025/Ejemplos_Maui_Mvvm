@@ -5,9 +5,6 @@
     <File Path="Docs/Readme_workloads.md" />
   </Folder>
   <Folder Name="/Ejemplos_puntuales/">
-    <Project Path="Ejemplo/Ejemplo.csproj">
-      <Deploy />
-    </Project>
     <Project Path="Ejemplo_Login/Ejemplo_Login.csproj" Id="807b3c92-f019-41c8-93b9-d3ebf893e850">
       <Deploy Solution="Debug|*" />
     </Project>

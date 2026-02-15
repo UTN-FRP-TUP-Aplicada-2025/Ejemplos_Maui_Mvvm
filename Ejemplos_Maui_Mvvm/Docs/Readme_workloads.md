@@ -1,4 +1,11 @@
 
+## Descripción
+
+comandos para verificar los frameworks y workloads instalados, 
+las cargas de trabajo disponibles, instalar un workload específico,
+limpiar los manifiestos corruptos, reparar las cargas de trabajo instaladas 
+y definir los sdks instalados.
+
 ## Ver frameworks y workloads usados 
 ```
 PS E:\repos\tup\aplicada\2025\utn\Ejemplos_Maui_Mvvm\Ejemplos_Maui_Mvvm\Ejemplo_QR_BarcodeScanner> dotnet --info

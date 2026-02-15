@@ -13,7 +13,8 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         Routing.RegisterRoute(nameof(DialogShellPage), typeof(DialogShellPage));
-        
+        Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+
         BindingContext = this;
     }
 

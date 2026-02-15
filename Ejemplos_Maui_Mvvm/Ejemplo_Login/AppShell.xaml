@@ -6,34 +6,6 @@
         xmlns:pages="clr-namespace:Ejemplo_Login.Pages"        
         Title="Login">
 
-    <!--<Shell.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
-                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Shell.Resources>
-
-    --><!-- Ahora los recursos ya están cargados --><!--
-    <Shell.FlyoutBackgroundColor>
-        <x:AppThemeBinding  Light="{StaticResource White}" Dark="{StaticResource OffBlack}" />
-    </Shell.FlyoutBackgroundColor>-->
-
-    <!--
-    configurado en Styles.xaml
-    o aquí
-    <Shell.Resources>
-        <ResourceDictionary>
-            <Style x:Key="FlyoutHeaderLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
-        </ResourceDictionary>
-    </Shell.Resources>
-    -->
-
     <!--Diseño header -->
 
     <Shell.FlyoutHeader>
@@ -67,7 +39,7 @@
         </DataTemplate>
     </Shell.MenuItemTemplate>
 
-    <!-- -->
+    <!--Items -->
 
     <ShellContent Title="Home" ContentTemplate="{DataTemplate pages:MainPage}" Route="MainPage" >
         <ShellContent.Icon>
@@ -88,7 +60,9 @@
     </MenuItem>
 
 
-    <!--De esta manera no va a aparecer en el menu del flyout-->
+    <!--De esta manera no va a aparecer en el menu del flyout,
+         pero es necesario que sea parte del flyout para poder redireccionar desde el inicio
+    -->
     <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:LoginPage}"  Route="LoginPage"
               FlyoutItemIsVisible="False" Shell.NavBarIsVisible="False" />
     
