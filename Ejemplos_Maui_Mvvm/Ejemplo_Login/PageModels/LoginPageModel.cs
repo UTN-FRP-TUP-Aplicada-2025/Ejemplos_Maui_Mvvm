@@ -43,7 +43,7 @@ public partial class LoginPageModel : ObservableObject
             return;
         }
 
-        if (Usuario != "admin" || clave != "1234")
+        if (Usuario != "admin" || Clave != "1234")
         {
             await Toast.Make("Usuario o Clave incorrecto", ToastDuration.Long).Show();
             return;

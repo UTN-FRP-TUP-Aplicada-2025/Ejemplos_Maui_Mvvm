@@ -6,30 +6,27 @@ namespace Ejemplo_Login;
 
 public partial class AppShell : Shell
 {
+    private readonly LoginService _loginService;
 
     public AppShell()
     {
         InitializeComponent();
 
         Routing.RegisterRoute(nameof(DialogShellPage), typeof(DialogShellPage));
-
+        
         BindingContext = this;
-    }
-
-    [RelayCommand]
-    async private void Logout()
-    { 
-        await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
     }
 
     async protected override void OnAppearing()
     {
         base.OnAppearing();
 
-        LoginService sessionSevices=new LoginService();
+        await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+    }
 
-        var session=sessionSevices.GetSession();
-
+    [RelayCommand]
+    async private Task Logout()
+    {
         await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
     }
 }

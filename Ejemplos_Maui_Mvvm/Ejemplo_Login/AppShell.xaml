@@ -3,9 +3,22 @@
         xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
         xmlns:local="clr-namespace:Ejemplo_Login"
-        xmlns:pages="clr-namespace:Ejemplo_Login.Pages"
-        FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource LightFlyoutBackgroundColor}, Dark={StaticResource DarkFlyoutBackgroundColor}}"
+        xmlns:pages="clr-namespace:Ejemplo_Login.Pages"        
         Title="Login">
+
+    <!--<Shell.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    --><!-- Ahora los recursos ya están cargados --><!--
+    <Shell.FlyoutBackgroundColor>
+        <x:AppThemeBinding  Light="{StaticResource White}" Dark="{StaticResource OffBlack}" />
+    </Shell.FlyoutBackgroundColor>-->
 
     <!--
     configurado en Styles.xaml
@@ -74,13 +87,10 @@
         </MenuItem.IconImageSource>
     </MenuItem>
 
-    <ShellContent Title="Login"
-              ContentTemplate="{DataTemplate pages:LoginPage}"
-              Route="LoginPage"
-              FlyoutItemIsVisible="False"
-              Shell.NavBarIsVisible="False" />
+
+    <!--De esta manera no va a aparecer en el menu del flyout-->
+    <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:LoginPage}"  Route="LoginPage"
+              FlyoutItemIsVisible="False" Shell.NavBarIsVisible="False" />
     
-    <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:LoginPage}" Route="LoginPage" 
-              IsVisible="False"/>
 
 </Shell>

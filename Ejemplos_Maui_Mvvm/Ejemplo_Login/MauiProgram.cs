@@ -32,12 +32,18 @@ public static class MauiProgram
 
     static public MauiAppBuilder AddServices(this MauiAppBuilder builder)
     {
+        // Servicios
         builder.Services.AddSingleton<LoginService>();
 
+        // Shell
+        builder.Services.AddSingleton<AppShell>();
+
+        // PageModels
         builder.Services.AddTransient<LoginPageModel>();
         builder.Services.AddTransient<MainPageModel>();
         builder.Services.AddTransient<DetailPageModel>();
 
+        // Pages
         builder.Services.AddTransient<LoginPage>();
 
         return builder;

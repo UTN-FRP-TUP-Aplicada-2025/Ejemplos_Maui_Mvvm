@@ -10,6 +10,10 @@
              Shell.NavBarIsVisible="False"
              Title="LoginPage">
 
+    <!--<ContentPage.BindingContext>
+        <pageModels:LoginPageModel />
+    </ContentPage.BindingContext>-->
+
     <VerticalStackLayout Spacing="10" Margin="10">
         
         <Label Text="Bienvenido" VerticalOptions="Center" HorizontalOptions="Center" />
