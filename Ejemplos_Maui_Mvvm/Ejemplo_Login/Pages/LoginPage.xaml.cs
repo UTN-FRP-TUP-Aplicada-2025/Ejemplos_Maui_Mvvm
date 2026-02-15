@@ -9,4 +9,10 @@ public partial class LoginPage : ContentPage
 		InitializeComponent();
         this.BindingContext= loginPageModel;
 	}
+
+    protected override bool OnBackButtonPressed()
+    {
+        //evita el boton de forward 
+        return true;
+    }
 }

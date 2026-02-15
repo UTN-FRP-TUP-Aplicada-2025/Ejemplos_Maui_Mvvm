@@ -9,16 +9,15 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
-        Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
-        Routing.RegisterRoute(nameof(DetailPage), typeof(DetailPage));
-        
+        Routing.RegisterRoute(nameof(DialogShellPage), typeof(DialogShellPage));
+
         BindingContext = this;
     }
 
     [RelayCommand]
     async private void Logout()
     { 
+
         await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
     }
 

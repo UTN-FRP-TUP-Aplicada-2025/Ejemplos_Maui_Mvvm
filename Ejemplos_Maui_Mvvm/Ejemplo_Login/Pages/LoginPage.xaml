@@ -4,6 +4,10 @@
              xmlns:pageModels="clr-namespace:Ejemplo_Login.PageModels"
              x:Class="Ejemplo_Login.Pages.LoginPage"
              x:DataType="pageModels:LoginPageModel"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.NavBarIsVisible="False"
              Title="LoginPage">
     
     <VerticalStackLayout>

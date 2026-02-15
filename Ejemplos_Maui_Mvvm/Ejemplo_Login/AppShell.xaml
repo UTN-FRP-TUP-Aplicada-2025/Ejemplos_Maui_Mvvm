@@ -45,4 +45,13 @@
             <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
         </MenuItem.IconImageSource>
     </MenuItem>
+
+    <ShellContent Title="Login"
+              ContentTemplate="{DataTemplate pages:LoginPage}"
+              Route="LoginPage"
+              FlyoutItemIsVisible="False"
+              Shell.NavBarIsVisible="False" />
+
+    <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:LoginPage}" Route="LoginPage" 
+              IsVisible="False"/>
 </Shell>
