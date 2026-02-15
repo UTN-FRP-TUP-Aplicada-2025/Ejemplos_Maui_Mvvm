@@ -1,11 +1,14 @@
-﻿namespace Ejemplo_Login.Pages;
+﻿using Ejemplo_Login.PageModels;
+
+namespace Ejemplo_Login.Pages;
 
 public partial class MainPage : ContentPage
 {
   
-    public MainPage()
+    public MainPage(MainPageModel model)
     {
         InitializeComponent();
+        this.BindingContext = model;
     }
 
 }

@@ -7,7 +7,7 @@ public partial class LoginPage : ContentPage
     public LoginPage(LoginPageModel loginPageModel)
 	{
 		InitializeComponent();
-        this.BindingContext= loginPageModel;
+        this.BindingContext = loginPageModel;
 	}
 
     protected override bool OnBackButtonPressed()

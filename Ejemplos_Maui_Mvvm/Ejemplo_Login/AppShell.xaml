@@ -4,8 +4,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
         xmlns:local="clr-namespace:Ejemplo_Login"
         xmlns:pages="clr-namespace:Ejemplo_Login.Pages"
-        Title="Ejemplo_Login">
+        FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource LightFlyoutBackgroundColor}, Dark={StaticResource DarkFlyoutBackgroundColor}}"
+        Title="Login">
 
+    <!--
+    configurado en Styles.xaml
+    o aquí
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="FlyoutHeaderLabelStyle" TargetType="Label">
@@ -15,8 +19,22 @@
             </Style>
         </ResourceDictionary>
     </Shell.Resources>
+    -->
 
-    <!--Diseño -->
+    <!--Diseño header -->
+
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout>
+            <Image WidthRequest="100">
+                <Image.Source>
+                    <x:AppThemeBinding Light="header_flyout.png" Dark="header_flyout_dark.png"/>
+                </Image.Source>
+            </Image>
+            <Label x:Name="lbUsuario" Text="Ejemplo Login" Style="{StaticResource FlyoutHeaderLabelStyle}" FontSize="Title" HorizontalTextAlignment="Center"></Label>
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
+
+    <!--Diseño items -->
 
     <Shell.ItemTemplate>
         <DataTemplate>
@@ -61,7 +79,8 @@
               Route="LoginPage"
               FlyoutItemIsVisible="False"
               Shell.NavBarIsVisible="False" />
-
+    
     <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:LoginPage}" Route="LoginPage" 
               IsVisible="False"/>
+
 </Shell>
