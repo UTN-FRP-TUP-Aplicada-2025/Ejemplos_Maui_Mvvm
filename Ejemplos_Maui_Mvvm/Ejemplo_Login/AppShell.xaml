@@ -6,6 +6,16 @@
         xmlns:pages="clr-namespace:Ejemplo_Login.Pages"
         Title="Ejemplo_Login">
 
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FlyoutHeaderLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
     <!--Diseño -->
 
     <Shell.ItemTemplate>
