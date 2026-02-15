@@ -9,10 +9,20 @@
              Shell.FlyoutBehavior="Disabled"
              Shell.NavBarIsVisible="False"
              Title="LoginPage">
-    
-    <VerticalStackLayout>
+
+    <VerticalStackLayout Spacing="10" Margin="10">
         
-        <Label Text="Welcome to .NET MAUI!" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="Bienvenido" VerticalOptions="Center" HorizontalOptions="Center" />
+
+        <StackLayout Spacing="10" Margin="10">
+            <Label Text="Usuario"/>
+            <Entry Placeholder="Usuario" Text="{Binding Usuario}"/>
+        </StackLayout>
+
+        <StackLayout Spacing="10" Margin="10">
+            <Label Text="Clave"/>
+            <Entry IsPassword="True" Text="{Binding Clave}"/>
+        </StackLayout>
 
         <Button Text="Login" Command="{Binding LoginCommand}" />
 

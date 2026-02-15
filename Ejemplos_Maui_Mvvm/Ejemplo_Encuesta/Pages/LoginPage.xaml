@@ -25,8 +25,7 @@
 
                 <!--usuario-->
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="Usuario" FontSize="16" FontAttributes="Bold" 
-                           TextColor="#2C3E50" Margin="5,0,0,0"/>
+                    <Label Text="Usuario" FontSize="16" FontAttributes="Bold" TextColor="#2C3E50" Margin="5,0,0,0"/>
 
                     <Border BackgroundColor="White" Padding="0" Stroke="#E0E0E0" StrokeThickness="1">
 
@@ -42,26 +41,16 @@
 
                 <!--contraseña-->
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="Contraseña" 
-                           FontSize="16" FontAttributes="Bold" TextColor="#2C3E50" Margin="5,0,0,0"/>
+                    <Label Text="Contraseña" FontSize="16" FontAttributes="Bold" TextColor="#2C3E50" Margin="5,0,0,0"/>
 
-                    <Border BackgroundColor="White" 
-                            Padding="0"
-                            Stroke="#E0E0E0"
-                            StrokeThickness="1">
+                    <Border BackgroundColor="White" Padding="0" Stroke="#E0E0E0" StrokeThickness="1">
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="8"/>
                         </Border.StrokeShape>
 
-                        <Entry x:Name="EntryPassword" 
-                               Placeholder="Ingrese su contraseña"
-                               Text="{Binding Password}"
-                               IsPassword="True"
-                               PlaceholderColor="#AAAAAA" 
-                               TextColor="#2C3E50" 
-                               FontSize="16"
-                               HeightRequest="55" 
-                               Margin="15,0"/>
+                        <Entry x:Name="EntryPassword"  Placeholder="Ingrese su contraseña" Text="{Binding Password}"
+                               IsPassword="True" PlaceholderColor="#AAAAAA"  TextColor="#2C3E50" FontSize="16"
+                               HeightRequest="55" Margin="15,0"/>
                     </Border>
                 </VerticalStackLayout>
 
