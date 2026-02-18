@@ -1,0 +1,133 @@
+
+using Duende.IdentityServer.Models;
+using Duende.IdentityServer.Services;
+using Duende.IdentityServer.Validation;
+using Ejemplo_WebAPI_Encuestas.GraphQL;
+using Ejemplo_WebAPI_Encuestas.Identity;
+using Ejemplo_WebAPI_Encuestas.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Scalar.AspNetCore;
+
+var builder = WebApplication.CreateBuilder(args);
+
+#region identity server
+builder.Services.AddSingleton<IUserService, InMemoryUserService>();
+
+builder.Services
+    .AddIdentityServer()
+    .AddInMemoryApiScopes(new[]
+    {
+        new ApiScope("api1", "Main API")
+    })
+    .AddInMemoryClients(new[]
+    {
+        new Client
+        {
+            ClientId = "maui-client",
+            AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+            ClientSecrets = { new Secret("secret".Sha256()) },
+            AllowedScopes = { "api1" }
+        }
+    })
+    .AddDeveloperSigningCredential();
+
+builder.Services.AddTransient<IResourceOwnerPasswordValidator, CustomProfileService>();
+builder.Services.AddTransient<IProfileService, CustomProfileService>();
+#endregion
+
+#region restapi
+builder.Services.AddControllers();
+builder.Services.AddOpenApi();
+#endregion
+
+#region graphql
+builder.Services
+    .AddSingleton<EncuestasService>()
+    .AddGraphQLSchema()
+    .AddAuthorization();
+#endregion
+
+#region JWT validation (misma app)
+builder.Services
+    .AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        //options.Authority = "https://localhost:7041"; // esta misma app
+        options.Authority = "https://geometriafernando.somee.com"; // esta misma app
+        options.RequireHttpsMetadata = false;
+        options.TokenValidationParameters.ValidateAudience = false;
+    });
+
+//builder.Services
+//.AddAuthentication("Bearer")
+//.AddJwtBearer("Bearer", options =>
+//{
+//    options.RequireHttpsMetadata = false;
+//    options.TokenValidationParameters.ValidateAudience = false;
+
+//    options.Events = new JwtBearerEvents
+//    {
+//        OnMessageReceived = context =>
+//        {
+//            var request = context.HttpContext.Request;
+//            var issuer = $"{request.Scheme}://{request.Host}";
+//            context.Options.Authority = issuer;
+//            return Task.CompletedTask;
+//        }
+//    };
+//});
+
+//builder.Services
+//    .AddAuthentication("Bearer")
+//    .AddJwtBearer("Bearer", options =>
+//    {
+//        options.RequireHttpsMetadata = false;
+
+//        options.TokenValidationParameters = new()
+//        {
+//            ValidateIssuer = false,
+//            ValidateAudience = false,
+//            ValidateLifetime = true,
+//            ValidateIssuerSigningKey = false
+//        };
+//    });
+
+builder.Services.AddAuthorization();
+#endregion
+
+var app = builder.Build();
+
+app.UseWebSockets();
+
+//app.MapGraphQL(); //caso sencillo
+
+#region recursos estáticos
+app.UseDefaultFiles();
+app.UseStaticFiles();
+#endregion
+
+app.UseWebSockets();   // para los subscriptions
+app.UseRouting();
+
+app.UseIdentityServer();     // EMITE TOKENS
+app.UseAuthentication();     // VALIDA TOKENS
+
+app.MapGet("/", () => Results.Redirect("/graphql"));
+
+//haceder con url/scalar
+//if (app.Environment.IsDevelopment()) 
+{
+    app.MapOpenApi();
+    app.MapScalarApiReference();
+}
+
+app.MapGraphQL("/graphql");
+
+app.UseHttpsRedirection();
+//app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
+
+await app.RunAsync();
