@@ -2,60 +2,59 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Ejemplo_Encuesta.Models;
+using Ejemplo_Encuesta.Pages;
+using Ejemplo_Encuesta.Services;
 
 
 namespace Ejemplo_Encuesta.PageModels;
 
 public partial class LoginPageModel : ObservableObject
 {
-    //private readonly LoginService _loginService=default!;
+    LoginService _loginService;
 
     [ObservableProperty]
-    private string usuario = string.Empty;
+    private string usuario;
 
     [ObservableProperty]
-    private string clave = string.Empty;
+    private string clave;
 
     [ObservableProperty]
     private bool recordarUsuario;
-     
-    [RelayCommand]
-    async Task RecuperarPassword()
+
+    public LoginPageModel(LoginService loginService)
     {
-        //await _alertService.ShowAlertAsync("Recuperar Contraseña", "Funcionalidad en desarrollo");
+        _loginService = loginService;
     }
-      
+
     [RelayCommand]
-    async Task LoginCommand()
+    async private Task Login()
     {
-        try
+        if (string.IsNullOrEmpty(Usuario))
         {
-            if (string.IsNullOrWhiteSpace(Usuario))
-            {
-                await Toast.Make("Por favor ingrese su usuario", ToastDuration.Long).Show();
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(Clave))
-            {
-                await Toast.Make("Por favor ingrese su contraseña", ToastDuration.Long).Show();               
-                return;
-            }
-
-            if (Usuario == "admin" && Clave == "1234")
-                {
-                    await Toast.Make("Inicio de sesión exitoso", ToastDuration.Long).Show();
-                    
-                    await Shell.Current.GoToAsync("//EncuestaPage");
-                }
-                else
-                {
-                    await Toast.Make("Usuario o contraseña incorrectos", ToastDuration.Long).Show();
-            }
+            await Toast.Make("Complete el campo usuario", ToastDuration.Long).Show();
+            return;
         }
-        catch (Exception ex)
+
+        if (string.IsNullOrEmpty(Clave))
         {
-            await Toast.Make("Ocurrió un error", ToastDuration.Long).Show();
+            await Toast.Make("Complete el campo clave", ToastDuration.Long).Show();
+            return;
         }
+
+        if (Usuario != "admin" || Clave != "1234")
+        {
+            await Toast.Make("Usuario o Clave incorrecto", ToastDuration.Long).Show();
+            return;
+        }
+
+        _loginService.SetSession(new LoginModel
+        {
+            Usuario = Usuario,
+            Clave = Clave,
+            RecordarUsuario = RecordarUsuario
+        });
+
+        await Shell.Current.GoToAsync($"//{nameof(EncuestaPage)}");
     }
 }

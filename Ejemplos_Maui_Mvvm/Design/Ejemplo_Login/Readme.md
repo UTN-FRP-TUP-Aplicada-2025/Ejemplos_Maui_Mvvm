@@ -11,3 +11,10 @@ manejo de paginas que no forman parte del flyout
 uso de los estilos globales - Styles.xaml y Colors.xaml en el shell
 
 ![Login](Docs/ejemplo_login.gif)
+
+
+## Nuget
+
+CommunityToolkit.Maui Version=14.0.0
+CommunityToolkit.Mvvm Version=8.4.0
+Microsoft.Maui.Controls Version=10.0.40

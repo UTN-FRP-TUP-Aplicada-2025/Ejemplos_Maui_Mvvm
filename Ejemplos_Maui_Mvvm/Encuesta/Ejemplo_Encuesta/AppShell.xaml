@@ -7,28 +7,67 @@
     xmlns:pages="clr-namespace:Ejemplo_Encuesta.Pages"
     Title="Encuesta">
 
-    <!--<ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />-->
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout>
+            <Image WidthRequest="100">
+                <Image.Source>
+                    <x:AppThemeBinding Light="header_flyout.png" Dark="header_flyout_dark.png"/>
+                </Image.Source>
+            </Image>
+            <Label x:Name="lbUsuario" Text="Cuestionario Electrónico" Style="{StaticResource FlyoutHeaderLabelStyle}" FontSize="Title" HorizontalTextAlignment="Center"></Label>
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
 
+    <!--Diseño items -->
 
-    <ShellContent Title="Encuesta" ContentTemplate="{DataTemplate pages:EncuestaPage}" Route="EncuestaPage" >
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <HorizontalStackLayout Padding="10" Spacing="10" VerticalOptions="Center">
+                <Image Source="{Binding FlyoutIcon}" WidthRequest="30" HeightRequest="30"  />
+                <Label Text="{Binding Title}" Style="{StaticResource FlyoutHeaderLabelStyle}" />
+            </HorizontalStackLayout>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <HorizontalStackLayout Padding="10" Spacing="10" VerticalOptions="Center">
+                <Image Source="{Binding FlyoutIcon}" WidthRequest="30" HeightRequest="30"  />
+                <Label Text="{Binding Title}" Style="{StaticResource FlyoutHeaderLabelStyle}" />
+            </HorizontalStackLayout>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    <!--Items -->
+
+    <ShellContent Title="Registrar Encuesta" ContentTemplate="{DataTemplate pages:EncuestaPage}" Route="EncuestaPage" >
         <ShellContent.Icon>
-            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
+            <FontImageSource Glyph="how_to_reg" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
         </ShellContent.Icon>
     </ShellContent>
 
-    <ShellContent Title="Estadisticas" ContentTemplate="{DataTemplate pages:EstadisticasPage}" Route="EstadisticasPage" >
+    <ShellContent Title="Ver Estadistica" ContentTemplate="{DataTemplate pages:EstadisticasPage}" Route="EstadisticasPage" >
         <ShellContent.Icon>
-            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
+            <FontImageSource Glyph="analytics" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
         </ShellContent.Icon>
     </ShellContent>
 
-    <MenuItem Text="Politica de privacidad" Command="{Binding PoliticaCommand}" CommandParameter="https://geometriafernando.somee.com/privacy-policy.html" >
+    <MenuItem Text="Politicas de privacidad" Command="{Binding PoliticaCommand}" CommandParameter="https://geometriafernando.somee.com/privacy-policy.html" >
         <MenuItem.IconImageSource>
-            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
+            <FontImageSource Glyph="privacy_tip" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
         </MenuItem.IconImageSource>
     </MenuItem>
+
+    <MenuItem Text="Logout" Command="{Binding LogoutCommand}" >
+        <MenuItem.IconImageSource>
+            <FontImageSource Glyph="logout" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+        </MenuItem.IconImageSource>
+    </MenuItem>
+
+    <!--De esta manera no va a aparecer en el menu del flyout,
+     pero es necesario que sea parte del flyout para poder redireccionar desde el inicio -->
+    <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:LoginPage}"  Route="LoginPage" FlyoutItemIsVisible="False" Shell.NavBarIsVisible="False" />
+
+    
 
 </Shell>

@@ -13,7 +13,7 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         Routing.RegisterRoute(nameof(DialogShellPage), typeof(DialogShellPage));
-        Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+        //Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
 
         BindingContext = this;
     }
@@ -29,5 +29,14 @@ public partial class AppShell : Shell
     async private Task Logout()
     {
         await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+    }
+
+    [RelayCommand]
+    private async Task Politica(string url)
+    {
+        if (!string.IsNullOrEmpty(url))
+        {
+            await Browser.Default.OpenAsync(new Uri(url), BrowserLaunchMode.SystemPreferred);
+        }
     }
 }

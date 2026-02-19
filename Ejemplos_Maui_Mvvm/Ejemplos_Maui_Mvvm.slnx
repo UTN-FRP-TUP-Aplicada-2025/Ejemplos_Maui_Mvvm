@@ -3,6 +3,7 @@
     <Project Path="Design/Ejemplo_Login/Ejemplo_Login.csproj" Id="807b3c92-f019-41c8-93b9-d3ebf893e850">
       <Deploy Solution="Debug|*" />
     </Project>
+    <Project Path="Design/Ejemplo_MasterDetails/Ejemplo_MasterDetails.csproj" Id="10ff2bd2-fdad-4601-80c6-2e131cc8503d" />
   </Folder>
   <Folder Name="/Ejemplos_diseños/Docs/">
     <File Path="Design/Ejemplo_Design_Docs/qr_perro.jpg" />

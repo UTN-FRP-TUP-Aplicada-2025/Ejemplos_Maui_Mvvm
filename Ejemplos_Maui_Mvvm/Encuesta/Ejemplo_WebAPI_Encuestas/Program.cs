@@ -124,6 +124,7 @@ app.MapGet("/", () => Results.Redirect("/graphql"));
 app.MapGraphQL("/graphql");
 
 app.UseHttpsRedirection();
+
 //app.UseAuthorization();
 app.UseAuthentication();
 app.UseAuthorization();

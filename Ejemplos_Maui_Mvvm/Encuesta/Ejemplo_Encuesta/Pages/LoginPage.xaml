@@ -4,7 +4,10 @@
              xmlns:pageModels="clr-namespace:Ejemplo_Encuesta.PageModels" 
              x:Class="Ejemplo_Encuesta.Pages.LoginPage"
              x:DataType="pageModels:LoginPageModel"
-             Shell.NavBarIsVisible="True"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.NavBarIsVisible="False"
              Title="LoginPage">
 
     <Grid RowDefinitions="Auto,*" Padding="0">
@@ -33,9 +36,7 @@
                             <RoundRectangle CornerRadius="8"/>
                         </Border.StrokeShape>
 
-                        <Entry x:Name="EntryUsuario" Placeholder="Ingrese su usuario"
-                               Text="{Binding Usuario}" PlaceholderColor="#AAAAAA" 
-                               TextColor="#2C3E50" FontSize="16" HeightRequest="55" Margin="15,0"/>
+                        <Entry x:Name="EntryUsuario" Placeholder="Ingrese su usuario" Text="{Binding Usuario}" PlaceholderColor="#AAAAAA" TextColor="#2C3E50" FontSize="16" HeightRequest="55" Margin="15,0"/>
                     </Border>
                 </VerticalStackLayout>
 
@@ -48,9 +49,7 @@
                             <RoundRectangle CornerRadius="8"/>
                         </Border.StrokeShape>
 
-                        <Entry x:Name="EntryPassword"  Placeholder="Ingrese su contraseña" Text="{Binding Password}"
-                               IsPassword="True" PlaceholderColor="#AAAAAA"  TextColor="#2C3E50" FontSize="16"
-                               HeightRequest="55" Margin="15,0"/>
+                        <Entry x:Name="EntryPassword"  Placeholder="Ingrese su contraseña" Text="{Binding Clave}" IsPassword="True" PlaceholderColor="#AAAAAA"  TextColor="#2C3E50" FontSize="16" HeightRequest="55" Margin="15,0"/>
                     </Border>
                 </VerticalStackLayout>
 

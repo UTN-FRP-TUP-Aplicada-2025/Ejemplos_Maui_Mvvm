@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell x:Class="Ejemplo_Login.AppShell"
-        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-        xmlns:local="clr-namespace:Ejemplo_Login"
-        xmlns:pages="clr-namespace:Ejemplo_Login.Pages"        
-        Title="Login">
+<Shell 
+    x:Class="Ejemplo_Login.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Ejemplo_Login"
+    xmlns:pages="clr-namespace:Ejemplo_Login.Pages"        
+    Title="Login">
 
     <!--Diseño header -->
 
@@ -43,28 +44,32 @@
 
     <ShellContent Title="Home" ContentTemplate="{DataTemplate pages:MainPage}" Route="MainPage" >
         <ShellContent.Icon>
-            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+            <FontImageSource Glyph="home" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
         </ShellContent.Icon>
     </ShellContent>
 
     <ShellContent Title="Detalle" ContentTemplate="{DataTemplate pages:DetailPage}" Route="DetailPage" >
         <ShellContent.Icon>
-            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+            <FontImageSource Glyph="description" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
         </ShellContent.Icon>
     </ShellContent>
 
-    <MenuItem Text="Logout" Command="{Binding LogoutCommand}" >
+    <MenuItem Text="Politicas de privacidad" Command="{Binding PoliticaCommand}" CommandParameter="https://geometriafernando.somee.com/privacy-policy.html" >
         <MenuItem.IconImageSource>
-            <FontImageSource Glyph="contact_page" FontFamily="MaterialIconsOutlined" Size="24" Color="Black"  />
+            <FontImageSource Glyph="privacy_tip" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
         </MenuItem.IconImageSource>
     </MenuItem>
 
+    <MenuItem Text="Logout" Command="{Binding LogoutCommand}" >
+        <MenuItem.IconImageSource>
+            <FontImageSource Glyph="logout" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+        </MenuItem.IconImageSource>
+    </MenuItem>
 
-    <!--De esta manera no va a aparecer en el menu del flyout,
-         pero es necesario que sea parte del flyout para poder redireccionar desde el inicio
+    <!--
+        De esta manera no va a aparecer en el menu del flyout,
+        pero es necesario que sea parte del flyout para poder redireccionar desde el inicio 
     -->
-    <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:LoginPage}"  Route="LoginPage"
-              FlyoutItemIsVisible="False" Shell.NavBarIsVisible="False" />
+    <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:LoginPage}" Route="LoginPage" FlyoutItemIsVisible="False" Shell.NavBarIsVisible="False" />
     
-
 </Shell>

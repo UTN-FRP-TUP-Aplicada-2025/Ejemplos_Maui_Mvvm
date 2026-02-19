@@ -9,57 +9,27 @@ public class LoginService
 {
     string url = "https://geometriafernando.somee.com/graphql/";
 
-    
+    public LoginModel GetSession()
+    {
+        string usuario = Preferences.Default.Get<string>("Usuario", "");
+        string clave = Preferences.Default.Get<string>("Clave", "");
+        bool recordarUsuario = Preferences.Default.Get<bool>("RecordarUsuario", false);
+        bool esActiva = Preferences.Default.Get<bool>("EsActiva", false);
 
-//    public async Task<LoginModel> ObtenerEstadisticasAsync()
-//    {
-//        using HttpClient client = new HttpClient();
+        return new LoginModel()
+        {
+            Usuario = usuario,
+            Clave = clave,
+            RecordarUsuario = recordarUsuario,
+            EsSessionActiva = esActiva
+        };
+    }
 
-//        client.BaseAddress = new Uri(url);
-
-//        //formato de fecha "2000-02-02T00:00:00Z"
-
-//        var query = new
-//        {
-//            query = $@"
-//query 
-//{{
-//    estadistica 
-//    {{
-//        edadPromedio
-//        encuestados
-//        fecha
-//    }}
-//}}"
-//        };
-
-//        var response = await client.PostAsJsonAsync("", query);
-//        response.EnsureSuccessStatusCode();
-        
-//        var option = new JsonSerializerOptions { PropertyNameCaseInsensitive =true, };
-//        //var data=await response.Content.ReadFromJsonAsync<Data?>(option);
-
-//        //{"data":{"estadistica":{"edadPromedio":0.002043319358171613,"encuestados":1,"fecha":"2026-02-10T17:53:58.119-06:00"}}}
-//        var responseBody = await response.Content.ReadAsStringAsync();
-
-//        var dataQuery = JsonSerializer.Deserialize<EstadisticaQueryType?>(responseBody, option);
-
-
-//        return new EstadisticaModel
-//        {
-//            Encuestados = dataQuery?.Data?.Estadistica?.Encuestados ?? 0,
-//            EdadPromedio = dataQuery?.Data?.Estadistica?.EdadPromedio ?? 0,
-//            Fecha = dataQuery?.Data?.Estadistica?.Fecha??DateTime.MinValue,
-//        };
-//        /*
-//        {
-//          "data": {
-//            "estadistica": {
-//              "edadPromedio": 0,
-//              "encuestados": 0,
-//              "fecha": "2026-02-10T16:57:50.029-06:00"
-//            }
-//          }
-//        }*/
-//    }
+    public void SetSession(LoginModel session)
+    {
+        Preferences.Default.Set<string>("Usuario", session.Usuario);
+        Preferences.Default.Set<string>("Clave", session.Clave);
+        Preferences.Default.Set<bool>("RecordarUsuario", session.RecordarUsuario);
+        Preferences.Default.Set<bool>("EsActiva", session.EsSessionActiva);
+    }
 }

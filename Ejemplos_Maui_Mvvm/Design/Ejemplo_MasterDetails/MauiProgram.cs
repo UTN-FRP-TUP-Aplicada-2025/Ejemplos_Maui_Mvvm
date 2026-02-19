@@ -1,10 +1,7 @@
 ﻿using CommunityToolkit.Maui;
-using Ejemplo_Login.PageModels;
-using Ejemplo_Login.Pages;
-using Ejemplo_Login.Services;
 using Microsoft.Extensions.Logging;
 
-namespace Ejemplo_Login;
+namespace Ejemplo_MasterDetails;
 
 public static class MauiProgram
 {
@@ -23,7 +20,7 @@ public static class MauiProgram
             });
 
 #if DEBUG
-        builder.Logging.AddDebug();
+		builder.Logging.AddDebug();
 #endif
 
         return builder.Build();
@@ -31,16 +28,6 @@ public static class MauiProgram
 
     static public MauiAppBuilder AddServices(this MauiAppBuilder builder)
     {
-        // Servicios
-        builder.Services.AddSingleton<LoginService>();
-
-        // PageModels
-        builder.Services.AddTransient<LoginPageModel>();
-        builder.Services.AddTransient<MainPageModel>();
-        builder.Services.AddTransient<DetailPageModel>();
-
-        // Pages
-        builder.Services.AddTransient<LoginPage>();
 
         return builder;
     }

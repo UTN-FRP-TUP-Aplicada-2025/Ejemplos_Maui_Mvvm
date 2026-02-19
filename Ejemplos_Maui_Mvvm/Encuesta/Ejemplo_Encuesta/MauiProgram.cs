@@ -31,6 +31,8 @@ public static class MauiProgram
 
     static public MauiAppBuilder AddServices(this MauiAppBuilder builder)
     {
+        // Servicios
+        builder.Services.AddSingleton<LoginService>();
         builder.Services.AddSingleton<EncuestasService>();
 
         builder.Services.AddTransient<EncuestaPageModel>();
