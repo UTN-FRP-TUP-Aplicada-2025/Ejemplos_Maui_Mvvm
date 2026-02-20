@@ -9,24 +9,38 @@ Integración con graphql
 
 
 
-## Nuget
+## Nuget aplicación
 
-AddHttpClient
+```
 Microsoft.Extensions.Http
+CommunityToolkit.Mvvm
+CommunityToolkit.Maui
+```
+
+## Nuget servicio web (graphql, restapi)
+
+```
+Duende.IdentityServer
+dotnet add package HotChocolate.AspNetCore
+HotChocolate.AspNetCore.Authorization
+Microsoft.AspNetCore.Authentication.JwtBearer
+Scalar.AspNetCore
+```
 
 
 ## Generación token de prueba
 
 ```
-curl -X POST https://localhost:7041/connect/token  -H "Content-Type: application/x-www-form-urlencoded"  -d "client_id=client_id"  -d "client_secret=secret"  -d "grant_type=password" -d "username=fernando" -d "password=1234" -d "scope=api1 offline_access"
+curl -X POST https://geometriafernando.somee.com/connect/token  -H "Content-Type: application/x-www-form-urlencoded"  -d "client_id=client_id"  -d "client_secret=secret"  -d "grant_type=password" -d "username=fernando" -d "password=1234" -d "scope=api1"
 ```
 
 ###Ejemplos
 
-Desde somee
+Desde somee.com
+observer que en scope solo dice api1, es el scope para las consultas graphql
 ```bash
-C:\Users\fernando>curl -X POST https://geometriafernando.somee.com/connect/token  -H "Content-Type: application/x-www-form-urlencoded"  -d "client_id=client_id"  -d "client_secret=secret"  -d "grant_type=password" -d "username=fernando" -d "password=1234" -d "scope=api1 offline_access"
-{"access_token":"eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk2NzBBNDI5MTI2QjdFMzFCNDNGQzlFM0IzQ0VCOTY2IiwidHlwIjoiYXQrand0In0.eyJpc3MiOiJodHRwczovL2dlb21ldHJpYWZlcm5hbmRvLnNvbWVlLmNvbSIsIm5iZiI6MTc3MTU1NTA0NiwiaWF0IjoxNzcxNTU1MDQ2LCJleHAiOjE3NzE1NTg2NDYsInNjb3BlIjpbImFwaTEiLCJvZmZsaW5lX2FjY2VzcyJdLCJhbXIiOlsicGFzc3dvcmQiXSwiY2xpZW50X2lkIjoiY2xpZW50X2lkIiwic3ViIjoiMSIsImF1dGhfdGltZSI6MTc3MTU1NTA0NiwiaWRwIjoibG9jYWwiLCJyb2xlIjoiQWRtaW4iLCJuYW1lIjoiZmVybmFuZG8iLCJqdGkiOiJFOTk2NjdFM0ZCNTIyN0JDOUY1MUJGQTZFNDg5ODNGNyJ9.CtDVBvToKZySR9LlE_ijJIGqMmRAs9qnjAuFI8OfHEWsMWO4tNi1SsKMvW9a9tbXISLBsqo9aWScVgr_s4szn0mVB5M23CigJzIknx-UeM2wfgYqyAHIK5Fn6zFdhxCmRZ8OO5p_23trc4M04pg0EMYUGQdw4CBXyzcIsEzGamXiMBuCeTmlihvmRPb3bAuj24qq0K-Hl1kzwO1Bm_7MMI3pqFbpBSxGb_mm6fbGcadz6xPZ3bIEgW0uNikl-JVQEU21PQa4qFLVGFWYtzZPASRtq1DF3a-AFdnE1_gnPx_tscpCoszpOwBZy-DdssBuw6MZzUc3ASRBydpGcwacDg","expires_in":3600,"token_type":"Bearer","refresh_token":"06B1F05D9A3268BA3E8AD5CD394DA0FE7BE529C6D398299407246C788855E0AC-1","scope":"api1 offline_access"}
+C:\Users\fernando>curl -X POST https://geometriafernando.somee.com/connect/token  -H "Content-Type: application/x-www-form-urlencoded"  -d "client_id=client_id"  -d "client_secret=secret"  -d "grant_type=password" -d "username=fernando" -d "password=1234" -d "scope=api1"
+{"access_token":"eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk2NzBBNDI5MTI2QjdFMzFCNDNGQzlFM0IzQ0VCOTY2IiwidHlwIjoiYXQrand0In0.eyJpc3MiOiJodHRwczovL2dlb21ldHJpYWZlcm5hbmRvLnNvbWVlLmNvbSIsIm5iZiI6MTc3MTU1ODU4MywiaWF0IjoxNzcxNTU4NTgzLCJleHAiOjE3NzE1NjIxODMsInNjb3BlIjpbImFwaTEiXSwiYW1yIjpbInBhc3N3b3JkIl0sImNsaWVudF9pZCI6ImNsaWVudF9pZCIsInN1YiI6IjEiLCJhdXRoX3RpbWUiOjE3NzE1NTg1ODMsImlkcCI6ImxvY2FsIiwicm9sZSI6IkFkbWluIiwibmFtZSI6ImZlcm5hbmRvIiwianRpIjoiNzc0QzUyNTNCMjcyNTMxMEREODM2OTlBMUQzMzNDNTUifQ.R3ixrcQuI-psNRJavj8bZrY5M6zCUzPKKHupWgG6_9SbOR27LW-CTaMmu5UQpIVNIVrMqN6Q7o1fdK-l1rGZPrsx_tMW0EE_uYVc6td2sgvVjIXjogAvQY3jb7ZjFyvRgZQ-2e6FXiTgjIx-kEiuHgvAItzDw72SWT8g-RXVEcowWg00h_h9EoX7DdrIEkp2ZQO3FNg8R5kiPYbG7Bb5BTc8L8FdEnf9Vp_gjfdmnFy4OA3J8UDJmwrd5JfPXL_nTio3A9cq6T6PnD2xCu1alYOLpwPOIC3_j-ZLvv07aLpMCjGUxLCJynd1SxHzHYepq5M3bqdxU2pxznufPHoQpA","expires_in":3600,"token_type":"Bearer","scope":"api1"}
 ```
 
 
