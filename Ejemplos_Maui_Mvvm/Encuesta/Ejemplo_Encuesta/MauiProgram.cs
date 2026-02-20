@@ -2,6 +2,7 @@
 using Ejemplo_Encuesta.PageModels;
 using Ejemplo_Encuesta.Pages;
 using Ejemplo_Encuesta.Services;
+using Ejemplo_Encuesta.Services.Auth;
 using Microsoft.Extensions.Logging;
 
 namespace Ejemplo_Encuesta;
@@ -31,17 +32,26 @@ public static class MauiProgram
 
     static public MauiAppBuilder AddServices(this MauiAppBuilder builder)
     {
+        builder.Services.AddHttpClient<AuthService>(client =>
+                        {
+                            client.BaseAddress = new Uri("https://geometriafernando.somee.com/");
+                        });
+        builder.Services.AddSingleton<TokenStorageService>()
+
         // Servicios
-        builder.Services.AddSingleton<LoginService>();
-        builder.Services.AddSingleton<EncuestasService>();
+                        .AddSingleton<LoginService>();
+        builder.Services.AddHttpClient<EncuestasService>(client =>
+                        {
+                            client.BaseAddress = new Uri("https://geometriafernando.somee.com/");
+                        });
 
-        builder.Services.AddTransient<EncuestaPageModel>();
-        builder.Services.AddTransient<EstadisticaPageModel>();
-        builder.Services.AddTransient<LoginPage>();
+        builder.Services.AddTransient<EncuestaPageModel>()
+                        .AddTransient<EstadisticaPageModel>()
+                        .AddTransient<LoginPage>()
 
-        builder.Services.AddTransient<EncuestaPage>();
-        builder.Services.AddTransient<EstadisticasPage>();
-        builder.Services.AddTransient<LoginPageModel>();
+                        .AddTransient<EncuestaPage>()
+                        .AddTransient<EstadisticasPage>()
+                        .AddTransient<LoginPageModel>();
         
         return builder;
     }

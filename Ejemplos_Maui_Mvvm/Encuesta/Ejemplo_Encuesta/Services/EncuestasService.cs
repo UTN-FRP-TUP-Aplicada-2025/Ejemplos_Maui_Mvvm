@@ -1,4 +1,5 @@
 ﻿using Ejemplo_Encuesta.Models;
+using Ejemplo_Encuesta.Services.Auth;
 using Ejemplo_Encuesta.Services.graphql;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -8,13 +9,26 @@ namespace Ejemplo_Encuesta.Services;
 
 public class EncuestasService
 {
-    string url = "https://geometriafernando.somee.com/graphql/";
+   // string url = "https://geometriafernando.somee.com/graphql/";
+
+    readonly AuthService _authService;
+    readonly TokenStorageService _tokenStorage;
+
+    readonly HttpClient _http;
+
+
+    public EncuestasService(HttpClient http,  AuthService authService, TokenStorageService tokenStorage)
+    {
+        _authService = authService;
+        _tokenStorage = tokenStorage;
+        _http = http;
+    }
 
     async public Task RegistrarEncuesta(EncuestaModel model)
     {
-        using HttpClient client = new HttpClient();
+        //using HttpClient client = new HttpClient();
 
-        client.BaseAddress = new Uri(url);
+        //client.BaseAddress = new Uri(url);
 
         //formato de fecha "2000-02-02T00:00:00Z"
 
@@ -31,7 +45,7 @@ public class EncuestasService
     }}"
         };
 
-        var response = await client.PostAsJsonAsync("", query);
+        var response = await _http.PostAsJsonAsync("graphql/", query);
         response.EnsureSuccessStatusCode();
 
         string responseBody = await response.Content.ReadAsStringAsync();
@@ -40,15 +54,13 @@ public class EncuestasService
 
     public async Task<EstadisticaModel> ObtenerEstadisticasAsync()
     {
-        var client = new HttpClient();
+        var accessToken = await _tokenStorage.GetAccessTokenAsync();
 
-        var token=await getTokenAsync(); 
+        if (string.IsNullOrEmpty(accessToken)) throw new Exception("Usuario no autenticado.");
 
-        if(token==null) throw new Exception("No se pudo obtener el token de autenticación.");
+        _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);
-
-        client.BaseAddress = new Uri(url);
+        //client.BaseAddress = new Uri(url);
 
         //formato de fecha "2000-02-02T00:00:00Z"
 
@@ -66,7 +78,7 @@ query
 }}"
         };
 
-        var response = await client.PostAsJsonAsync("", query);
+        var response = await _http.PostAsJsonAsync("graphql/", query);
         response.EnsureSuccessStatusCode();
         
         var option = new JsonSerializerOptions { PropertyNameCaseInsensitive =true, };
@@ -95,23 +107,5 @@ query
           }
         }*/
     }
-
-    async public Task<TokenResponse> getTokenAsync()
-    {
-        var client = new HttpClient();
-
-        var response = await client.PostAsync("https://geometriafernando.somee.com/connect/token",
-            new FormUrlEncodedContent(new Dictionary<string, string>
-            {
-                { "client_id", "maui-client" },
-                { "client_secret", "secret" },
-                { "grant_type", "password" },
-                { "username", "fernando" },
-                { "password", "1234" },
-                { "scope", "api1" }
-            }));
-
-        var token = await response.Content.ReadFromJsonAsync<TokenResponse>();
-        return token;
-    }
+        
 }

@@ -17,16 +17,23 @@ builder.Services
     .AddIdentityServer()
     .AddInMemoryApiScopes(new[]
     {
-        new ApiScope("api1", "Main API")
+        new ApiScope("api1", "offline_access")
     })
     .AddInMemoryClients(new[]
     {
         new Client
         {
-            ClientId = "maui-client",
+            ClientId = "client_id",
             AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
             ClientSecrets = { new Secret("secret".Sha256()) },
-            AllowedScopes = { "api1" }
+            AllowedScopes = { "api1", "offline_access" },
+            AllowOfflineAccess = true, //habilita, refresh tokens
+
+            //adicionales para refresh tokens
+            AccessTokenLifetime = 3600,
+            RefreshTokenUsage = TokenUsage.ReUse,
+            RefreshTokenExpiration = TokenExpiration.Sliding,
+            SlidingRefreshTokenLifetime = 2592000 // 30 días
         }
     })
     .AddDeveloperSigningCredential();

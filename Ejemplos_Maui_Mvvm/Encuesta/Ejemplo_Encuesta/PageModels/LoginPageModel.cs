@@ -2,16 +2,23 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Ejemplo_Encuesta.Models;
 using Ejemplo_Encuesta.Pages;
-using Ejemplo_Encuesta.Services;
+using Ejemplo_Encuesta.Services.Auth;
 
 
 namespace Ejemplo_Encuesta.PageModels;
 
 public partial class LoginPageModel : ObservableObject
 {
-    LoginService _loginService;
+
+    private readonly AuthService _authService;
+    private readonly TokenStorageService _storage;
+
+    public LoginPageModel( AuthService authService, TokenStorageService storage)
+    {
+        _authService = authService;
+        _storage = storage;
+    }
 
     [ObservableProperty]
     private string usuario;
@@ -20,15 +27,14 @@ public partial class LoginPageModel : ObservableObject
     private string clave;
 
     [ObservableProperty]
-    private bool recordarUsuario;
+    private bool isBusy;
 
-    public LoginPageModel(LoginService loginService)
-    {
-        _loginService = loginService;
-    }
+    [ObservableProperty]
+    private string errorMessage;
 
+    
     [RelayCommand]
-    async private Task Login()
+    private async Task LoginAsync()
     {
         if (string.IsNullOrEmpty(Usuario))
         {
@@ -42,19 +48,41 @@ public partial class LoginPageModel : ObservableObject
             return;
         }
 
-        if (Usuario != "admin" || Clave != "1234")
-        {
-            await Toast.Make("Usuario o Clave incorrecto", ToastDuration.Long).Show();
+        //login simulado
+        //if (Usuario != "admin" || Clave != "1234")
+        //{
+        //    await Toast.Make("Usuario o Clave incorrecto", ToastDuration.Long).Show();
+        //    return;
+        //}
+
+        if (IsBusy)
             return;
-        }
 
-        _loginService.SetSession(new LoginModel
+        ErrorMessage = string.Empty;
+
+        try
         {
-            Usuario = Usuario,
-            Clave = Clave,
-            RecordarUsuario = RecordarUsuario
-        });
+            IsBusy = true;
 
-        await Shell.Current.GoToAsync($"//{nameof(EncuestaPage)}");
+            var token = await _authService.getTokenAsync(Usuario, Clave);
+
+            if (token == null)
+            {
+                ErrorMessage = "Usuario o contraseña inválidos";
+                return;
+            }
+
+            await _storage.SaveAsync(token);
+
+            await Shell.Current.GoToAsync($"//{nameof(EncuestaPage)}");
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            IsBusy = false;
+        }
     }
 }

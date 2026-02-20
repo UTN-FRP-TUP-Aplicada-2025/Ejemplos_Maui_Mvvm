@@ -1,13 +1,13 @@
 <Solution>
   <Folder Name="/Ejemplos_diseños/">
     <Project Path="Design/Ejemplo_Login/Ejemplo_Login.csproj" Id="807b3c92-f019-41c8-93b9-d3ebf893e850">
-      <Deploy Solution="Debug|*" />
+      <Deploy />
     </Project>
-    <Project Path="Design/Ejemplo_MasterDetails/Ejemplo_MasterDetails.csproj" Id="10ff2bd2-fdad-4601-80c6-2e131cc8503d" />
+    <Project Path="Design/Ejemplo_MasterDetails/Ejemplo_MasterDetails.csproj" Id="10ff2bd2-fdad-4601-80c6-2e131cc8503d">
+      <Deploy />
+    </Project>
   </Folder>
   <Folder Name="/Ejemplos_diseños/Docs/">
-    <File Path="Design/Ejemplo_Design_Docs/qr_perro.jpg" />
-    <File Path="Design/Ejemplo_Design_Docs/qr_rana.jpg" />
     <File Path="Design/Ejemplo_Design_Docs/Readme.md" />
     <File Path="Design/Ejemplo_Design_Docs/Readme_build.md" />
     <File Path="Design/Ejemplo_Design_Docs/Readme_common_nuget.md" />
@@ -16,12 +16,13 @@
   </Folder>
   <Folder Name="/Encuestas/">
     <Project Path="Encuesta/Ejemplo_Encuesta/Ejemplo_Encuesta.csproj" Id="b915dcea-1368-4c20-8dfb-56d758cb103c">
-      <Deploy Solution="Debug|*" />
+      <Deploy />
     </Project>
     <Project Path="Encuesta/Ejemplo_WebAPI_Encuestas/Ejemplo_WebAPI_Encuestas.csproj" Id="82344ac5-6145-4b71-a50e-dab1b156d767" />
   </Folder>
   <Folder Name="/Encuestas/docs/">
     <File Path="Encuesta/Ejemplo_Encuesta_Docs/ejemplo_consulta.png" />
+    <File Path="Encuesta/Ejemplo_Encuesta_Docs/ejemplo_estadistica.gif" />
     <File Path="Encuesta/Ejemplo_Encuesta_Docs/Readme.md" />
   </Folder>
 </Solution>

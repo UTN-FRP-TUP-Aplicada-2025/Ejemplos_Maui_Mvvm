@@ -1,13 +1,19 @@
 ﻿using Ejemplo_Encuesta.Models;
-using Ejemplo_Encuesta.Services.graphql;
-using System.Net.Http.Json;
-using System.Text.Json;
-
+using Ejemplo_Encuesta.Services.Auth;
 namespace Ejemplo_Encuesta.Services;
 
 public class LoginService
 {
     string url = "https://geometriafernando.somee.com/graphql/";
+    
+    private readonly AuthService _authService;
+    private readonly TokenStorageService _tokenStorage;
+
+    public LoginService(AuthService authService, TokenStorageService tokenStorage)
+    {
+        _authService = authService;
+        _tokenStorage = tokenStorage;
+    }
 
     public LoginModel GetSession()
     {
@@ -31,5 +37,17 @@ public class LoginService
         Preferences.Default.Set<string>("Clave", session.Clave);
         Preferences.Default.Set<bool>("RecordarUsuario", session.RecordarUsuario);
         Preferences.Default.Set<bool>("EsActiva", session.EsSessionActiva);
+    }
+
+    public async Task<bool> LoginAsync(string user, string pass)
+    {
+        var token = await _authService.getTokenAsync(user, pass);
+
+        if (token == null || string.IsNullOrEmpty(token.AccessToken))
+            return false;
+
+        await _tokenStorage.SaveAsync(token);
+
+        return true;
     }
 }

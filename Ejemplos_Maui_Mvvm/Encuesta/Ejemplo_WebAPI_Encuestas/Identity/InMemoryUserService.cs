@@ -15,9 +15,7 @@
 
         public InMemoryUser Validate(string username, string password)
         {
-            return _users.FirstOrDefault(x =>
-                x.Username == username &&
-                x.Password == password);
+            return _users.FirstOrDefault(x => x.Username == username && x.Password == password);
         }
     }
 
