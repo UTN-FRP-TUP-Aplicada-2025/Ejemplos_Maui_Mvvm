@@ -30,7 +30,9 @@
     <File Path="Encuesta/Ejemplo_Docs_Encuesta/Readme.md" />
   </Folder>
   <Folder Name="/ValidarQR/">
-    <Project Path="ValidarQR/Ejemplo_ValidarQR/Ejemplo_ValidarQR.csproj" Id="387024eb-47d4-40d3-9f54-150e401557e9" />
+    <Project Path="ValidarQR/Ejemplo_ValidarQR/Ejemplo_ValidarQR.csproj" Id="387024eb-47d4-40d3-9f54-150e401557e9">
+      <Deploy Solution="Release|*" />
+    </Project>
     <Project Path="ValidarQR/Ejemplo_Web_ValidarQR/Ejemplo_Web_ValidarQR.csproj" Id="5d158064-326c-418d-872a-f38754b81a27" />
   </Folder>
   <Folder Name="/ValidarQR/Docs/">
