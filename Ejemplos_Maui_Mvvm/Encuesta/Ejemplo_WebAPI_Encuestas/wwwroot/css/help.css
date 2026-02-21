@@ -1,0 +1,106 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #F2F2F7;
+    --card-bg: #FFFFFF;
+    --text-primary: #1C1C1E;
+    --text-secondary: #6C6C70;
+    --accent: #007AFF;
+    --border: #E5E5EA;
+    --footer-bg: #FFFFFF;
+    --radius: 12px;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Simula ancho móvil en desktop */
+    max-width: 430px;
+    margin: 0 auto;
+}
+
+/* ── Header ── */
+.header {
+    padding: 52px 20px 12px;
+    background: var(--bg);
+}
+
+    .header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+        color: var(--text-primary);
+    }
+
+/* ── Contenido principal ── */
+main {
+    flex: 1;
+    padding: 8px 16px 16px;
+}
+
+/* ── Card con lista de items ── */
+.list-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 16px;
+    text-decoration: none;
+    color: inherit;
+    background: var(--card-bg);
+    transition: background 0.15s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0.05);
+}
+
+    .list-item:active {
+        background: #F0F0F5;
+    }
+
+    /* Separador entre items */
+    .list-item + .list-item {
+        border-top: 1px solid var(--border);
+    }
+
+.list-item__text {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--text-primary);
+    padding-right: 8px;
+}
+
+.list-item__icon {
+    color: var(--text-secondary);
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+/* ── Footer ── */
+footer {
+    background: var(--footer-bg);
+    border-top: 1px solid var(--border);
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-secondary);
+}

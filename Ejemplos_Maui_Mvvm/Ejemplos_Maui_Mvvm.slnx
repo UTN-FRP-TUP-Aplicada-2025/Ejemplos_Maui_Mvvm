@@ -8,6 +8,7 @@
     </Project>
   </Folder>
   <Folder Name="/Ejemplos_diseños/Docs/">
+    <File Path="Design/Ejemplo_Design_Docs/Font.md" />
     <File Path="Design/Ejemplo_Design_Docs/Notas.md" />
     <File Path="Design/Ejemplo_Design_Docs/Readme.md" />
   </Folder>

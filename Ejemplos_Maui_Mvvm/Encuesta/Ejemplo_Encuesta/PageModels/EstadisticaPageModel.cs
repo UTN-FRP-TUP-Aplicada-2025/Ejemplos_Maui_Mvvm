@@ -4,6 +4,7 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ejemplo_Encuesta.Services;
+using Java.Net;
 
 namespace Ejemplo_Encuesta.PageModels;
 
@@ -24,8 +25,7 @@ public partial class EstadisticaPageModel : ObservableObject
     {
         _encuestasServices = encuestasServices;
     }
-
-   
+       
     [RelayCommand]
     private async Task Appearing(object? obj)
     {
@@ -42,4 +42,28 @@ public partial class EstadisticaPageModel : ObservableObject
             await Toast.Make($"Error: {ex.Message}", ToastDuration.Long).Show();
         }
     }
+
+    [RelayCommand]
+    private async Task Help(string? url)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(url))
+            {
+                await Browser.Default.OpenAsync(new Uri(url), BrowserLaunchMode.SystemPreferred);
+            }
+        }
+        catch (Exception ex)
+        {
+            await Toast.Make($"Error: {ex.Message}", ToastDuration.Long).Show();
+        }
+    }
+
+    /*
+    [RelayCommand]
+    private async Task Back()
+    {
+
+    }
+    */
 }
