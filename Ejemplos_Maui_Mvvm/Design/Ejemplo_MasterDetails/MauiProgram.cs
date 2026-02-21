@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Maui;
+using Ejemplo_MasterDetails.PageModels;
+using Ejemplo_MasterDetails.Services;
 using Microsoft.Extensions.Logging;
 
 namespace Ejemplo_MasterDetails;
@@ -28,6 +30,11 @@ public static class MauiProgram
 
     static public MauiAppBuilder AddServices(this MauiAppBuilder builder)
     {
+        builder.Services.AddSingleton<EncuestasService>();
+
+        builder.Services.AddTransient<EstadisticaPageModel>();
+        builder.Services.AddTransient<EncuestaPageModel>();
+
 
         return builder;
     }

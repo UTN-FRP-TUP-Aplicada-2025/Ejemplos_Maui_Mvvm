@@ -48,4 +48,19 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.3" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Pages\DetalleEncuestaPage.xaml.cs">
+	    <DependentUpon>DetalleEncuestaPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\EstadisticaPage.xaml.cs">
+	    <DependentUpon>EstadisticaPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\DetalleEncuestaPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

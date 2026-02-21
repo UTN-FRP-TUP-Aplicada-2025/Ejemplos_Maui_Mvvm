@@ -7,6 +7,6 @@
     xmlns:pages="clr-namespace:Ejemplo_MasterDetails.Pages"
     Title="Ejemplo_MasterDetails">
 
-    <ShellContent Title="Home" ContentTemplate="{DataTemplate pages:MainPage}" Route="MainPage" />
+    <ShellContent Title="Estadistica" ContentTemplate="{DataTemplate pages:EstadisticaPage}" Route="EstadisticaPage" />
 
 </Shell>

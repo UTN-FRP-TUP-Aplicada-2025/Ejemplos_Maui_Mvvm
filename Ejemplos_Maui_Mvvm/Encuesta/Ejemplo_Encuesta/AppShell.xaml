@@ -9,11 +9,13 @@
 
     <Shell.FlyoutHeader>
         <VerticalStackLayout>
+            
             <Image WidthRequest="100">
                 <Image.Source>
                     <x:AppThemeBinding Light="header_flyout.png" Dark="header_flyout_dark.png"/>
                 </Image.Source>
             </Image>
+            
             <Label x:Name="lbUsuario" Text="Cuestionario Electrónico" Style="{StaticResource FlyoutHeaderLabelStyle}" FontSize="Title" HorizontalTextAlignment="Center"></Label>
         </VerticalStackLayout>
     </Shell.FlyoutHeader>
@@ -67,7 +69,5 @@
     <!--De esta manera no va a aparecer en el menu del flyout,
      pero es necesario que sea parte del flyout para poder redireccionar desde el inicio -->
     <ShellContent Title="Login" ContentTemplate="{DataTemplate pages:LoginPage}"  Route="LoginPage" FlyoutItemIsVisible="False" Shell.NavBarIsVisible="False" />
-
-    
 
 </Shell>

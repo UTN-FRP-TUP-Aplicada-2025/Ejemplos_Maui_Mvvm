@@ -30,8 +30,7 @@
 
         <HorizontalStackLayout Spacing="10" Margin="5,0,0,0">
             <CheckBox IsChecked="{Binding RecordarUsuario}" Color="#5B8FDE"/>
-            <Label Text="Recordar usuario" FontSize="14" TextColor="#2C3E50" 
-                   VerticalOptions="Center"/>
+            <Label Text="Recordar usuario" FontSize="14" TextColor="#2C3E50" VerticalOptions="Center"/>
         </HorizontalStackLayout>
 
         <Button Text="Login" Command="{Binding LoginCommand}" />

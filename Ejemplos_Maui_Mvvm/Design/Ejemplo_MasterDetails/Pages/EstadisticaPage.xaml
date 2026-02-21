@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:pageModels="clr-namespace:Ejemplo_MasterDetails.PageModels"
+             x:Class="Ejemplo_MasterDetails.Pages.EstadisticaPage"
+             x:DataType="pageModels:EstadisticaPageModel">
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing" Command="{Binding AppearingCommand}" />
+    </ContentPage.Behaviors>
+
+    <!--<ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing" Command="{Binding AppearingCommand}"
+                     BindingContext="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext}" />
+    </ContentPage.Behaviors>-->
+    
+    <VerticalStackLayout Spacing="16">
+        
+        <Label Text="Ultimos encuestados" FontSize="22" FontAttributes="Bold,Italic" TextColor="#B8860B"/>
+
+        <CollectionView ItemsSource="{Binding UltimosEncuestados}" SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate x:DataType="pageModels:EncuestaPageModel">
+
+                    <Border Margin="0,4" Padding="16,12" StrokeThickness="1.5" Stroke="#CCCCCC" BackgroundColor="White">
+                        
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12"/>
+                        </Border.StrokeShape>
+
+                        <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                            
+                            <VerticalStackLayout Grid.Column="0" Spacing="4" VerticalOptions="Center">
+                                <Label Text="{Binding Nombre}" FontSize="16" FontAttributes="Bold,Italic" TextColor="Black"/>
+                                <Label Text="{Binding FechaNacimiento, StringFormat='{0:d/M/yyyy}'}" FontSize="13" FontAttributes="Italic" TextColor="#757575"/>
+                            </VerticalStackLayout>
+
+                            <ImageButton Grid.Column="1" BackgroundColor="#E0E0E0" WidthRequest="40" HeightRequest="40" CornerRadius="8" VerticalOptions="Center"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.VerEncuestadoCommand}"
+                                        CommandParameter="{Binding .}">
+
+                                <ImageButton.Source>
+                                    <FontImageSource Glyph="visibility" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                                </ImageButton.Source>
+                                
+                            </ImageButton>
+
+                        </Grid>
+                        
+                    </Border>
+                    
+                </DataTemplate>
+      
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+    </VerticalStackLayout>
+
+</ContentPage>

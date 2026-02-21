@@ -59,11 +59,11 @@
                 </HorizontalStackLayout>-->
 
                 <HorizontalStackLayout Spacing="10" Margin="5,0,0,0">
-                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
-                <Label Text="{Binding ErrorMessage}" TextColor="Red" />
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+                    <Label Text="{Binding ErrorMessage}" TextColor="Red" />
                 </HorizontalStackLayout>
 
-                <Button Text="Ingresar"  BackgroundColor="#5B8FDE" TextColor="White" FontSize="18" FontAttributes="Bold" HeightRequest="60"  CornerRadius="30" Margin="0,20,0,0" Command="{Binding LoginCommand}">
+                <Button Text="Ingresar" BackgroundColor="#5B8FDE" TextColor="White" FontSize="18" FontAttributes="Bold" HeightRequest="60"  CornerRadius="30" Margin="0,20,0,0" Command="{Binding LoginCommand}">
                     <Button.Shadow>
                         <Shadow Brush="#5B8FDE"  Offset="0,4" Radius="8" Opacity="0.3"/>
                     </Button.Shadow>
