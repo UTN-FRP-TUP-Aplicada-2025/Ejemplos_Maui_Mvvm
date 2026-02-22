@@ -1,7 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Ejemplo_Encuesta.Pages;
-using Ejemplo_Encuesta.Services;
-using System.Windows.Input;
 
 namespace Ejemplo_Encuesta;
 

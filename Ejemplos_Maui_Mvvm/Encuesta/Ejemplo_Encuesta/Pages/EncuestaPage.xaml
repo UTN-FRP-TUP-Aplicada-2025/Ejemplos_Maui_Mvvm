@@ -19,11 +19,8 @@
                 <Label Text="Nombre" FontSize="16" FontAttributes="Bold" TextColor="#2C3E50" Margin="5,0,0,0"/>
 
                 <Border BackgroundColor="White" Padding="0">
-                    <Entry x:Name="EntryNombre" 
-                           Placeholder="Ingrese su nombre completo"
-                           Text="{Binding Nombre}"
-                           PlaceholderColor="#AAAAAA" TextColor="#2C3E50" FontSize="16"
-                           HeightRequest="55" Margin="15,0"/>
+                    <Entry x:Name="EntryNombre" Placeholder="Ingrese su nombre completo" Text="{Binding Nombre}"
+                           PlaceholderColor="#AAAAAA" TextColor="#2C3E50" FontSize="16" HeightRequest="55" Margin="15,0"/>
                 </Border>
             </VerticalStackLayout>
 

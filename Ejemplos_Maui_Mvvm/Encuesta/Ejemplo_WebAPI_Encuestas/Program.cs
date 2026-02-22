@@ -103,24 +103,109 @@ builder.Services.AddAuthorization();
 #endregion
 
 var app = builder.Build();
-
-app.UseWebSockets();
+app.UseHttpsRedirection();
 
 //app.MapGraphQL(); //caso sencillo
 
 #region recursos estáticos
 app.UseDefaultFiles();
-app.UseStaticFiles();
+
+app.Use(async (ctx, next) =>
+{
+    var path = ctx.Request.Path.Value;
+
+    if (!string.IsNullOrEmpty(path) &&
+        path.EndsWith(".html", StringComparison.OrdinalIgnoreCase))
+    {
+        var env = ctx.RequestServices.GetRequiredService<IWebHostEnvironment>();
+        var filePath = System.IO.Path.Combine(env.WebRootPath, path.TrimStart('/'));
+
+        if (File.Exists(filePath))
+        {
+            ctx.Response.ContentType = "text/html; charset=utf-8";
+
+            // 🔥 lectura manual → evita sendfile / kernel cache / líos HTTP2
+            var bytes = await File.ReadAllBytesAsync(filePath);
+            await ctx.Response.Body.WriteAsync(bytes);
+
+            return; // 🚨 IMPORTANTÍSIMO
+        }
+    }
+
+    await next();
+});
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    ServeUnknownFileTypes = true,
+    HttpsCompression = Microsoft.AspNetCore.Http.Features.HttpsCompressionMode.DoNotCompress,
+    ContentTypeProvider = new Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider
+    {
+        Mappings =
+        {
+            [".json"] = "application/json; charset=utf-8"
+        }
+    }
+});
+
+/*
+//app.UseStaticFiles();
+
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    ServeUnknownFileTypes = true,
+//    HttpsCompression = Microsoft.AspNetCore.Http.Features.HttpsCompressionMode.DoNotCompress,
+//    ContentTypeProvider = new Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider
+//    {
+//        Mappings =
+//        {
+//            [".html"] = "text/html; charset=utf-8",
+//            [".json"] = "application/json; charset=utf-8"
+//        }
+//    },
+//    DefaultContentType = "application/octet-stream",
+//    FileProvider = app.Environment.WebRootFileProvider,
+//    OnPrepareResponse = ctx =>
+//    {
+//        if (ctx.File.Name.EndsWith(".html"))
+//        {
+//            ctx.Context.Response.Headers["Content-Type"] = "text/html; charset=utf-8";
+//        }
+//        else if (ctx.File.Name.EndsWith(".json"))
+//        {
+//            ctx.Context.Response.Headers["Content-Type"] = "application/json; charset=utf-8";
+//        }
+//    }
+
+//});
+
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    OnPrepareResponse = ctx =>
+//    {
+//        if (ctx.File.Name.EndsWith(".html"))
+//        {
+//            ctx.Context.Response.Headers["Content-Type"] = "text/html; charset=utf-8";
+//        }
+//    }
+//});
+*/
 #endregion
 
 app.UseWebSockets();   // para los subscriptions
 app.UseRouting();
 
+//IdentityServer (emite tokens)
 app.UseIdentityServer();     // EMITE TOKENS
-app.UseAuthentication();     // VALIDA TOKENS
+
+// AuthN / AuthZ (orden IMPORTANTE)
+//app.UseAuthorization();
+app.UseAuthentication(); // VALIDA TOKENS
+app.UseAuthorization();
 
 app.MapGet("/", () => Results.Redirect("/graphql"));
 
+// OpenAPI / Scalar (podés condicionar por env si querés)
 //haceder con url/scalar
 //if (app.Environment.IsDevelopment()) 
 {
@@ -128,14 +213,59 @@ app.MapGet("/", () => Results.Redirect("/graphql"));
     app.MapScalarApiReference();
 }
 
+// GraphQL
 app.MapGraphQL("/graphql");
 
-app.UseHttpsRedirection();
-
-//app.UseAuthorization();
-app.UseAuthentication();
-app.UseAuthorization();
-
+// Controllers
 app.MapControllers();
+
+/*
+//app.MapGet("/proxy", async (string url) =>
+//{
+//    if (string.IsNullOrWhiteSpace(url))
+//        return Results.BadRequest("url requerida");
+
+//    try
+//    {
+//        var handler = new HttpClientHandler
+//        {
+//            AutomaticDecompression =
+//                System.Net.DecompressionMethods.GZip |
+//                System.Net.DecompressionMethods.Deflate
+//        };
+
+//        using var http = new HttpClient(handler);
+
+//        var response = await http.GetAsync(url);
+//        var content = await response.Content.ReadAsStringAsync();
+
+//        return Results.Content(content, "text/html; charset=utf-8");
+//    }
+//    catch (Exception ex)
+//    {
+//        return Results.Problem(ex.Message);
+//    }
+//});
+
+//app.MapGet("/ver-estadistica-help.html", async (HttpContext ctx, IWebHostEnvironment env) =>
+//{
+//    var file = System.IO.Path.Combine(env.WebRootPath, "ver-estadistica-help_.html");
+
+//    ctx.Response.ContentType = "text/html; charset=utf-8";
+
+//    var bytes = await File.ReadAllBytesAsync(file);
+//    await ctx.Response.Body.WriteAsync(bytes);
+//});
+
+//app.MapGet("/privacy-policy.html", async (HttpContext ctx, IWebHostEnvironment env) =>
+//{
+//    var file = System.IO.Path.Combine(env.WebRootPath, "privacy-policy_.html");
+
+//    ctx.Response.ContentType = "text/html; charset=utf-8";
+
+//    var bytes = await File.ReadAllBytesAsync(file);
+//    await ctx.Response.Body.WriteAsync(bytes);
+//});
+*/
 
 await app.RunAsync();

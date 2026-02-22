@@ -23,7 +23,7 @@
             </ImageButton>-->
 
             <ImageButton Grid.Column="2" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" 
-                         Command="Help" CommandParameter="https://geometriafernando.somee.com/ver-estadistica-help.html">
+                         Command="{Binding HelpCommand}" CommandParameter="https://geometriafernando.somee.com/ver-estadistica-help.html">
                 <ImageButton.Source>
                     <FontImageSource Glyph="help" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
                 </ImageButton.Source>

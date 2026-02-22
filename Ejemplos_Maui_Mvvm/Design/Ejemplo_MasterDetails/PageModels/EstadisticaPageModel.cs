@@ -38,6 +38,8 @@ public partial class EstadisticaPageModel:ObservableObject
 
         // Navega o muestra detalle - ajusta según tu navegación
         await Shell.Current.GoToAsync($"{nameof(DetalleEncuestaPage)}");
+                
+        await Shell.Current.Navigation.PushAsync(new DetalleEncuestaPage(encuestado.Nombre, encuestado.FechaNacimiento));
 
         // Alternativa simple con alert mientras no tengas la página:
         // await Application.Current!.MainPage!.DisplayAlert(

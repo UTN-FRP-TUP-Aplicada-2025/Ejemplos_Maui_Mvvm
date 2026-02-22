@@ -4,8 +4,6 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Ejemplo_Encuesta.Services;
-using Java.Net;
-
 namespace Ejemplo_Encuesta.PageModels;
 
 public partial class EstadisticaPageModel : ObservableObject
@@ -44,7 +42,7 @@ public partial class EstadisticaPageModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task Help(string? url)
+    private async Task Help(string url)
     {
         try
         {
