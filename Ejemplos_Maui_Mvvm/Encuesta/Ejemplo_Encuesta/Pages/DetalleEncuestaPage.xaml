@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:pageModels="clr-namespace:Ejemplo_Encuesta.PageModels"
              x:DataType="pageModels:DetalleEncuestaPageModel"
              x:Class="Ejemplo_Encuesta.Pages.DetalleEncuestaPage"
@@ -8,11 +9,11 @@
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="*, *,Auto" VerticalOptions="Center" Padding="0,0,10,0">
-            <ImageButton Grid.Column="0" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Command="{Binding GoBackCommand}"
+            <!--<ImageButton Grid.Column="0" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Command="{Binding GoBackCommand}">
                 <ImageButton.Source>
                     <FontImageSource Glyph="chevron_left" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
                 </ImageButton.Source>
-            </ImageButton>
+            </ImageButton>-->
 
             <ImageButton Grid.Column="2" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Command="{Binding HelpCommand}" CommandParameter="https://geometriafernando.somee.com/ver-encuesta-help.html">
                 <ImageButton.Source>
@@ -23,8 +24,6 @@
     </Shell.TitleView>
 
     <Grid RowDefinitions="Auto,*" Padding="0">
-
-        
             
         <VerticalStackLayout Spacing="30">
 
