@@ -5,8 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Ejemplo_MasterDetails"
     xmlns:pages="clr-namespace:Ejemplo_MasterDetails.Pages"
-    Title="Ejemplo_MasterDetails">
+    Title="Ejemplo_MasterDetails"
+    Shell.NavBarIsVisible="False">
 
-    <ShellContent Title="Estadistica" ContentTemplate="{DataTemplate pages:EstadisticaPage}" Route="EstadisticaPage" />
+    <ShellContent ContentTemplate="{DataTemplate pages:EstadisticaPage}" Route="EstadisticaPage" />
 
 </Shell>

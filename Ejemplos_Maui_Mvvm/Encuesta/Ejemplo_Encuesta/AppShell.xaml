@@ -4,15 +4,14 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Ejemplo_Encuesta"
-    xmlns:pages="clr-namespace:Ejemplo_Encuesta.Pages"
-    Title="Encuesta">
+    xmlns:pages="clr-namespace:Ejemplo_Encuesta.Pages">
 
     <Shell.FlyoutHeader>
         <VerticalStackLayout>
             
             <Image WidthRequest="100">
                 <Image.Source>
-                    <x:AppThemeBinding Light="header_flyout.png" Dark="header_flyout_dark.png"/>
+                    <x:AppThemeBinding Light="header_flyout_light.png" Dark="header_flyout_dark.png"/>
                 </Image.Source>
             </Image>
             
@@ -40,6 +39,28 @@
         </DataTemplate>
     </Shell.MenuItemTemplate>
 
+    <!--<Shell.FlyoutFooter>
+        <VerticalStackLayout Padding="10">
+            <Button Text="Cerrar Sesión" Command="{Binding LogoutCommand}" ImageSource="{FontImageSource Glyph='logout', FontFamily=MaterialIconsOutlined, Color={AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}, Size=20}"
+            ContentLayout="Left, 10" HorizontalOptions="Fill" BackgroundColor="Transparent" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>-->
+
+    <Shell.FlyoutFooter>
+        <HorizontalStackLayout Padding="10" Spacing="10" VerticalOptions="Center">
+            <HorizontalStackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+            </HorizontalStackLayout.GestureRecognizers>
+            <Image WidthRequest="30" HeightRequest="30">
+                <Image.Source>
+                    <FontImageSource Glyph="logout" FontFamily="MaterialIconsOutlined" 
+                    Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                </Image.Source>
+            </Image>
+            <Label Text="Cerrar Sesión" Style="{StaticResource FlyoutHeaderLabelStyle}" VerticalOptions="Center"/>
+        </HorizontalStackLayout>
+    </Shell.FlyoutFooter>
+
     <!--Items -->
 
     <ShellContent Title="Registrar Encuesta" ContentTemplate="{DataTemplate pages:EncuestaPage}" Route="EncuestaPage" >
@@ -60,11 +81,7 @@
         </MenuItem.IconImageSource>
     </MenuItem>
 
-    <MenuItem Text="Logout" Command="{Binding LogoutCommand}" >
-        <MenuItem.IconImageSource>
-            <FontImageSource Glyph="logout" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
-        </MenuItem.IconImageSource>
-    </MenuItem>
+   
 
     <!--De esta manera no va a aparecer en el menu del flyout,
      pero es necesario que sea parte del flyout para poder redireccionar desde el inicio -->

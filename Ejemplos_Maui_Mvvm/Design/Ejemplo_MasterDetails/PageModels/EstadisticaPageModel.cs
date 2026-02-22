@@ -24,7 +24,7 @@ public partial class EstadisticaPageModel:ObservableObject
     DateTime? fecha;
 
     [ObservableProperty]
-    ObservableCollection<EncuestaPageModel> ultimosEncuestados = new();
+    ObservableCollection<DetalleEncuestaPageModel> ultimosEncuestados = new();
 
     public EstadisticaPageModel(EncuestasService encuestasServices)
     {
@@ -32,20 +32,15 @@ public partial class EstadisticaPageModel:ObservableObject
     }
 
     [RelayCommand]
-    private async Task VerEncuestado(EncuestaPageModel encuestado)
+    private async Task VerEncuestado(DetalleEncuestaPageModel encuesta)
     {
-        if (encuestado is null) return;
+        if (encuesta is null) return;
 
-        // Navega o muestra detalle - ajusta según tu navegación
-        await Shell.Current.GoToAsync($"{nameof(DetalleEncuestaPage)}");
-                
-        await Shell.Current.Navigation.PushAsync(new DetalleEncuestaPage(encuestado.Nombre, encuestado.FechaNacimiento));
+        //await Shell.Current.GoToAsync($"{nameof(DetalleEncuestaPage)}");
+        await Shell.Current.Navigation.PushAsync(new DetalleEncuestaPage(encuesta));
 
-        // Alternativa simple con alert mientras no tengas la página:
-        // await Application.Current!.MainPage!.DisplayAlert(
-        //     encuestado.Nombre,
-        //     $"Fecha: {encuestado.Fecha:d/M/yyyy HH:mm}",
-        //     "Cerrar");
+        // otra alternativa
+        // await Application.Current!.MainPage!.DisplayAlertAsync( encuestado.Nombre,$"Fecha: {encuestado.Fecha:d/M/yyyy HH:mm}", "Cerrar");
     }
 
     bool _loaded;
@@ -67,11 +62,11 @@ public partial class EstadisticaPageModel:ObservableObject
             var ultimos = await _encuestasServices.ObtenerUltimosEncuestadosAsync();
             
             var listaModels=(from e in ultimos
-                             select new EncuestaPageModel(){
+                             select new DetalleEncuestaPageModel(){
                                         Nombre = e.Nombre, FechaNacimiento = e.FechaNacimiento 
                              }).ToList();
 
-            UltimosEncuestados = new ObservableCollection<EncuestaPageModel>(listaModels);
+            UltimosEncuestados = new ObservableCollection<DetalleEncuestaPageModel>(listaModels);
         }
         catch (Exception ex)
         {
@@ -79,4 +74,19 @@ public partial class EstadisticaPageModel:ObservableObject
         }
     }
 
+    [RelayCommand]
+    private async Task Help(string url)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(url))
+            {
+                await Browser.Default.OpenAsync(new Uri(url), BrowserLaunchMode.SystemPreferred);
+            }
+        }
+        catch (Exception ex)
+        {
+            await Toast.Make($"Error: {ex.Message}", ToastDuration.Long).Show();
+        }
+    }
 }

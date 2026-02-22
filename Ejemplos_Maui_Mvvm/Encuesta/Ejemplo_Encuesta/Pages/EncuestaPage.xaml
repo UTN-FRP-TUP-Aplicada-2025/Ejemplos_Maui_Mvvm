@@ -3,14 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pageModels="clr-namespace:Ejemplo_Encuesta.PageModels"
              x:Class="Ejemplo_Encuesta.Pages.EncuestaPage"
-             x:DataType="pageModels:EncuestaPageModel"
-             Title="EncuestaPage">
+             x:DataType="pageModels:EncuestaPageModel">
 
     <!--<ContentPage.BindingContext xmlns:pageModels="clr-namespace:Ejemplo_Encuesta.PageModels">
         <pageModels:EncuestaPageModel />
     </ContentPage.BindingContext>-->
 
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*, *,Auto" VerticalOptions="Center" Padding="0,0,10,0">
+            <!-- Columna vacía para empujar el ícono a la derecha -->
+            <!--<BoxView Grid.Column="0" Color="Transparent"/>-->
+
+            <!-- Ícono de ayuda a la derecha -->
+            <!--<ImageButton Grid.Column="1"
+                     WidthRequest="38"
+                     HeightRequest="38"
+                     CornerRadius="19"
+                     BackgroundColor="{StaticResource Primary}"
+                     Command="{Binding AyudaCommand}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="help" 
+                                 FontFamily="MaterialIconsOutlined" 
+                                 Color="White" 
+                                 Size="22"/>
+                </ImageButton.Source>
+            </ImageButton>-->
+
+            <ImageButton Grid.Column="2" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Command="{Binding HelpCommand}" CommandParameter="https://geometriafernando.somee.com/ver-encuesta-help.html">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="help" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                </ImageButton.Source>
+            </ImageButton>
+        </Grid>
+    </Shell.TitleView>
+
+
     <Grid RowDefinitions="Auto,*" HorizontalOptions="Fill" VerticalOptions="Fill">
+
+        <!--<Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Padding="16,10" HeightRequest="60">
+
+            <ImageButton Grid.Column="2" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" 
+                 Command="{Binding HelpCommand}" CommandParameter="https://geometriafernando.somee.com/ver-encuesta-help.html">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="help" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                </ImageButton.Source>
+            </ImageButton>
+        </Grid>-->
 
         <VerticalStackLayout Grid.Row="1" Padding="30,50" Spacing="30" VerticalOptions="Start">
 
@@ -42,7 +80,7 @@
 
             </VerticalStackLayout>
 
-            <!-- Botón Guardar -->
+            <!-- Guardar -->
             <Button Text="Guardar" BackgroundColor="#5B8FDE" HeightRequest="60" WidthRequest="220"  HorizontalOptions="Center" Margin="0,40,0,0" Command="{Binding GuardarCommand}" >
                 <Button.ImageSource>
                     <FontImageSource Glyph="save" FontFamily="MaterialIconsOutlined" />

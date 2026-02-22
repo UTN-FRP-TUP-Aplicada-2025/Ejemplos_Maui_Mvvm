@@ -2,15 +2,68 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pageModels="clr-namespace:Ejemplo_MasterDetails.PageModels"
-             x:DataType="pageModels:EncuestaPageModel"
+             x:DataType="pageModels:DetalleEncuestaPageModel"
              x:Class="Ejemplo_MasterDetails.Pages.DetalleEncuestaPage"
              Title="Detalle Encuesta">
-    
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
-    
+
+    <Grid RowDefinitions="Auto,*" Padding="0">
+
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Padding="16,10" HeightRequest="60">
+
+            <ImageButton Grid.Column="0" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Command="{Binding GoBackCommand}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="chevron_left" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                </ImageButton.Source>
+            </ImageButton>
+
+            <ImageButton Grid.Column="2" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Command="{Binding HelpCommand}" CommandParameter="https://geometriafernando.somee.com/ver-encuesta-help.html">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="help" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                </ImageButton.Source>
+            </ImageButton>
+            
+        </Grid>
+            
+        <VerticalStackLayout Spacing="30">
+
+            <Label Text="Encuesta" FontSize="28" FontAttributes="Bold" TextColor="Black"/>
+
+            <Border BackgroundColor="#F5F5F5" Padding="24" StrokeThickness="0">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="20">
+
+                    <Label Text="Datos personales" FontSize="22" FontAttributes="Bold" TextColor="Black" Margin="0,0,0,10"/>
+
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Mombre" FontSize="16" TextColor="#757575"/>
+                        <Label Text="{Binding Nombre}" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
+                    </VerticalStackLayout>
+
+                    <!-- Separador -->
+                    <BoxView HeightRequest="1" Color="#E0E0E0" HorizontalOptions="Fill"/>
+
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Fecha de Nacimiento:" FontSize="16" TextColor="#757575"/>
+                        <Label Text="{Binding FechaNacimiento, StringFormat='{0:d/M/yyyy  HH:mm}'}" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+                    
+            </Border>
+
+            <!-- volver -->
+            <Button Text="Volver" BackgroundColor="#5B8FDE" HeightRequest="60" WidthRequest="220"  HorizontalOptions="Center" Margin="0,40,0,0" Command="{Binding GoBackCommand}" >
+                <Button.ImageSource>
+                    <FontImageSource Glyph="chevron_left" FontFamily="MaterialIconsOutlined" />
+                </Button.ImageSource>
+            </Button>
+
+        </VerticalStackLayout>
+
+    </Grid>
+
 </ContentPage>

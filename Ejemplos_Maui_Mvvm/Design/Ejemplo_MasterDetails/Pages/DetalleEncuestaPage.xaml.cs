@@ -4,7 +4,7 @@ namespace Ejemplo_MasterDetails.Pages;
 
 public partial class DetalleEncuestaPage : ContentPage
 {
-	public DetalleEncuestaPage(EstadisticaPageModel model)
+	public DetalleEncuestaPage(DetalleEncuestaPageModel model)
 	{
 		InitializeComponent();
 

@@ -14,49 +14,113 @@
         <toolkit:EventToCommandBehavior EventName="Appearing" Command="{Binding AppearingCommand}"
                      BindingContext="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext}" />
     </ContentPage.Behaviors>-->
-    
-    <VerticalStackLayout Spacing="16">
-        
-        <Label Text="Ultimos encuestados" FontSize="22" FontAttributes="Bold,Italic" TextColor="#B8860B"/>
 
-        <CollectionView ItemsSource="{Binding UltimosEncuestados}" SelectionMode="None">
 
-            <CollectionView.ItemTemplate>
+    <ScrollView Grid.Row="1" Padding="20,30">
 
-                <DataTemplate x:DataType="pageModels:EncuestaPageModel">
+        <VerticalStackLayout Spacing="16">
 
-                    <Border Margin="0,4" Padding="16,12" StrokeThickness="1.5" Stroke="#CCCCCC" BackgroundColor="White">
-                        
+            <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Padding="16,10" HeightRequest="60">
+
+                <ImageButton Grid.Column="2" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Command="{Binding HelpCommand}" CommandParameter="https://geometriafernando.somee.com/ver-estadistica-help.html">
+                    <ImageButton.Source>
+                        <FontImageSource Glyph="help" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                    </ImageButton.Source>
+                </ImageButton>
+
+            </Grid>
+
+            <VerticalStackLayout Spacing="16">
+
+                <VerticalStackLayout Spacing="30">
+
+                    <Label Text="Estadistica" FontSize="28" FontAttributes="Bold" TextColor="Black"/>
+
+                    <Border BackgroundColor="#F5F5F5" Padding="24" StrokeThickness="0">
+
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="12"/>
                         </Border.StrokeShape>
 
-                        <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
-                            
-                            <VerticalStackLayout Grid.Column="0" Spacing="4" VerticalOptions="Center">
-                                <Label Text="{Binding Nombre}" FontSize="16" FontAttributes="Bold,Italic" TextColor="Black"/>
-                                <Label Text="{Binding FechaNacimiento, StringFormat='{0:d/M/yyyy}'}" FontSize="13" FontAttributes="Italic" TextColor="#757575"/>
+                        <VerticalStackLayout Spacing="20">
+
+                            <Label Text="Datos de la encuesta" FontSize="22" FontAttributes="Bold" TextColor="Black" Margin="0,0,0,10"/>
+
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="Encuestados:" FontSize="16" TextColor="#757575"/>
+                                <Label Text="{Binding Encuestados}" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
                             </VerticalStackLayout>
 
-                            <ImageButton Grid.Column="1" BackgroundColor="#E0E0E0" WidthRequest="40" HeightRequest="40" CornerRadius="8" VerticalOptions="Center"
+                            <!-- Separador -->
+                            <BoxView HeightRequest="1" Color="#E0E0E0" HorizontalOptions="Fill"/>
+
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="Edad Promedio:" FontSize="16" TextColor="#757575"/>
+                                <Label Text="{Binding FechaNacimiento, StringFormat='{0:F0}'}" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
+                            </VerticalStackLayout>
+
+                            <!-- Separador -->
+                            <BoxView HeightRequest="1" Color="#E0E0E0" HorizontalOptions="Fill"/>
+
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="Fecha de la consulta:" FontSize="16" TextColor="#757575"/>
+                                <Label Text="{Binding Fecha, StringFormat='{0:d/M/yyyy  HH:mm}'}" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
+                            </VerticalStackLayout>
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="16">
+
+                    <Label Text="Ultimos encuestados" FontSize="22" FontAttributes="Bold" TextColor="#000000"/>
+
+                    <CollectionView ItemsSource="{Binding UltimosEncuestados}" SelectionMode="None">
+
+                        <CollectionView.ItemTemplate>
+
+                            <DataTemplate x:DataType="pageModels:DetalleEncuestaPageModel">
+
+                                <Border Margin="0,4" Padding="16,12" StrokeThickness="1.5" Stroke="#CCCCCC" BackgroundColor="White">
+
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="12"/>
+                                    </Border.StrokeShape>
+
+                                    <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+
+                                        <VerticalStackLayout Grid.Column="0" Spacing="4" VerticalOptions="Center">
+                                            <Label Text="{Binding Nombre}" FontSize="16" FontAttributes="Bold,Italic" TextColor="Black"/>
+                                            <Label Text="{Binding FechaNacimiento, StringFormat='{0:d/M/yyyy}'}" FontSize="13" FontAttributes="Italic" TextColor="#757575"/>
+                                        </VerticalStackLayout>
+
+                                        <ImageButton Grid.Column="1" BackgroundColor="#E0E0E0" WidthRequest="40" HeightRequest="40" CornerRadius="8" VerticalOptions="Center"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.VerEncuestadoCommand}"
                                         CommandParameter="{Binding .}">
 
-                                <ImageButton.Source>
-                                    <FontImageSource Glyph="visibility" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
-                                </ImageButton.Source>
-                                
-                            </ImageButton>
+                                            <ImageButton.Source>
+                                                <FontImageSource Glyph="visibility" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                                            </ImageButton.Source>
 
-                        </Grid>
-                        
-                    </Border>
-                    
-                </DataTemplate>
-      
-            </CollectionView.ItemTemplate>
-            
-        </CollectionView>
-    </VerticalStackLayout>
+                                        </ImageButton>
+
+                                    </Grid>
+
+                                </Border>
+
+                            </DataTemplate>
+
+                        </CollectionView.ItemTemplate>
+
+                    </CollectionView>
+
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>

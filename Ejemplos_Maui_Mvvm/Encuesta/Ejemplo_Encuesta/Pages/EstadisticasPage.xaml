@@ -4,23 +4,50 @@
              xmlns:pageModels="clr-namespace:Ejemplo_Encuesta.PageModels" 
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Ejemplo_Encuesta.Pages.EstadisticasPage"
-             x:DataType="pageModels:EstadisticaPageModel"
-             Title="EstadisticasPage">
+             x:DataType="pageModels:EstadisticaPageModel">
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior  EventName="Appearing" Command="{Binding AppearingCommand}" />
     </ContentPage.Behaviors>
 
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*, *,Auto" VerticalOptions="Center" Padding="0,0,10,0">
+            <!-- Columna vacía para empujar el ícono a la derecha -->
+            <!--<BoxView Grid.Column="0" Color="Transparent"/>-->
+
+            <!-- Ícono de ayuda a la derecha -->
+            <!--<ImageButton Grid.Column="1"
+                 WidthRequest="38"
+                 HeightRequest="38"
+                 CornerRadius="19"
+                 BackgroundColor="{StaticResource Primary}"
+                 Command="{Binding AyudaCommand}">
+            <ImageButton.Source>
+                <FontImageSource Glyph="help" 
+                             FontFamily="MaterialIconsOutlined" 
+                             Color="White" 
+                             Size="22"/>
+            </ImageButton.Source>
+        </ImageButton>-->
+
+            <ImageButton Grid.Column="2" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center"  Command="{Binding HelpCommand}" CommandParameter="https://geometriafernando.somee.com/ver-encuesta-help.html">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="help" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                </ImageButton.Source>
+            </ImageButton>
+        </Grid>
+    </Shell.TitleView>
+
     <Grid RowDefinitions="Auto,*" Padding="0">
 
-        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Padding="16,10" HeightRequest="60">
+        <!--<Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Padding="16,10" HeightRequest="60">
 
-            <!--<ImageButton Grid.Column="0" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" 
+            --><!--<ImageButton Grid.Column="0" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" 
                          Command="Back">
                 <ImageButton.Source>
                     <FontImageSource Glyph="arrow_back" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
                 </ImageButton.Source>
-            </ImageButton>-->
+            </ImageButton>--><!--
 
             <ImageButton Grid.Column="2" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" 
                          Command="{Binding HelpCommand}" CommandParameter="https://geometriafernando.somee.com/ver-estadistica-help.html">
@@ -28,7 +55,7 @@
                     <FontImageSource Glyph="help" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
                 </ImageButton.Source>
             </ImageButton>
-        </Grid>
+        </Grid>-->
 
         <ScrollView Grid.Row="1" Padding="20,30">
             <VerticalStackLayout Spacing="30">

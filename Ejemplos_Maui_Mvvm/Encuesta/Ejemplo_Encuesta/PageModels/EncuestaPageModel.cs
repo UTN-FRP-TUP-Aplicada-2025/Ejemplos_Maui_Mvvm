@@ -40,4 +40,20 @@ public partial class EncuestaPageModel : ObservableObject
             await Toast.Make($"Error: {ex.Message}", ToastDuration.Long).Show();
         }
     }
+
+    [RelayCommand]
+    private async Task Help(string url)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(url))
+            {
+                await Browser.Default.OpenAsync(new Uri(url), BrowserLaunchMode.SystemPreferred);
+            }
+        }
+        catch (Exception ex)
+        {
+            await Toast.Make($"Error: {ex.Message}", ToastDuration.Long).Show();
+        }
+    }
 }
