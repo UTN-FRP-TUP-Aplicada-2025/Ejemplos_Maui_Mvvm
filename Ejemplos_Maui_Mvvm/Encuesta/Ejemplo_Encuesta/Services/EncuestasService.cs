@@ -52,7 +52,7 @@ public class EncuestasService
 
     }
 
-    public async Task<EstadisticaModel> ObtenerEstadisticasAsync()
+    public async Task<EstadisticasModel> ObtenerEstadisticasAsync()
     {
         var accessToken = await _tokenStorage.GetAccessTokenAsync();
 
@@ -66,17 +66,30 @@ public class EncuestasService
 
         var query = new
         {
-            query = $@"
-query 
-{{
-    estadistica 
-    {{
-        edadPromedio
-        encuestados
-        fecha
-    }}
-}}"
-        };
+//            query = $@"
+//query 
+//{{
+//    estadistica 
+//    {{
+//        edadPromedio
+//        encuestados
+//        fecha
+//    }}
+//}}"
+
+           query = $@"
+query {{
+  encuestas(ultimos: 5, ordenarPorFechaAlta: null) {{
+    fechaNacimiento
+    nombre
+  }}
+  estadistica {{
+    edadPromedio
+    encuestados
+    fecha
+  }}
+}}
+"      };
 
         var response = await _http.PostAsJsonAsync("graphql/", query);
         response.EnsureSuccessStatusCode();
@@ -89,14 +102,22 @@ query
 
         var dataQuery = JsonSerializer.Deserialize<EstadisticaQueryType?>(responseBody, option);
 
-
-        return new EstadisticaModel
+        //Mapeo
+        return new EstadisticasModel
         {
             Encuestados = dataQuery?.Data?.Estadistica?.Encuestados ?? 0,
             EdadPromedio = dataQuery?.Data?.Estadistica?.EdadPromedio ?? 0,
             Fecha = dataQuery?.Data?.Estadistica?.Fecha??DateTime.MinValue,
+            Encuestas = (
+                            from e in dataQuery?.Data?.Encuestas
+                            select new EncuestaModel
+                            {
+                                Nombre = e.Nombre,
+                                FechaNacimiento = e.FechaNacimiento??DateTime.MinValue
+                            }
+                        ).ToList()
         };
-        /*
+        /* antes con una sola query
         {
           "data": {
             "estadistica": {
@@ -106,6 +127,33 @@ query
             }
           }
         }*/
+
+        /* lo esperado ahora con dos queries en una
+        {
+          "data": {
+            "encuestas": [
+              {
+                "fechaNacimiento": "2026-02-22T00:00:00.000Z",
+                "nombre": "Ana"
+              },
+              {
+                "fechaNacimiento": "2020-02-22T00:00:00.000Z",
+                "nombre": "Valeria"
+              },
+              {
+                "fechaNacimiento": "2021-02-22T00:00:00.000Z",
+                "nombre": "Gustavo"
+              }
+            ],
+            "estadistica": {
+              "edadPromedio": 0.0009156593583565872,
+              "encuestados": 3,
+              "fecha": "2026-02-22T08:01:16.233-06:00"
+            }
+          }
+        }         
+         */
     }
-        
+
+
 }

@@ -1,5 +1,4 @@
 ﻿using Ejemplo_WebAPI_Encuestas.Models;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Ejemplo_WebAPI_Encuestas.GraphQL.Types;
 
@@ -12,5 +11,7 @@ public class EncuestaType : ObjectType<EncuestaModel>
         descriptor.Field(p => p.Nombre).Type<NonNullType<StringType>>();
 
         descriptor.Field(p => p.FechaNacimiento).Type<NonNullType<DateTimeType>>();
+
+        descriptor.Field(p => p.FechaAlta).Type<NonNullType<DateTimeType>>();
     }
 }

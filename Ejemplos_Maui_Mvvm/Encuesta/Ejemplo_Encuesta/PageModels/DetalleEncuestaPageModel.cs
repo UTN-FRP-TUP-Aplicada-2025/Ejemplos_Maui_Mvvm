@@ -4,7 +4,7 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace Ejemplo_MasterDetails.PageModels;
+namespace Ejemplo_Encuesta.PageModels;
 
 public partial class DetalleEncuestaPageModel : ObservableObject
 {
@@ -13,6 +13,13 @@ public partial class DetalleEncuestaPageModel : ObservableObject
 
     [ObservableProperty]
     public DateTime fechaNacimiento = DateTime.MinValue;
+    
+
+    [RelayCommand]
+    private async Task GoBack(object? obj)
+    {
+        await Shell.Current.Navigation.PopAsync();
+    }
 
     [RelayCommand]
     private async Task Help(string url)
@@ -28,11 +35,5 @@ public partial class DetalleEncuestaPageModel : ObservableObject
         {
             await Toast.Make($"Error: {ex.Message}", ToastDuration.Long).Show();
         }
-    }
-
-    [RelayCommand]
-    private async Task GoBack(object? obj)
-    {
-        await Shell.Current.Navigation.PopAsync();
     }
 }

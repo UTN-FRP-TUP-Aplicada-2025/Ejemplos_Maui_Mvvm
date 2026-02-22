@@ -5,8 +5,6 @@ namespace Ejemplo_Encuesta.Services.Auth;
 public class TokenStorageService
 {
     
-
-
     public async Task SaveAsync(TokenResponse token)
     {
         await SecureStorage.SetAsync("access_token", token.AccessToken);

@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace Ejemplo_MasterDetails.PageModels;
 
-public partial class EstadisticaPageModel:ObservableObject
+public partial class EstadisticasPageModel:ObservableObject
 {
     // Dentro de la clase:
 
@@ -26,7 +26,7 @@ public partial class EstadisticaPageModel:ObservableObject
     [ObservableProperty]
     ObservableCollection<DetalleEncuestaPageModel> ultimosEncuestados = new();
 
-    public EstadisticaPageModel(EncuestasService encuestasServices)
+    public EstadisticasPageModel(EncuestasService encuestasServices)
     {
         _encuestasServices = encuestasServices;
     }

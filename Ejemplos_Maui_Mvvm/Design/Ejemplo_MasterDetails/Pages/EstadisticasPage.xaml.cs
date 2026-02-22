@@ -3,9 +3,9 @@ using Ejemplo_MasterDetails.PageModels;
 
 namespace Ejemplo_MasterDetails.Pages;
 
-public partial class EstadisticaPage : ContentPage
+public partial class EstadisticasPage : ContentPage
 {
-    public EstadisticaPage(EstadisticaPageModel model)
+    public EstadisticasPage(EstadisticasPageModel model)
     {
         InitializeComponent();
         this.BindingContext = model;
@@ -15,7 +15,7 @@ public partial class EstadisticaPage : ContentPage
     {
         base.OnAppearing();
 
-        if (BindingContext is EstadisticaPageModel vm)
+        if (BindingContext is EstadisticasPageModel vm)
         {
             vm.AppearingCommand.Execute(null);
         }

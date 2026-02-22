@@ -1,4 +1,5 @@
 ﻿using Ejemplo_WebAPI_Encuestas.DTOs;
+using Ejemplo_WebAPI_Encuestas.Models;
 
 namespace Ejemplo_WebAPI_Encuestas.GraphQL.Types;
 
@@ -13,5 +14,8 @@ public class EstadisticaType : ObjectType<EstadisticaDTO>
         descriptor.Field(p => p.EdadPromedio).Type<NonNullType<FloatType>>();
 
         descriptor.Field(p => p.Fecha).Type<NonNullType<DateTimeType>>();
+
+        //descriptor.Field(p => p.Encuestas).Type<NonNullType<ListType<NonNullType<ObjectType<EncuestaModel>>>>>();
+
     }
 }

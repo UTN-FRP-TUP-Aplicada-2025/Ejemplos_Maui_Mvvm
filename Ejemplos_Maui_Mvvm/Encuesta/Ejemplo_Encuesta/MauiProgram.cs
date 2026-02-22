@@ -46,7 +46,7 @@ public static class MauiProgram
                         });
 
         builder.Services.AddTransient<EncuestaPageModel>()
-                        .AddTransient<EstadisticaPageModel>()
+                        .AddTransient<EstadisticasPageModel>()
                         .AddTransient<LoginPage>()
 
                         .AddTransient<EncuestaPage>()

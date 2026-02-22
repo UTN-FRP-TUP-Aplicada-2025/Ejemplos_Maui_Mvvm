@@ -52,8 +52,8 @@
 	  <Compile Update="Pages\DetalleEncuestaPage.xaml.cs">
 	    <DependentUpon>DetalleEncuestaPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\EstadisticaPage.xaml.cs">
-	    <DependentUpon>EstadisticaPage.xaml</DependentUpon>
+	  <Compile Update="Pages\EstadisticasPage.xaml.cs">
+	    <DependentUpon>EstadisticasPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

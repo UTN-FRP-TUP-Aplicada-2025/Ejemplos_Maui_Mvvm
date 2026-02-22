@@ -32,7 +32,7 @@ public static class MauiProgram
     {
         builder.Services.AddSingleton<EncuestasService>();
 
-        builder.Services.AddTransient<EstadisticaPageModel>();
+        builder.Services.AddTransient<EstadisticasPageModel>();
         builder.Services.AddTransient<DetalleEncuestaPageModel>();
 
 

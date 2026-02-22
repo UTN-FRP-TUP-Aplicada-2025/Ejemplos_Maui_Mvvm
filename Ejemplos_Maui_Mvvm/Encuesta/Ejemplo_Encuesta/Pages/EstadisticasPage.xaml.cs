@@ -4,7 +4,7 @@ namespace Ejemplo_Encuesta.Pages;
 
 public partial class EstadisticasPage : ContentPage
 {
-	public EstadisticasPage(EstadisticaPageModel viewModel)
+	public EstadisticasPage(EstadisticasPageModel viewModel)
 	{
 		InitializeComponent();
 
@@ -15,7 +15,7 @@ public partial class EstadisticasPage : ContentPage
     {
         base.OnAppearing();
 
-        if (BindingContext is EstadisticaPageModel viewModel)
+        if (BindingContext is EstadisticasPageModel viewModel)
         {
             if (viewModel.AppearingCommand.CanExecute(null))
             {

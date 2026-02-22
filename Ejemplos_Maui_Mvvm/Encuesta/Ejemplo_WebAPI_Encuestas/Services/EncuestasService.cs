@@ -6,7 +6,7 @@ namespace Ejemplo_WebAPI_Encuestas.Services;
 
 public class EncuestasService
 {
-    public List<EncuestaModel> GetByAll()
+    public IEnumerable<EncuestaModel> GetByAll()
     {
         return BancoDeDatos.Encuestas;
     }
@@ -40,15 +40,18 @@ public class EncuestasService
     {
         var encuestas = GetByAll();
 
+
         var estadistica = new EstadisticaDTO
         {
-            Encuestados = encuestas.Count,
+            Encuestados = encuestas?.Count()??0,
             EdadPromedio = (from e in encuestas
                             let edad = (DateTime.Now - e.FechaNacimiento).TotalDays / 365.0
-                            select edad into edad
-                            where edad > 0
-                            select edad).DefaultIfEmpty(0).Average(),
-            Fecha = DateTime.Now
+                                select edad into edad
+                                where edad > 0
+                            select edad
+                            ).DefaultIfEmpty(0).Average(),
+            Fecha = DateTime.Now,
+            //Encuestas = encuestas
         };
         return estadistica;
     }

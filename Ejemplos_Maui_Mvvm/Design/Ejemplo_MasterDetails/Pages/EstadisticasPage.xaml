@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:pageModels="clr-namespace:Ejemplo_MasterDetails.PageModels"
-             x:Class="Ejemplo_MasterDetails.Pages.EstadisticaPage"
-             x:DataType="pageModels:EstadisticaPageModel">
+             x:Class="Ejemplo_MasterDetails.Pages.EstadisticasPage"
+             x:DataType="pageModels:EstadisticasPageModel">
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior EventName="Appearing" Command="{Binding AppearingCommand}" />

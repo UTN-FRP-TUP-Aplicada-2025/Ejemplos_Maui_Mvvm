@@ -65,6 +65,7 @@ builder.Services
         options.TokenValidationParameters.ValidateAudience = false;
     });
 
+/*
 //builder.Services
 //.AddAuthentication("Bearer")
 //.AddJwtBearer("Bearer", options =>
@@ -83,7 +84,9 @@ builder.Services
 //        }
 //    };
 //});
+*/
 
+/*
 //builder.Services
 //    .AddAuthentication("Bearer")
 //    .AddJwtBearer("Bearer", options =>
@@ -98,6 +101,7 @@ builder.Services
 //            ValidateIssuerSigningKey = false
 //        };
 //    });
+*/
 
 builder.Services.AddAuthorization();
 #endregion

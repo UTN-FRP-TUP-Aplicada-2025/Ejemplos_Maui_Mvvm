@@ -52,6 +52,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\DetalleEncuestaPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\EncuestaPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

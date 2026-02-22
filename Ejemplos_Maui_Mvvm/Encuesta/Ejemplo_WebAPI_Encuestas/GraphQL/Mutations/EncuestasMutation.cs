@@ -23,7 +23,8 @@ public class EncuestasMutation
         var persona = new EncuestaModel
         {
             Nombre = input.Nombre,
-            FechaNacimiento = input.FechaNacimiento
+            FechaNacimiento = input.FechaNacimiento,
+            FechaAlta = DateTime.Now
         };
 
         return _encuestasService.Create(persona);
