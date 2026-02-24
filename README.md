@@ -9,7 +9,7 @@ En construcción ...
 
 ## Encuestas
 
-![Encuestas](Encuesta/Ejemplo_Docs_Encuesta/ejemplo_encuestas.gif)
+![Encuestas](Ejemplos_Maui_Mvvm/Encuesta/Ejemplo_Docs_Encuesta/ejemplo_encuestas.gif)
 
 
 ## ValidarQR
