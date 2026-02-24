@@ -20,7 +20,7 @@ ocupada, y un `ActivityIndicator` centrado para mostrar que se está
 procesando algo. Con ZIndex se asegura que el overlay esté por 
 encima del contenido.
 
-```
+```xml 
 <Grid>
     <!-- Tu contenido actual -->
     <ScrollView>...</ScrollView>
@@ -37,6 +37,67 @@ encima del contenido.
                            HeightRequest="50"/>
     </Grid>
 </Grid>
+```
+
+En el ViewModel, el comando que realiza el proceso pesado se encarga de 
+establecer `IsBusy` en true al inicio y en false al finalizar, asegurando 
+que el overlay    
+
+```
+[RelayCommand]
+async private Task ProcesoPesado()
+{
+    if (IsBusy) return; // evita doble tap
+    IsBusy = true;
+
+    try
+    {
+        // ... invocando al procesado pesado!
+
+        //... mensaje de exito!
+    }
+    catch (Exception ex)
+    {
+        // ...
+    }
+    finally
+    {
+        IsBusy = false; // siempre se limpia, incluso si hubo error
+    }
+```
+
+## Uso de Opacity y BackgroundColor respecto al ActivityIndicator
+
+### BackgroundColor 
+
+Con el alpha en el BackgroundColor solo el fondo es transparente, 
+el ActivityIndicator se mantiene al 100% de opacidad y se ve bien definido.
+
+```xml
+
+<Grid IsVisible="{Binding IsBusy}" 
+      BackgroundColor="#80FFFFFF"
+      ZIndex="999">
+```
+
+El #80 es el canal alpha en hex. #80 = 128/255 ≈ 50% de opacidad. Si querés más o menos transparencia cambiás ese valor:
+
+```
+#33FFFFFF → ~20% (casi transparente)
+#80FFFFFF → ~50%
+#B3FFFFFF → ~70%
+#FFFFFFFF → 100% opaco (equivalente a blanco sólido)
+```
+
+### Opacity
+
+Opacity afecta a todo el elemento y sus hijos, entonces el ActivityIndicator también se vuelve semitransparente y se ve desvanecido. 
+
+```
+<Grid IsVisible="{Binding IsBusy}" 
+      BackgroundColor="White"
+      Opacity="0.75"
+      ZIndex="999">
 ```
 
 ## Feedback de resultado.
