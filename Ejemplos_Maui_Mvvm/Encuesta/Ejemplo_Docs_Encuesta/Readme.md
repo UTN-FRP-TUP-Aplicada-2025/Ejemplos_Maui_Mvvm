@@ -5,7 +5,7 @@
 - Integración con graphql
 
 
-![Login](ejemplo_encuestas.gif)
+![Encuestas](ejemplo_encuestas.gif)
 
 
 

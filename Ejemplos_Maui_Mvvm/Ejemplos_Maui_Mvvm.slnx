@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Docs/">
+    <File Path="../README.md" />
+  </Folder>
   <Folder Name="/Ejemplos_diseños/">
     <Project Path="Design/Ejemplo_Login/Ejemplo_Login.csproj" Id="807b3c92-f019-41c8-93b9-d3ebf893e850">
       <Deploy />
