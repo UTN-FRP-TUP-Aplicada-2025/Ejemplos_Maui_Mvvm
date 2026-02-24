@@ -39,11 +39,11 @@ encima del contenido.
 </Grid>
 ```
 
-En el ViewModel, el comando que realiza el proceso pesado se encarga de 
+El comando que realiza el proceso pesado se encarga de 
 establecer `IsBusy` en true al inicio y en false al finalizar, asegurando 
 que el overlay    
 
-```
+```csharp
 [RelayCommand]
 async private Task ProcesoPesado()
 {
