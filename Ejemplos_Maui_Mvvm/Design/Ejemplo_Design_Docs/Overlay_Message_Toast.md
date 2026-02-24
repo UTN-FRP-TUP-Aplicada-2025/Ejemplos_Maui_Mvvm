@@ -26,9 +26,7 @@ encima del contenido.
     <ScrollView>...</ScrollView>
 
     <!-- Overlay de carga -->
-    <Grid IsVisible="{Binding IsBusy}" 
-          BackgroundColor="#80FFFFFF"
-          ZIndex="999">
+    <Grid IsVisible="{Binding IsBusy}" BackgroundColor="#80FFFFFF" ZIndex="999">
         <ActivityIndicator IsRunning="{Binding IsBusy}"
                            Color="{StaticResource Primary}"
                            HorizontalOptions="Center"
@@ -75,9 +73,7 @@ el ActivityIndicator se mantiene al 100% de opacidad y se ve bien definido.
 
 ```xml
 
-<Grid IsVisible="{Binding IsBusy}" 
-      BackgroundColor="#80FFFFFF"
-      ZIndex="999">
+<Grid IsVisible="{Binding IsBusy}" BackgroundColor="#80FFFFFF" ZIndex="999">
 ```
 
 El #80 es el canal alpha en hex. #80 = 128/255 ≈ 50% de opacidad. Si querés más o menos transparencia cambiás ese valor:
@@ -94,10 +90,7 @@ El #80 es el canal alpha en hex. #80 = 128/255 ≈ 50% de opacidad. Si querés m
 Opacity afecta a todo el elemento y sus hijos, entonces el ActivityIndicator también se vuelve semitransparente y se ve desvanecido. 
 
 ```
-<Grid IsVisible="{Binding IsBusy}" 
-      BackgroundColor="White"
-      Opacity="0.75"
-      ZIndex="999">
+<Grid IsVisible="{Binding IsBusy}"  BackgroundColor="White" Opacity="0.75" ZIndex="999">
 ```
 
 ## Feedback de resultado.
