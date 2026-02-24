@@ -1,4 +1,4 @@
-# Ejemplos_Maui
+# Ejemplos prácticos usando MVVM
 
 Desarrollo de Ejemplos prácticos usando MVVM integrado con GraphQL, autenticación con IdentityServer 
 y generación de apk universal.
@@ -15,8 +15,8 @@ Temas:
 
 - 📄[Ver Readme.md](Ejemplos_Maui_Mvvm/Encuesta/Ejemplo_Docs_Encuesta/Readme.md)
 
-![Encuestas](Ejemplos_Maui_Mvvm/Encuesta/Ejemplo_Docs_Encuesta/ejemplo_encuestas.gif)
 
+<img src="Ejemplos_Maui_Mvvm/Encuesta/Ejemplo_Docs_Encuesta/ejemplo_encuestas.gif" width="200">
 
 ## ValidarQR
 
