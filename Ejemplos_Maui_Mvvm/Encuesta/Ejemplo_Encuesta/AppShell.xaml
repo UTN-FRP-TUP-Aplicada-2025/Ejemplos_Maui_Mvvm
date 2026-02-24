@@ -48,9 +48,11 @@
 
     <Shell.FlyoutFooter>
         <HorizontalStackLayout Padding="10" Spacing="10" VerticalOptions="Center">
+            
             <HorizontalStackLayout.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding LogoutCommand}" />
             </HorizontalStackLayout.GestureRecognizers>
+            
             <Image WidthRequest="30" HeightRequest="30">
                 <Image.Source>
                     <FontImageSource Glyph="logout" FontFamily="MaterialIconsOutlined" 
@@ -66,7 +68,7 @@
     <ShellContent Title="Registrar Encuesta" ContentTemplate="{DataTemplate pages:EncuestaPage}" Route="EncuestaPage" >
         <ShellContent.Icon>
             <FontImageSource Glyph="how_to_reg" FontFamily="MaterialIconsOutlined" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
-        </ShellContent.Icon>
+        </ShellContent.Icon> 
     </ShellContent>
 
     <ShellContent Title="Ver Estadistica" ContentTemplate="{DataTemplate pages:EstadisticasPage}" Route="EstadisticasPage" >

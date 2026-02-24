@@ -3,16 +3,20 @@ using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-
-using System.Collections.ObjectModel;
-
-using Ejemplo_Encuesta.Services;
 using Ejemplo_Encuesta.Pages;
+using Ejemplo_Encuesta.Services;
+using Ejemplo_Encuesta.Services.graphql;
+using System.Collections.ObjectModel;
 
 namespace Ejemplo_Encuesta.PageModels;
 
 public partial class EstadisticasPageModel : ObservableObject
 {
+    readonly EncuestasService _encuestasServices = default!;
+
+    [ObservableProperty]
+    private bool isBusy = false;
+
     [ObservableProperty]
     int  encuestados;
 
@@ -25,20 +29,16 @@ public partial class EstadisticasPageModel : ObservableObject
     [ObservableProperty]
     ObservableCollection<DetalleEncuestaPageModel> ultimosEncuestados = new();
 
-    EncuestasService _encuestasServices=default!;
-
     public EstadisticasPageModel(EncuestasService encuestasServices)
     {
         _encuestasServices = encuestasServices;
     }
 
-    bool _loaded;
-
     [RelayCommand]
     private async Task Appearing(object? obj)
-    {
-        if (_loaded) return;
-        _loaded = true;
+    {        
+        if (IsBusy) return;
+        IsBusy = true;
 
         try
         {
@@ -61,6 +61,10 @@ public partial class EstadisticasPageModel : ObservableObject
         {
             await Toast.Make($"Error: {ex.Message}", ToastDuration.Long).Show();
         }
+        finally
+        {
+            IsBusy = false;
+        }
     }
 
     [RelayCommand]
@@ -82,13 +86,29 @@ public partial class EstadisticasPageModel : ObservableObject
     [RelayCommand]
     private async Task VerEncuestado(DetalleEncuestaPageModel encuesta)
     {
-        if (encuesta is null) return;
+        if (IsBusy) return;
+        IsBusy = true;
 
-        //await Shell.Current.GoToAsync($"{nameof(DetalleEncuestaPage)}");
-        await Shell.Current.Navigation.PushAsync(new DetalleEncuestaPage(encuesta));
+        try
+        {
+            if (encuesta is null) return;
 
-        // otra alternativa
-        // await Application.Current!.MainPage!.DisplayAlertAsync( encuestado.Nombre,$"Fecha: {encuestado.Fecha:d/M/yyyy HH:mm}", "Cerrar");
+            //await Shell.Current.GoToAsync($"{nameof(DetalleEncuestaPage)}");
+            var page = new DetalleEncuestaPage(encuesta);
+            await Shell.Current.Navigation.PushAsync(page);
+
+
+            // otra alternativa
+            // await Application.Current!.MainPage!.DisplayAlertAsync( encuestado.Nombre,$"Fecha: {encuestado.Fecha:d/M/yyyy HH:mm}", "Cerrar");
+        }
+        catch (Exception ex)
+        {
+            await Shell.Current.DisplayAlertAsync("Error",$"{ex.Message}", "Cerrar");
+        }
+        finally 
+        { 
+            IsBusy = false; 
+        }
     }
 
 }

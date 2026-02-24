@@ -23,47 +23,56 @@
         </Grid>
     </Shell.TitleView>
 
-    <Grid RowDefinitions="Auto,*" Padding="0">
-            
-        <VerticalStackLayout Spacing="30">
+    <Grid>
 
-            <Label Text="Encuesta" FontSize="28" FontAttributes="Bold" TextColor="Black"/>
+        <Grid RowDefinitions="Auto,*" Padding="0">
 
-            <Border BackgroundColor="#F5F5F5" Padding="24" StrokeThickness="0">
+            <VerticalStackLayout Spacing="30">
 
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="12"/>
-                </Border.StrokeShape>
+                <Label Text="Encuesta" FontSize="28" FontAttributes="Bold" TextColor="Black"/>
 
-                <VerticalStackLayout Spacing="20">
+                <Border BackgroundColor="#F5F5F5" Padding="24" StrokeThickness="0">
 
-                    <Label Text="Datos personales" FontSize="22" FontAttributes="Bold" TextColor="Black" Margin="0,0,0,10"/>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
 
-                    <VerticalStackLayout Spacing="8">
-                        <Label Text="Mombre" FontSize="16" TextColor="#757575"/>
-                        <Label Text="{Binding Nombre}" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
+                    <VerticalStackLayout Spacing="20">
+
+                        <Label Text="Datos personales" FontSize="22" FontAttributes="Bold" TextColor="Black" Margin="0,0,0,10"/>
+
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Mombre" FontSize="16" TextColor="#757575"/>
+                            <Label Text="{Binding Nombre}" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
+                        </VerticalStackLayout>
+
+                        <!-- Separador -->
+                        <BoxView HeightRequest="1" Color="#E0E0E0" HorizontalOptions="Fill"/>
+
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Fecha de Nacimiento:" FontSize="16" TextColor="#757575"/>
+                            <Label Text="{Binding FechaNacimiento, StringFormat='{0:d/M/yyyy  HH:mm}'}" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
+                        </VerticalStackLayout>
+
                     </VerticalStackLayout>
 
-                    <!-- Separador -->
-                    <BoxView HeightRequest="1" Color="#E0E0E0" HorizontalOptions="Fill"/>
+                </Border>
 
-                    <VerticalStackLayout Spacing="8">
-                        <Label Text="Fecha de Nacimiento:" FontSize="16" TextColor="#757575"/>
-                        <Label Text="{Binding FechaNacimiento, StringFormat='{0:d/M/yyyy  HH:mm}'}" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
-                    </VerticalStackLayout>
+                <!-- volver -->
+                <Button Text="Volver" BackgroundColor="#5B8FDE" HeightRequest="60" WidthRequest="220"  HorizontalOptions="Center" Margin="0,40,0,0" Command="{Binding GoBackCommand}" >
+                    <Button.ImageSource>
+                        <FontImageSource Glyph="chevron_left" FontFamily="MaterialIconsOutlined" />
+                    </Button.ImageSource>
+                </Button>
 
-                </VerticalStackLayout>
-                    
-            </Border>
+            </VerticalStackLayout>
 
-            <!-- volver -->
-            <Button Text="Volver" BackgroundColor="#5B8FDE" HeightRequest="60" WidthRequest="220"  HorizontalOptions="Center" Margin="0,40,0,0" Command="{Binding GoBackCommand}" >
-                <Button.ImageSource>
-                    <FontImageSource Glyph="chevron_left" FontFamily="MaterialIconsOutlined" />
-                </Button.ImageSource>
-            </Button>
+        </Grid>
 
-        </VerticalStackLayout>
+        <!-- Overlay de carga -->
+        <Grid IsVisible="{Binding IsBusy}" BackgroundColor="#B3FFFFFF" ZIndex="999">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="{StaticResource Primary}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50" HeightRequest="50"/>
+        </Grid>
 
     </Grid>
 

@@ -1,11 +1,11 @@
 
 ## Generar una apk universal
 
-Desarrollo de ejemplos mvvm 
-Integración con graphql
+- Desarrollo de ejemplos mvvm 
+- Integración con graphql
 
 
-![Login](ejemplo_estadistica.gif)
+![Login](ejemplo_encuestas.gif)
 
 
 

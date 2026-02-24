@@ -8,7 +8,10 @@ namespace Ejemplo_Encuesta.PageModels;
 
 public partial class EncuestaPageModel : ObservableObject
 {
-    EncuestasService _encuestasServices = default!;
+    readonly EncuestasService _encuestasServices = default!;
+
+    [ObservableProperty]
+    private bool isBusy = false;
 
     [ObservableProperty]
     private string nombre = string.Empty;
@@ -21,10 +24,12 @@ public partial class EncuestaPageModel : ObservableObject
         _encuestasServices=encuestasServices ;
     }
 
-
     [RelayCommand]
     async private void Guardar()
     {
+        if (IsBusy) return; // evita doble tap
+        IsBusy = true;
+
         try
         {
             await _encuestasServices.RegistrarEncuesta(new Models.EncuestaModel
@@ -33,11 +38,22 @@ public partial class EncuestaPageModel : ObservableObject
                 FechaNacimiento = fechaNacimiento
             });
 
-            await Toast.Make($"Registrado", ToastDuration.Long).Show();
+            // clean
+            Nombre = string.Empty;
+            FechaNacimiento = DateTime.Today;
+
+            //await Toast.Make($"Registrado", ToastDuration.Long).Show();
+            //exito!
+            await Shell.Current.DisplayAlertAsync("¡Listo!", "Encuesta registrada correctamente.", "OK");
         }
         catch (Exception ex)
         {
-            await Toast.Make($"Error: {ex.Message}", ToastDuration.Long).Show();
+            //await Toast.Make($"Error: {ex.Message}", ToastDuration.Long).Show();
+            await Shell.Current.DisplayAlertAsync("Sin conexión", "No se pudo conectar al servidor. Revisá tu conexión.", "OK");
+        }
+        finally
+        {
+            IsBusy = false; 
         }
     }
 

@@ -11,14 +11,11 @@ namespace Ejemplo_Encuesta.PageModels;
 public partial class LoginPageModel : ObservableObject
 {
 
-    private readonly AuthService _authService;
-    private readonly TokenStorageService _storage;
+    readonly AuthService _authService = default!;
+    readonly TokenStorageService _storage = default!;
 
-    public LoginPageModel( AuthService authService, TokenStorageService storage)
-    {
-        _authService = authService;
-        _storage = storage;
-    }
+    [ObservableProperty]
+    private bool isBusy = false;
 
     [ObservableProperty]
     private string usuario;
@@ -27,12 +24,14 @@ public partial class LoginPageModel : ObservableObject
     private string clave;
 
     [ObservableProperty]
-    private bool isBusy;
-
-    [ObservableProperty]
     private string errorMessage;
 
-    
+    public LoginPageModel(AuthService authService, TokenStorageService storage)
+    {
+        _authService = authService;
+        _storage = storage;
+    }
+
     [RelayCommand]
     private async Task LoginAsync()
     {

@@ -13,7 +13,9 @@ public partial class DetalleEncuestaPageModel : ObservableObject
 
     [ObservableProperty]
     public DateTime fechaNacimiento = DateTime.MinValue;
-    
+
+    [ObservableProperty]
+    private bool isBusy = false;
 
     [RelayCommand]
     private async Task GoBack(object? obj)

@@ -1,11 +1,11 @@
-
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
 using Duende.IdentityServer.Validation;
+
 using Ejemplo_WebAPI_Encuestas.GraphQL;
 using Ejemplo_WebAPI_Encuestas.Identity;
 using Ejemplo_WebAPI_Encuestas.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -199,26 +199,32 @@ app.UseStaticFiles(new StaticFileOptions
 app.UseWebSockets();   // para los subscriptions
 app.UseRouting();
 
-//IdentityServer (emite tokens)
+#region IdentityServer (emite tokens)
 app.UseIdentityServer();     // EMITE TOKENS
+#endregion 
 
-// AuthN / AuthZ (orden IMPORTANTE)
+#region AuthN / AuthZ (orden IMPORTANTE)
 //app.UseAuthorization();
 app.UseAuthentication(); // VALIDA TOKENS
 app.UseAuthorization();
+#endregion
 
-app.MapGet("/", () => Results.Redirect("/graphql"));
-
-// OpenAPI / Scalar (podés condicionar por env si querés)
+#region OpenAPI / Scalar 
 //haceder con url/scalar
 //if (app.Environment.IsDevelopment()) 
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
 }
+#endregion
 
-// GraphQL
+#region graphql playground (solo en dev)
+//if (app.Environment.IsDevelopment()) 
+{
+    app.MapGet("/", () => Results.Redirect("/graphql"));
+}
 app.MapGraphQL("/graphql");
+#endregion
 
 // Controllers
 app.MapControllers();
