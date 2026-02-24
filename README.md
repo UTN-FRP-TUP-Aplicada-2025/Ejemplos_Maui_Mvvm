@@ -1,7 +1,6 @@
 # Ejemplos prácticos usando MVVM
 
-Desarrollo de Ejemplos prácticos usando MVVM integrado con GraphQL, autenticación con IdentityServer 
-y generación de apk universal.
+Desarrollo de Ejemplos prácticos usando MVVM integrado con GraphQL, autenticación con IdentityServer, etc.
 
 ## Diseño
 En construcción ...
